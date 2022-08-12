@@ -1,12 +1,9 @@
 import styles from '../styles/pages/Student.module.css'
-import io from 'socket.io-client'
 import Chatbox from '../components/Chatbox'
 import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 
-const socket = io('http://localhost:3001')
-
-export default function Student() {
+export default function Student({ socket }) {
 	let [answered, setAnswered] = useState(false)
 	let [question, setQuestion] = useState(null)
 	let [answer, setAnswer] = useState('')
