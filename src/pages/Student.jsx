@@ -29,7 +29,7 @@ export default function Student() {
 			id: 1,
 			room_id: 1,
 			question: 'Some Question',
-			type: 'MC',
+			type: 'FR',
 			choices: [
 				{ choice: 'option 1' },
 				{ choice: 'option 2' },

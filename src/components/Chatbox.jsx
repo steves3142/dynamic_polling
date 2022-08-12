@@ -25,11 +25,17 @@ export default function Chatbox({ name, socket }) {
 		setInput(e.target.value)
 	}
 	useEffect(() => {
-		socket.on('receive-message', (data) => {
-			updateMessage(data)
-			scrollToBottom()
-		})
+		if (socket != undefined) {
+			socket.on('receive-message', (data) => {
+				updateMessage(data)
+				scrollToBottom()
+			})
+		}
 	}, [socket])
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [chatMessages])
 
 	return (
 		<div>
@@ -42,7 +48,7 @@ export default function Chatbox({ name, socket }) {
 						</p>
 					</div>
 				))}
-				<div ref={chatBottom}></div>
+				<div ref={chatBottom}> </div>
 			</div>
 			<form onSubmit={handleSubmit}>
 				<input
