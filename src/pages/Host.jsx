@@ -1,8 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import styles from '../styles/pages/Host.module.css'
-
+import axios from 'axios'
 
 export default function Host() {
 
@@ -12,41 +11,54 @@ export default function Host() {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
 
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		let res = await axios.post(`/host`, formState)
+		console.log('hola')
+		console.log(res.data)
+		setFormState([])
+		getBanks()
+	  };
 
 	return (
+		<div>
+			<h2>Host</h2>
+			<div className={styles.container}>
 
+				<div id="rectangle" className={styles.options}>
 
+					<div className={styles.wrapper}>
 
-		<div className={styles.container}>
+						<div id="rectangle" className={styles.options}>
+							Write Questions Here
+						</div>
 
-			<div id="rectangle" className={styles.options}>
+						<div id="rectangle" className={styles.options}>
+							Text Field for Option 1
+						</div>
 
-				<div className={styles.wrapper}>
+						<div id="rectangle" className={styles.options}>
+							Text Field for Option 2
+						</div>
 
-					<div id="rectangle" className={styles.options}>
-						Write Questions Here
-					</div>
+						<div id="rectangle" className={styles.options}>
+							Text Field for Option 3
+						</div>
 
-					<div id="rectangle" className={styles.options}>
-						Text Field for Option1
-					</div>
+						<div id="rectangle" className={styles.options}>
+							Text Field for Option 4
+						</div>
 
-					<div id="rectangle" className={styles.options}>
-						Text Field for Option 2
-					</div>
+						<button onClick={handleSubmit}>Submit</button> 
 
-					<div id="rectangle" className={styles.options}>
-						Text Field for Option 3
-					</div>
-
-					<div id="rectangle" className={styles.options}>
-						Text Field for Option 4
 					</div>
 
 				</div>
-
 			</div>
+
 		</div>
+
+
 
 	)
 }
