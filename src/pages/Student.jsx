@@ -29,7 +29,7 @@ export default function Student() {
 			id: 1,
 			room_id: 1,
 			question: 'Some Question',
-			type: 'FR',
+			type: 'MC',
 			choices: [
 				{ choice: 'option 1' },
 				{ choice: 'option 2' },
@@ -44,7 +44,7 @@ export default function Student() {
 
 	useEffect(() => {
 		//on new question
-		socket.on('', (data) => {
+		socket.on('new-question', (data) => {
 			setAnswered(false)
 		})
 	}, [socket]) //on socket receive

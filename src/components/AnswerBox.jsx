@@ -1,3 +1,4 @@
+import styles from '../styles/pages/Student.module.css'
 export default function AnswerBox({
 	question,
 	submitAnswer,
@@ -28,6 +29,22 @@ export default function AnswerBox({
 			)
 		} else {
 			//return MC form here
+			return (
+				<div>
+					{question.choices.map((choice, index) => (
+						<div
+							className={
+								answer !== '' && answer == index ? styles.selected : ''
+							}
+							onClick={() => {
+								setAnswer(index)
+							}}>
+							{choice.choice}
+						</div>
+					))}
+					<button onClick={submitAnswer}>submit</button>
+				</div>
+			)
 		}
 	}
 
