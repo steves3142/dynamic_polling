@@ -1,10 +1,7 @@
-# Getting Started with Create React App
+# Dyanmic Polling (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Component Hierarchy Diagram
 
-![ERD](ERD.png)
+![ERD](CHD.png)
 
-## Hierarchy
-![HD](Component _Heirarchy.png)
