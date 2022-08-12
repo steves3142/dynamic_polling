@@ -36,9 +36,11 @@ export default function Chatbox({ name, socket }) {
 			<div className={styles.chatbox}>
 				Chat messages show Here
 				{chatMessages.map((msg) => (
-					<p>
-						{`${msg.name}: ${msg.message}`} <br />
-					</p>
+					<div>
+						<p>
+							{`${msg.name}: ${msg.message}`} <br />
+						</p>
+					</div>
 				))}
 				<div ref={chatBottom}></div>
 			</div>
