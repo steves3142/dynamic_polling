@@ -1,4 +1,4 @@
-# DyaSoar Polling App (Frontend)
+# DynaSoar Polling App (Frontend)
 
 
 ## Project Description
