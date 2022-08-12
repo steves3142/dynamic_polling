@@ -44,13 +44,18 @@ h2 {
 	background: #C49B9B;
 	border: 1px solid #000000;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	margin-bottom: 15px;
 }
 
-.second {
-	position: absolute;
+.options {
+	display: flex;
 	width: 588px;
 	height: 56px;
 	background: #D9D9D9;
+	margin-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+
 }
 
 .third {
@@ -58,4 +63,12 @@ h2 {
 	width: 588px;
 	height: 33px;
 	background: #D9D9D9;
+	margin-bottom: 15px;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px; 
+
 }
