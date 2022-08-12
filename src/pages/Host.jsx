@@ -19,50 +19,64 @@ export default function Host() {
 		isActive: true,
 	})
 
+	const initialForm = { 
+		question: '', 
+		room_Id: '10',
+		type: 'MC',
+	  }
+
+
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value })
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		let res = await axios.post(`/host`, formState)
+		let res = await axios.post(`http://localhost:3001/api/host/submit/question`, formState)
 		console.log('hola')
 		console.log(res.data)
-		setFormState([])
-		// getBanks()
+		setFormState(initialForm)
 	}
 
 	//socketIO listen for message
-	useEffect(() => {}, [socket])
+	useEffect(() => { }, [socket])
 
 	return (
 		<div>
 			<ViewAllAnswerBox socket={socket} />
 			<h2>Host</h2>
 			<div className={styles.container}>
-				<div id='rectangle' className={styles.options}>
+				<div id="rectangle" className={styles.options}>
+
 					<div className={styles.wrapper}>
-						<div id='rectangle' className={styles.options}>
-							Write Questions Here
-						</div>
+						<form onSubmit={handleSubmit}>
 
-						<div id='rectangle' className={styles.options}>
-							Text Field for Option 1
-						</div>
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="question">Type Your Question Here</label>
+								<input type="text" id="question" onChange={handleChange} value={formState.question} />
+							</div>
 
-						<div id='rectangle' className={styles.options}>
-							Text Field for Option 2
-						</div>
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="answer">Type First Answer Choice</label>
+								<input type="text" onChange={handleChange} />
+							</div>
 
-						<div id='rectangle' className={styles.options}>
-							Text Field for Option 3
-						</div>
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="answer">Type Second Answer Choice</label>
+								<input type="text" onChange={handleChange} />
+							</div>
 
-						<div id='rectangle' className={styles.options}>
-							Text Field for Option 4
-						</div>
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="answer">Type Third Answer Choice</label>
+								<input type="text" onChange={handleChange} />
+							</div>
 
-						<button onClick={handleSubmit}>Submit</button>
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="answer">Type Fourth Answer Choice</label>
+								<input type="text" onChange={handleChange} />
+							</div>
+							<button onClick={handleSubmit}>Submit</button>
+						</form>
 					</div>
 				</div>
 			</div>
