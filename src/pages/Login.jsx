@@ -11,16 +11,26 @@ export default function Login() {
             <h2>Login</h2>
             <div className={styles.container}>
 
-                <div className={styles.wrapper}>
+                <div id="rectangle" className={styles.login_box1}>
+                    <div id="rectangle" className={styles.login_box2}>
+                        Email
+                    </div>
 
-                    <div id="rectangle" className={styles.options}>
+                    <div id="rectangle" className={styles.login_box3}>
+                        Password
+                    </div>
 
+                    <div id="rectangle" className={styles.signup_box1}>
+                        <button className={styles.button}>Sign In</button>
+                    </div>
+
+                    <div id="rectangle" className={styles.signup_box2}>
+                    <button className={styles.button}>Sign Up</button>
                     </div>
 
                 </div>
-
             </div>
-        </div>
+
+        </div >
     )
 }
-

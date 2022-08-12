@@ -13,23 +13,23 @@ export default function Register() {
 
                 <div id="rectangle" className={styles.register_box1}>
                     <div id="rectangle" className={styles.register_box2}>
-
+                        Email
                     </div>
 
                     <div id="rectangle" className={styles.register_box3}>
-
-                    </div>
-
-                    <div id="rectangle" className={styles.keep_signedin}>
-
+                        Password
                     </div>
 
                     <div id="rectangle" className={styles.signup_box1}>
                         <button className={styles.button}>Sign In</button>
                     </div>
 
+                    <div id="rectangle" className={styles.keep_signedin}>
+                        Keep Signed In
+                    </div>
+
                     <div id="rectangle" className={styles.signup_box2}>
-                    <button className={styles.button}>Sign Up</button>
+                    <button>Sign Up</button>
                     </div>
 
                 </div>

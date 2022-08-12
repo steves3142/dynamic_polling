@@ -12,7 +12,7 @@
     position: relative;
 }
 
-.register_box1 {
+.login_box1 {
     display: flex;
     flex-direction: column;
     width: 419px;
@@ -22,13 +22,79 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.register_box2 {
+.login_box2 {
     position: relative;
     top: 122px;
     right: 69px;
     left: 69px;
     width: 281px;
     height: 44px;
-    
+
     background: #D9D9D9;
+}
+
+.login_box3 {
+    position: relative;
+    top: 185px;
+    right: 69px;
+    left: 69px;
+    bottom: 184px;
+    width: 281px;
+    height: 44px;
+
+    background: #D9D9D9;
+}
+
+.keep_signedin {
+    position: relative;
+    top: 225px;
+    right: 108px;
+    left: 149px;
+    bottom: 117px;
+    width: 162px;
+    height: 19px;
+
+    background: #D9D9D9;
+}
+
+.signup_box1 {
+    position: relative;
+    top: 265px;
+    right: 221px;
+    left: 54px;
+    bottom: 44px;
+    width: 144px;
+    height: 36px;
+
+    background: #F95757;
+
+}
+
+.signup_box2 {
+    position: relative;
+    top: 230px;
+    right: 57px;
+    left: 218px;
+    bottom: 44px;
+    width: 144px;
+    height: 36px;
+
+    background: #F95757;
+
+}
+
+button {
+    position: absolute;
+    width: 45px;
+    height: 17px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
 }
