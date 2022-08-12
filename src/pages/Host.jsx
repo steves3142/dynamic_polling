@@ -5,20 +5,30 @@ import axios from 'axios'
 
 export default function Host() {
 
-	const [formState, setFormState] = useState([])
+	const initialForm = { 
+		question: '', 
+		room_Id: '10',
+		type: 'MC',
+	  }
+	const [formState, setFormState] = useState(initialForm)
 
 	const handleChange = event => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
 
-	const handleSubmit = async (event) => {
+	async function handleSubmit(event) {
 		event.preventDefault();
-		let res = await axios.post(``, formState)
+		let res = await axios.post(`http://localhost:3001/api/host/submit/question`, formState)
 		console.log('hola')
 		console.log(res.data)
-		setFormState([])
-
+		setFormState(initialForm)
 	};
+
+	
+
+	// useEffect(() => {
+
+	// }, [])
 
 	return (
 		<div>
@@ -28,34 +38,34 @@ export default function Host() {
 				<div id="rectangle" className={styles.options}>
 
 					<div className={styles.wrapper}>
-						<form>
+						<form onSubmit={handleSubmit}>
 
 							<div id="rectangle" className={styles.options}>
 								<label htmlFor="question">Type Your Question Here</label>
+								<input type="text" id="question" onChange={handleChange} value =  {formState.question} />
+							</div>
+
+							<div id="rectangle" className={styles.options}>
+								<label htmlFor="answer">Type First Answer Choice</label>
 								<input type="text" onChange={handleChange} />
 							</div>
 
 							<div id="rectangle" className={styles.options}>
-								<label htmlFor="question">Type First Answer Choice</label>
+								<label htmlFor="answer">Type Second Answer Choice</label>
 								<input type="text" onChange={handleChange} />
 							</div>
 
 							<div id="rectangle" className={styles.options}>
-								<label htmlFor="question">Type Second Answer Choice</label>
+								<label htmlFor="answer">Type Third Answer Choice</label>
 								<input type="text" onChange={handleChange} />
 							</div>
 
 							<div id="rectangle" className={styles.options}>
-								<label htmlFor="question">Type Third Answer Choice</label>
+								<label htmlFor="answer">Type Fourth Answer Choice</label>
 								<input type="text" onChange={handleChange} />
 							</div>
 
-							<div id="rectangle" className={styles.options}>
-								<label htmlFor="question">Type Fourth Answer Choice</label>
-								<input type="text" onChange={handleChange} />
-							</div>
-
-							<button type="submit" onClick={handleSubmit}>Submit</button>
+							<button type="submit">Submit</button>
 
 						</form>
 
