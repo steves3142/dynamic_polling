@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react'
+import styles from '../styles/components/Chat.module.css'
+import { useRef } from 'react'
 
 export default function Chatbox({ name, socket }) {
 	let [chatMessages, setChatmessages] = useState([])
 	let [input, setInput] = useState('')
+	const chatBottom = useRef(null)
 
 	function updateMessage(message) {
 		setChatmessages((currentState) => [...currentState, message])
+	}
+
+	function scrollToBottom() {
+		chatBottom.current?.scrollIntoView({ behavior: 'smooth' })
 	}
 
 	function handleSubmit(e) {
@@ -20,18 +27,20 @@ export default function Chatbox({ name, socket }) {
 	useEffect(() => {
 		socket.on('receive-message', (data) => {
 			updateMessage(data)
+			scrollToBottom()
 		})
 	}, [socket])
 
 	return (
 		<div>
-			<div>
+			<div className={styles.chatbox}>
 				Chat messages show Here
 				{chatMessages.map((msg) => (
 					<p>
 						{`${msg.name}: ${msg.message}`} <br />
 					</p>
 				))}
+				<div ref={chatBottom}></div>
 			</div>
 			<form onSubmit={handleSubmit}>
 				<input
