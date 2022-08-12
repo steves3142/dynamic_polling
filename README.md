@@ -17,7 +17,7 @@ A teaching app for improving student engagement!
 -Functional socket connections
 -Functional bi-directional messaging from frontend to backend
 -Full CRUD
--User Authentication with JWT and utilize protected routes on frontend
+-User Authentication with JWT and utilize protected routes on both frontend and backend
 
 ## Pitch Deck 
 
