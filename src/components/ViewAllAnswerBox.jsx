@@ -7,7 +7,7 @@ export default function ViewAllAnswerBox({ socket }) {
 	}
 
 	useEffect(() => {
-		socket.on('new_answer', (answer) => {
+		socket.on('new-answer', (answer) => {
 			console.log(answer)
 			updateAnswersList(answer)
 		})

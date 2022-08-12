@@ -45,6 +45,8 @@ export default function Student() {
 	useEffect(() => {
 		//on new question
 		socket.on('new-question', (data) => {
+			setQuestion(data)
+			console.log(data)
 			setAnswered(false)
 		})
 	}, [socket]) //on socket receive
