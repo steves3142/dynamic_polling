@@ -5,10 +5,13 @@ import styles from '../styles/pages/Host.module.css'
 import io from 'socket.io-client'
 import axios from 'axios'
 
+const socket = io('http://localhost:3001')
+
 export default function Host() {
 	const [formState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
-	let socket = io('http://localhost:3001')
+
+	//Not connected to socket yet but will use for test route
 	const [room, setRoom] = useState({
 		id: 1,
 		owner_id: 1,
@@ -32,8 +35,6 @@ export default function Host() {
 	//socketIO listen for message
 	useEffect(() => {}, [socket])
 
-	//Page Load UseEffect
-	useEffect(() => {}, [])
 	return (
 		<div>
 			<ViewAllAnswerBox socket={socket} />
