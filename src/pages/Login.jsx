@@ -6,13 +6,21 @@ import axios from 'axios'
 export default function Login() {
 
 
-return (
-    <div>
-        <h2>Login</h2>
-        <div className={styles.container}>
-           
+    return (
+        <div>
+            <h2>Login</h2>
+            <div className={styles.container}>
+
+                <div className={styles.wrapper}>
+
+                    <div id="rectangle" className={styles.options}>
+
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-    </div>
     )
 }
 

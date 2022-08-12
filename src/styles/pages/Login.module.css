@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.register_box1 {
+    display: flex;
+    flex-direction: column;
+    width: 419px;
+    height: 444px;
+
+    background: #C49B9B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.register_box2 {
+    position: relative;
+    top: 122px;
+    right: 69px;
+    left: 69px;
+    width: 281px;
+    height: 44px;
+    
+    background: #D9D9D9;
+}
