@@ -38,7 +38,7 @@ export default function Chatbox({ name, socket }) {
 	}, [chatMessages])
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.chatbox}>
 				Chat messages show Here
 				{chatMessages.map((msg) => (
@@ -52,12 +52,13 @@ export default function Chatbox({ name, socket }) {
 			</div>
 			<form onSubmit={handleSubmit}>
 				<input
+				    className={styles.form} 
 					type='text'
 					name='chatInput'
 					onChange={handleChange}
 					value={input}
 				/>
-				<button type='submit'>send</button>
+				<button className={styles.button} type='submit'>SEND</button>
 			</form>
 		</div>
 	)

@@ -1,7 +1,38 @@
+* {
+	font-family: 'Arima';
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+
 .chatbox {
+	font-size: 30px;
 	width: 600px;
-	min-height: 300px;
-	max-height: 300px;
+	min-height: 200px;
+	max-height: 200px;
+	background-color: rgb(195, 216, 208);
 	overflow-y: scroll;
+	display: flex;
+	justify-content: center;
 	border: 2px solid black;
+	border-radius: 10px;
+
+}
+
+.form {
+	height: 30px;
+	width: 545px;
+	border-radius: 5px;
+}
+
+.button {
+	height: 35px;
+	background-color: rgb(77, 212, 79);
+	border-radius: 5px;
 }
