@@ -43,15 +43,24 @@
 	margin-bottom: 15px;
 }
 
-.pseudo-button {
-	width: 75%;
-	height: 40px;
+.button-container {
 	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 75%;
+}
+
+.pseudo-button {
+	width: 45%;
+	height: 40px;
 	background-color: rgb(246, 49, 49);
 	font-size: 22px;
+	display: flex;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
+	border-radius: 5px;
+	margin: 0;
 }
 
 .pseudo-button:hover {

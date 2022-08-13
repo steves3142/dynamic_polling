@@ -24,8 +24,8 @@ export default function Register() {
 		event.preventDefault()
 		setSubmitted(true)
 	}
-//Asdf1234!
-//Asdf1234!
+	//Asdf1234!
+	//Asdf1234!
 	const submit = async () => {
 		let res = await axios.post(
 			`http://localhost:3001/api/account/submit/host`,
@@ -60,7 +60,7 @@ export default function Register() {
 		<div className={styles.container}>
 			<h2>Register</h2>
 			<form onSubmit={handleSubmit}>
-				<div id='rectangle' className={styles['form-wrapper']}>
+				<div className={styles['form-wrapper']}>
 					<input
 						className={styles['login-element']}
 						type='email'
@@ -97,8 +97,17 @@ export default function Register() {
 						<option value={'CLIENT'}>Client</option>
 						<option value={'HOST'}>Host</option>
 					</select>
-					<div onClick={handleSubmit} className={styles['pseudo-button']}>
-						Sign Up
+					<div className={styles['button-container']}>
+						<div
+							onClick={() => {
+								navigate('/')
+							}}
+							className={styles['pseudo-button']}>
+							Login
+						</div>
+						<div onClick={handleSubmit} className={styles['pseudo-button']}>
+							Sign Up
+						</div>
 					</div>
 				</div>
 			</form>
