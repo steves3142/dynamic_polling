@@ -26,6 +26,13 @@ function App() {
 		setLoggedIn(true)
 	}
 
+	const getPage = () => {
+		if (user.type == 'HOST') {
+			return <Host socket={socket} />
+		} else {
+			return <Student socket={socket} />
+		}
+	}
 	const login = async (formState) => {
 		//acount/login
 		const res = await axios.post(
@@ -43,7 +50,11 @@ function App() {
 		console.log(res.data)
 	}
 
-	const logout = () => {}
+	const logout = () => {
+		setLoggedIn(false)
+		setUser(null)
+		localStorage.clear()
+	}
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -62,10 +73,11 @@ function App() {
 				</Routes>
 			) : (
 				<Routes>
-					<Route path='/' element={<Login login={login} />} />
+					<Route path='/*' element={<Login login={login} />} />
 					<Route path='/register' element={<Register />} />
 				</Routes>
 			)}
+			{loggedIn ? <button onClick={logout}>sign out</button> : ''}
 		</div>
 	)
 }
