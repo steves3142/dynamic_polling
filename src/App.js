@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import Student from './pages/Student'
 import Host from './pages/Host'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import styles from './styles/App.module.css'
 import { useState } from 'react'
 import io from 'socket.io-client'
@@ -14,9 +16,10 @@ function App() {
 				<Route path='/' element={<div>Home Page</div>} />
 				<Route path='/student' element={<Student socket={socket} />} />
 				<Route path='/host' element={<Host socket={socket} />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
 			</Routes>
 		</div>
 	)
 }
-
 export default App
