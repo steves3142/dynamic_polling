@@ -32,6 +32,17 @@
 	background: #d9d9d9;
 	margin-bottom: 15px;
 	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.text {
+	align-self: center;
+}
+
+.checkbox {
+	width: 30px;
+	width: 30px;
 }
 
 .button-container {

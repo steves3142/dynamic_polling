@@ -8,11 +8,17 @@ export default function Login({ login }) {
 	const initialForm = {
 		email: '',
 		password: '',
+		persist: true,
 	}
 	const [formState, setFormState] = useState(initialForm)
 	const [submitted, setSubmitted] = useState(false)
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value })
+		if (event.target.id == 'persist') {
+			console.log(event.target.checked)
+			setFormState({ ...formState, [event.target.id]: event.target.checked })
+		} else {
+			setFormState({ ...formState, [event.target.id]: event.target.value })
+		}
 	}
 	const handleSubmit = async (event) => {
 		event.preventDefault()
@@ -50,6 +56,17 @@ export default function Login({ login }) {
 						className={styles['login-element']}
 						required
 					/>
+					<div className={styles['login-element']}>
+						<p className={styles['text']}>Keep me logged in</p>
+						<input
+							className={styles['checkbox']}
+							type='checkbox'
+							id='persist'
+							onChange={handleChange}
+							value={formState.persist}
+						/>
+					</div>
+
 					<div className={styles['button-container']}>
 						<div
 							onClick={() => navigate('/register')}
