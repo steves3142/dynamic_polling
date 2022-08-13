@@ -1,100 +1,70 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 }
 
-.login_box1 {
-    display: flex;
-    flex-direction: column;
-    width: 419px;
-    height: 444px;
-
-    background: #C49B9B;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: min(400px, 90%);
+	min-width: 325px;
+	height: min(400px, 90%);
+	min-height: 400px;
+	background: #e19090;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.login_box2 {
-    position: relative;
-    top: 122px;
-    right: 69px;
-    left: 69px;
-    width: 281px;
-    height: 44px;
-
-    background: #D9D9D9;
+.login-element {
+	width: 75%;
+	font-size: 22px;
+	height: 44px;
+	background: #d9d9d9;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
 }
 
-.login_box3 {
-    position: relative;
-    top: 185px;
-    right: 69px;
-    left: 69px;
-    bottom: 184px;
-    width: 281px;
-    height: 44px;
-
-    background: #D9D9D9;
+.text {
+	align-self: center;
 }
 
-.keep_signedin {
-    position: relative;
-    top: 225px;
-    right: 108px;
-    left: 149px;
-    bottom: 117px;
-    width: 162px;
-    height: 19px;
-
-    background: #D9D9D9;
+.checkbox {
+	width: 30px;
+	width: 30px;
 }
 
-.signup_box1 {
-    position: relative;
-    top: 265px;
-    right: 221px;
-    left: 54px;
-    bottom: 44px;
-    width: 144px;
-    height: 36px;
-
-    background: #F95757;
-
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	width: 75%;
 }
 
-.signup_box2 {
-    position: relative;
-    top: 230px;
-    right: 57px;
-    left: 218px;
-    bottom: 44px;
-    width: 144px;
-    height: 36px;
-
-    background: #F95757;
-
+.pseudo-button {
+	width: 45%;
+	height: 40px;
+	background-color: rgb(246, 49, 49);
+	font-size: 22px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	margin: 0;
 }
 
-button {
-    position: absolute;
-    width: 45px;
-    height: 17px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
-
-
-    color: #FFFFFF;
+.pseudo-button:hover {
+	transform: scale(1.05);
+	background-color: rgb(206, 29, 29);
 }

@@ -19,26 +19,6 @@ export default function Student({ socket }) {
 		}
 	}
 
-	//for Testing purpose
-	function newQuestion() {
-		console.log('new question')
-		const question = {
-			id: 1,
-			room_id: 1,
-			question: 'Some Question',
-			type: 'FR',
-			choices: [
-				{ choice: 'option 1' },
-				{ choice: 'option 2' },
-				{ choice: 'option 3' },
-				{ choice: 'option 4' },
-			],
-		}
-		setAnswer('')
-		setQuestion(question)
-		setAnswered(false)
-	}
-
 	useEffect(() => {
 		//on new question
 		socket.on('new-question', (data) => {
@@ -58,7 +38,6 @@ export default function Student({ socket }) {
 				answer={answer}
 				setAnswer={setAnswer}
 			/>
-			<button onClick={newQuestion}>new question</button>
 			<br />
 			<Chatbox name={'An'} socket={socket} />
 		</div>
