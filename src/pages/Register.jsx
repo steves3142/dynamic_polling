@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
+import { validateEmail, validatePassword } from '../util/logic'
+import { useNavigate } from 'react-router-dom'
 import styles from '../styles/pages/Register.module.css'
 
 import axios from 'axios'
 
 export default function Register() {
-	const [formState, setFormState] = useState([])
-
+	const navigate = useNavigate()
 	const initialForm = {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		type: 'MC',
+		type: 'CLIENT',
 	}
+	const [formState, setFormState] = useState(initialForm)
+	const [submitted, setSubmitted] = useState(false)
 
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value })
@@ -19,11 +22,39 @@ export default function Register() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		let res = await axios.post(`http://localhost:3001/api/host`, formState)
+		setSubmitted(true)
+	}
+//Asdf1234!
+//Asdf1234!
+	const submit = async () => {
+		let res = await axios.post(
+			`http://localhost:3001/api/account/submit/host`,
+			formState
+		)
 		console.log('hola')
 		console.log(res.data)
 		setFormState(initialForm)
+		navigate('/')
 	}
+
+	useEffect(() => {
+		if (submitted) {
+			let canSubmit = true
+			if (!validateEmail(formState.email)) {
+				console.log('invalid email')
+				canSubmit = false
+			}
+
+			if (!validatePassword(formState.password, formState.confirmPassword)) {
+				console.log('invalid password')
+				canSubmit = false
+			}
+			if (canSubmit) {
+				submit()
+			}
+			setSubmitted(false)
+		}
+	}, [submitted])
 
 	return (
 		<div className={styles.container}>
@@ -37,6 +68,7 @@ export default function Register() {
 						onChange={handleChange}
 						value={formState.email}
 						placeholder='email@email.com'
+						required
 					/>
 					<input
 						type='password'
@@ -45,16 +77,29 @@ export default function Register() {
 						value={formState.password}
 						placeholder='Password'
 						className={styles['login-element']}
+						required
 					/>
 					<input
 						type='password'
 						id='confirmPassword'
 						onChange={handleChange}
-						value={formState.password}
+						value={formState.confirmPassword}
 						placeholder='Confirm Password'
 						className={styles['login-element']}
+						required
 					/>
-					<div className={styles['pseudo-button']}>Sign Up</div>
+					<select
+						className={styles['drop-down-component']}
+						defaultValue={formState.type}
+						id='type'
+						onChange={handleChange}
+						required>
+						<option value={'CLIENT'}>Client</option>
+						<option value={'HOST'}>Host</option>
+					</select>
+					<div onClick={handleSubmit} className={styles['pseudo-button']}>
+						Sign Up
+					</div>
 				</div>
 			</form>
 		</div>
