@@ -10,13 +10,12 @@ function App() {
 		<div className={styles['container']}>
 			<Routes>
 				<Route path='/' element={<div>Home Page</div>} />
-				<Route path='/student' element={<Student />} />
-				<Route path='/host' element={<Host />} />
+				<Route path='/student' element={<Student socket={socket} />} />
+				<Route path='/host' element={<Host socket={socket} />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
 			</Routes>
 		</div>
 	)
 }
-
 export default App
