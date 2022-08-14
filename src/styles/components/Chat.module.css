@@ -11,14 +11,17 @@
 	width: 100%;
 	min-height: 150px;
 	max-height: 200px;
-	background-color: rgb(195, 216, 208);
+	background-color: #efe2c7;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	outline: 2px solid black;
-	border-radius: 10px;
+	align-items: center;
+	border: 2px solid rgb(156, 149, 149);
+	border-radius: 2px;
+	margin-top: -5px;
+	margin-bottom: 5px;
 }
 
 .chatline {
@@ -41,4 +44,9 @@
 	width: 15%;
 	background-color: rgb(77, 212, 79);
 	border-radius: 5px;
+}
+
+.button:hover {
+	transform: scale(1.05);
+	background-color: rgb(143, 236, 137);
 }
