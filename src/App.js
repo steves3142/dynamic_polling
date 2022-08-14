@@ -99,7 +99,7 @@ function App() {
 					<Route path='/register' element={<Register />} />
 				</Routes>
 			)}
-			{loggedIn ? <button onClick={logout}>sign out</button> : ''}
+			{/* {loggedIn ? <button onClick={logout}>Log Out</button> : ''} */}
 		</div>
 	)
 }

@@ -30,8 +30,11 @@ export default function Student({ socket }) {
 
 	return (
 		<div className={styles.container}>
-			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
 			<div className={styles['header']}>
+				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
+				<button className={styles['logout']}>Log Out</button>
+			</div>
+			<div className={styles['question']}>
 				<h2 className={styles.question}>Question will populate here</h2>
 			</div>
 			<div className={styles['body']}>
