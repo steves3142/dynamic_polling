@@ -30,6 +30,7 @@ export default function Host({ socket, user, accountInfo }) {
 	const loadRoomList = async () => {
 		if (user != null) {
 			const roomList = await getRoomList(user.id)
+			console.log(roomList)
 			setRoomList(roomList)
 		}
 	}
@@ -89,8 +90,8 @@ export default function Host({ socket, user, accountInfo }) {
 						/>
 					</div>
 					<div className={styles['review-button']}>Review</div>
-					<div className={styles['logout-button']} >
-					<button className={styles['logout']}>Log Out</button>
+					<div className={styles['logout-button']}>
+						<button className={styles['logout']}>Log Out</button>
 					</div>
 				</div>
 				<div className={styles['body-display']}>
