@@ -25,3 +25,10 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.button {
+	height: 35px;
+	width: 15%;
+	background-color: rgb(77, 212, 79);
+	border-radius: 5px;
+}
