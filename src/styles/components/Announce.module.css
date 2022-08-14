@@ -1,13 +1,15 @@
 .pseudo-button {
-	width: 80%;
-	height: 40px;
-	background-color: rgb(236, 73, 73);
-	font-size: 22px;
-	display: flex;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 20px;
+    width: 80%;
+    height: 40px;
+    background-color: rgb(236, 73, 73);
+    font-size: 22px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
+
+.container {}
