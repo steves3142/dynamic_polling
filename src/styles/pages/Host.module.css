@@ -76,7 +76,6 @@
 	height: 40px;
 	background-color: rgb(246, 49, 49);
 	font-size: 22px;
-	display: flex;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
@@ -90,6 +89,17 @@
 	position: relative;
 }
 
+.text {
+	margin: 0;
+	justify-self: center;
+	text-align: center;
+}
+
 .room {
 	display: none;
+	background-color: rgb(246, 49, 49);
+}
+
+.room:hover {
+	background-color: rgb(206, 29, 29);
 }

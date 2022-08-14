@@ -67,7 +67,7 @@ export default function Host({ socket, user }) {
 				<div className={styles['room-info-wrapper']}>
 					<div className={styles['pseudo-button']}>OPEN ROOM</div>
 					<div className={styles['room-list']}>
-						RoomList
+						<p className={styles['text']}>Room List</p>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
