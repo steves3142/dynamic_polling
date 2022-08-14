@@ -3,7 +3,13 @@ import styles from '../styles/components/RoomForm.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function RoomForm({ user, name }) {
+export default function RoomForm({
+	user,
+	name,
+	accountInfo,
+	addToRoomList,
+	setMainDisplay,
+}) {
 	let navigate = useNavigate()
 	const [roomName, setRoomName] = useState(name ? name : '')
 	const [submitted, setSubmitted] = useState(false)
@@ -12,7 +18,21 @@ export default function RoomForm({ user, name }) {
 		setRoomName(event.target.value)
 	}
 
-	useEffect(() => {}, [submitted])
+	const createRoom = async () => {
+		const res = await Client.post('/api/room/submit', {
+			name: roomName,
+			owner_id: accountInfo.id,
+		})
+		addToRoomList(res.data)
+		setMainDisplay(1)
+	}
+
+	useEffect(() => {
+		if (submitted) {
+			createRoom()
+			setSubmitted(false)
+		}
+	}, [submitted])
 
 	return (
 		<div className={styles['wrapper']}>
@@ -28,7 +48,11 @@ export default function RoomForm({ user, name }) {
 			</div>
 			<div className={styles['last-container']}>
 				<div></div>
-				<div className={styles['pseudo-button']}>Create</div>
+				<div
+					onClick={() => setSubmitted(true)}
+					className={styles['pseudo-button']}>
+					Create
+				</div>
 			</div>
 		</div>
 	)

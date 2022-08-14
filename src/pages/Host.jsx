@@ -6,7 +6,7 @@ import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
 import { getRoomList } from '../util/auth'
 
-export default function Host({ socket, user }) {
+export default function Host({ socket, user, accountInfo }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
@@ -27,31 +27,16 @@ export default function Host({ socket, user }) {
 		type: 'MC',
 	}
 
-
-	const questionFormHandleChange = (event) => {
-		setFormState({
-			...questionFormState,
-			[event.target.id]: event.target.value,
-		})
-	}
-
-	const questionFormHandleSubmit = async (event) => {
-		event.preventDefault()
-		let res = await axios.post(
-			`http://localhost:3001/api/host/submit/question`,
-			questionFormState
-		)
-		console.log('hola')
-		console.log(res.data)
-		setFormState(initialForm)
-	}
-
 	const loadRoomList = async () => {
-		console.log(user)
 		if (user != null) {
 			const roomList = await getRoomList(user.id)
 			setRoomList(roomList)
 		}
+	}
+
+	const addToRoomList = (room) => {
+		let temp = [...roomList, room]
+		setRoomList(temp)
 	}
 
 	//on load
@@ -64,7 +49,7 @@ export default function Host({ socket, user }) {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
-				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
+				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<div className={styles['room-info-wrapper']}>
 					<div className={styles['pseudo-button']}>OPEN ROOM</div>
 					<div className={styles['room-list']}>
@@ -74,7 +59,9 @@ export default function Host({ socket, user }) {
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
-						{}
+						{roomList.map((room) => (
+							<div className={styles['room']}>{room.name}</div>
+						))}
 						<div onClick={() => setMainDisplay(5)} className={styles['room']}>
 							Add New Room
 						</div>
@@ -86,14 +73,20 @@ export default function Host({ socket, user }) {
 					<div className={styles['pseudo-button']}>New Question</div>
 					<div className={styles['pseudo-button']}>Room Announcement</div>
 					<div className={styles['pseudo-button']}>Hide/Show Answers</div>
-					<div className={styles['review-dates']} >
-					<input type='text' className={styles['review-date']}
-					name='start-date'
-					placeholder='DD/YY'/>
-					<h4>to</h4>
-					<input type='text' className={styles['review-date']}
-					name='start-date'
-					placeholder='DD/YY'/>
+					<div className={styles['review-dates']}>
+						<input
+							type='text'
+							className={styles['review-date']}
+							name='start-date'
+							placeholder='DD/YY'
+						/>
+						<h4>to</h4>
+						<input
+							type='text'
+							className={styles['review-date']}
+							name='start-date'
+							placeholder='DD/YY'
+						/>
 					</div>
 					<div className={styles['review-button']}>Review</div>
 					<div className={styles['logout-button']} >
@@ -103,6 +96,9 @@ export default function Host({ socket, user }) {
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
+							setMainDisplay={setMainDisplay}
+							addToRoomList={addToRoomList}
+							accountInfo={accountInfo}
 							room={room}
 							socket={socket}
 							mainDisplayState={mainDisplay}

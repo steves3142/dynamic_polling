@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { validateEmail, validatePassword } from '../util/logic'
 import { useNavigate } from 'react-router-dom'
+import Client from '../util/api'
 import styles from '../styles/pages/Register.module.css'
 
 import axios from 'axios'
@@ -27,8 +28,8 @@ export default function Register() {
 	//Asdf1234!
 	//Asdf1234!
 	const submit = async () => {
-		let res = await axios.post(
-			`http://localhost:3001/api/account/submit/host`,
+		let res = await Client.post(
+			`http://localhost:3001/api/account/submit/${formState.type.toLowerCase()}`,
 			formState
 		)
 		console.log('hola')
@@ -58,7 +59,7 @@ export default function Register() {
 
 	return (
 		<div className={styles.container}>
-			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
+			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 			<form onSubmit={handleSubmit}>
 				<div className={styles['form-wrapper']}>
 					<input
