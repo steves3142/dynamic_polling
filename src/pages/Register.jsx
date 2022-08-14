@@ -58,7 +58,7 @@ export default function Register() {
 
 	return (
 		<div className={styles.container}>
-			<h2>Register</h2>
+			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
 			<form onSubmit={handleSubmit}>
 				<div className={styles['form-wrapper']}>
 					<input

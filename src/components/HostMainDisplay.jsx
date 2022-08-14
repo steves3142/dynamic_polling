@@ -4,6 +4,7 @@ import ViewAllAnswerBox from './ViewAllAnswerBox'
 import styles from '../styles/components/HostMainDisplay.module.css'
 
 export default function HostMainDisplay({
+	room,
 	mainDisplayState,
 	questionFormState,
 	questionFormHandleSubmit,
@@ -18,6 +19,7 @@ export default function HostMainDisplay({
 			case 1:
 				return (
 					<NewQuestionForm
+						room={room}
 						formState={questionFormState}
 						handleChange={questionFormHandleChange}
 						handleSubmit={questionFormHandleSubmit}

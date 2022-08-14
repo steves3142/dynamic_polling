@@ -9,3 +9,10 @@ export const restoreSession = async () => {
 		throw error
 	}
 }
+
+export const getRoomList = async (owner_id) => {
+	try {
+		const res = await Client.get(`/api/room/rooms/${owner_id}`)
+		return res.data
+	} catch (error) {}
+}

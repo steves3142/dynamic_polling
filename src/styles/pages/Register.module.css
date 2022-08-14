@@ -1,3 +1,13 @@
+.logo {
+	margin-top: 50px;
+	width: 240px;
+	height: auto;
+}
+
+.logo:hover {
+	transform: scale(1.05);
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -12,6 +22,7 @@
 	position: relative;
 }
 
+
 .form-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -21,8 +32,9 @@
 	min-width: 325px;
 	height: min(400px, 90%);
 	min-height: 400px;
-	background: #e19090;
+	background: #f6d99b;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
 }
 
 .login-element {
@@ -53,7 +65,7 @@
 .pseudo-button {
 	width: 45%;
 	height: 40px;
-	background-color: rgb(246, 49, 49);
+	background-color: rgb(138, 221, 149);
 	font-size: 22px;
 	display: flex;
 	text-align: center;
@@ -65,4 +77,5 @@
 
 .pseudo-button:hover {
 	transform: scale(1.05);
+	background-color: rgb(143, 236, 137);
 }
