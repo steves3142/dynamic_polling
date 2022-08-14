@@ -30,16 +30,22 @@ export default function Student({ socket }) {
 
 	return (
 		<div className={styles.container}>
-			<h2>Question here</h2>
-			<AnswerBox
-				question={question}
-				submitAnswer={submitAnswer}
-				submitted={answered}
-				answer={answer}
-				setAnswer={setAnswer}
-			/>
-			<br />
-			<Chatbox name={'An'} socket={socket} />
+			<div className={styles['header']}>
+				<h2>Question here</h2>
+			</div>
+			<div className={styles['body']}>
+				<div className={styles['answer-box']}>
+					<AnswerBox
+						question={question}
+						submitAnswer={submitAnswer}
+						submitted={answered}
+						answer={answer}
+						setAnswer={setAnswer}
+					/>
+				</div>
+				<br />
+				<Chatbox name={'An'} socket={socket} />
+			</div>
 		</div>
 	)
 }
