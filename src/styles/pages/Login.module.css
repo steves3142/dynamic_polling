@@ -1,3 +1,9 @@
+.logo {
+	margin-top: 50px;
+	width: 240px;
+	height: auto;
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -21,8 +27,9 @@
 	min-width: 325px;
 	height: min(400px, 90%);
 	min-height: 400px;
-	background: #e19090;
+	background: #f6d99b;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
 }
 
 .login-element {
@@ -36,8 +43,19 @@
 	justify-content: space-between;
 }
 
+.keepLogin {
+	width: 75%;
+	font-size: 22px;
+	height: 44px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
 .text {
 	align-self: center;
+	margin-left: 5px;
 }
 
 .checkbox {
@@ -54,7 +72,7 @@
 .pseudo-button {
 	width: 45%;
 	height: 40px;
-	background-color: rgb(246, 49, 49);
+	background-color: rgb(138, 221, 149);
 	font-size: 22px;
 	display: flex;
 	text-align: center;
@@ -62,9 +80,11 @@
 	justify-content: center;
 	border-radius: 5px;
 	margin: 0;
+	border: 1px solid black;
+	
 }
 
 .pseudo-button:hover {
 	transform: scale(1.05);
-	background-color: rgb(206, 29, 29);
+	background-color: rgb(143, 236, 137);
 }

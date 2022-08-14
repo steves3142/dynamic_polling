@@ -35,10 +35,12 @@ export default function Login({ login }) {
 
 
 	return (
-		<div className={styles.container}>
-			<h2>Login</h2>
+		<div className={styles.container}>			
+			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>			
 			<form>
+				{/* <h2>Login</h2> */}
 				<div className={styles['form-wrapper']}>
+					
 					<input
 						className={styles['login-element']}
 						type='email'
@@ -57,7 +59,7 @@ export default function Login({ login }) {
 						className={styles['login-element']}
 						required
 					/>
-					<div className={styles['login-element']}>
+					<div className={styles.keepLogin}>
 						<p className={styles['text']}>Keep me logged in</p>
 						<input
 							className={styles['checkbox']}

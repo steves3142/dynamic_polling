@@ -31,7 +31,7 @@ export default function Student({ socket }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles['header']}>
-				<h2>Question here</h2>
+				<h2>Question will populate here</h2>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['answer-box']}>
