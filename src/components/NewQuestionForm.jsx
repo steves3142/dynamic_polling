@@ -83,6 +83,7 @@ export default function NewQuestionForm() {
 							type='text'
 							id={index}
 							value={choices[index]}
+							placeholder={`option ${index + 1}`}
 							className={styles['input']}
 						/>
 					))}
