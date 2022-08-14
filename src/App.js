@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import styles from './styles/App.module.css'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import Client from './util/api'
 import { restoreSession } from './util/auth'
 import io from 'socket.io-client'
 
@@ -36,10 +36,7 @@ function App() {
 	}
 	const login = async (formState) => {
 		//acount/login
-		const res = await axios.post(
-			'http://localhost:3001/api/account/login',
-			formState
-		)
+		const res = await Client.post('/api/account/login', formState)
 		if (res.data.token) {
 			setUser(res.data.user)
 			setToken(res.data.token)
@@ -51,6 +48,12 @@ function App() {
 		console.log(res.data)
 	}
 
+	const getAccountTypeInfo = async () => {
+		let res = await Client.get(
+			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
+		)
+		console.log(res.data)
+	}
 	const logout = () => {
 		setLoggedIn(false)
 		setUser(null)
@@ -67,6 +70,7 @@ function App() {
 	//once user logged in get the related account type info
 	useEffect(() => {
 		if (user) {
+			getAccountTypeInfo()
 		}
 	}, [user])
 
