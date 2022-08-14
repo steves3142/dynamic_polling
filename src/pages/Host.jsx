@@ -9,8 +9,8 @@ import axios from 'axios'
 export default function Host({ socket }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
-	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log
-	const [mainDisplay, setMainDisplay] = useState(2)
+	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement
+	const [mainDisplay, setMainDisplay] = useState(1)
 
 	//Not connected to socket yet but will use for test route
 	const [room, setRoom] = useState({
