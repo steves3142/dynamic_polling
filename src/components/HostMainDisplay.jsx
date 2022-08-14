@@ -3,6 +3,7 @@ import NewQuestionForm from './NewQuestionForm'
 import ViewAllAnswerBox from './ViewAllAnswerBox'
 import styles from '../styles/components/HostMainDisplay.module.css'
 import RoomForm from './RoomForm'
+import Announcement from './Announce'
 
 export default function HostMainDisplay({
 	user,
@@ -23,6 +24,8 @@ export default function HostMainDisplay({
 			case 2:
 			case 3:
 				return <ViewAllAnswerBox socket={socket} />
+			case 4: 
+				return <Announcement /> 
 			case 5:
 				return (
 					<RoomForm
