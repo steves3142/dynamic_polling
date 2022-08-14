@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
-
+import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
 import { getRoomList } from '../util/auth'
@@ -9,7 +9,7 @@ import { getRoomList } from '../util/auth'
 export default function Host({ socket, user }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
-	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement
+	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
 	const [mainDisplay, setMainDisplay] = useState(1)
 	const [roomList, setRoomList] = useState([])
 
@@ -73,6 +73,10 @@ export default function Host({ socket, user }) {
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
+						{}
+						<div onClick={() => setMainDisplay(5)} className={styles['room']}>
+							Add New Room
+						</div>
 					</div>
 				</div>
 			</div>
@@ -94,9 +98,7 @@ export default function Host({ socket, user }) {
 							room={room}
 							socket={socket}
 							mainDisplayState={mainDisplay}
-							questionFormState={questionFormState}
-							questionFormHandleChange={questionFormHandleChange}
-							questionFormHandleSubmit={questionFormHandleSubmit}
+							user={user}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>

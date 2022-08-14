@@ -2,8 +2,10 @@ import React from 'react'
 import NewQuestionForm from './NewQuestionForm'
 import ViewAllAnswerBox from './ViewAllAnswerBox'
 import styles from '../styles/components/HostMainDisplay.module.css'
+import RoomForm from './RoomForm'
 
 export default function HostMainDisplay({
+	user,
 	room,
 	mainDisplayState,
 	questionFormState,
@@ -17,17 +19,12 @@ export default function HostMainDisplay({
 			case 0:
 				return <>Empty</>
 			case 1:
-				return (
-					<NewQuestionForm
-						room={room}
-						formState={questionFormState}
-						handleChange={questionFormHandleChange}
-						handleSubmit={questionFormHandleSubmit}
-					/>
-				)
+				return <NewQuestionForm room={room} />
 			case 2:
 			case 3:
 				return <ViewAllAnswerBox socket={socket} />
+			case 5:
+				return <RoomForm host={user} />
 		}
 	}
 
