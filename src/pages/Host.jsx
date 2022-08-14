@@ -52,7 +52,12 @@ export default function Host({ socket }) {
 				<h2>Host</h2>
 			</div>
 			<div className={styles['body']}>
-				<div className={styles['side-bar']}>SideBar</div>
+				<div className={styles['side-bar']}>
+					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['pseudo-button']}>Some button</div>
+				</div>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
