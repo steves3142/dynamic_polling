@@ -80,7 +80,12 @@ export default function Host({ socket, user }) {
 				<div className={styles['side-bar']}>
 					<div className={styles['pseudo-button']}>New Question</div>
 					<div className={styles['pseudo-button']}>Room Announcement</div>
-					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['pseudo-button']}>Hide/Show Answers</div>
+					<div className={styles['review-dates']} >
+					<input type='text' className={styles['review-date']}/>
+					<h4>to</h4>
+					<input type='text' className={styles['review-date']}/>
+					</div>
 					<div className={styles['review-button']}>Review</div>
 				</div>
 				<div className={styles['body-display']}>
