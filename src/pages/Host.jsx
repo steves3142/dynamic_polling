@@ -7,7 +7,7 @@ import axios from 'axios'
 import { getRoomList } from '../util/auth'
 import Announcement from '../components/Announce'
 
-export default function Host({ socket, user, accountInfo }) {
+export default function Host({ socket, user, accountInfo, logout }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
@@ -31,6 +31,7 @@ export default function Host({ socket, user, accountInfo }) {
 	const loadRoomList = async () => {
 		if (user != null) {
 			const roomList = await getRoomList(user.id)
+			console.log(roomList)
 			setRoomList(roomList)
 		}
 	}
@@ -90,8 +91,10 @@ export default function Host({ socket, user, accountInfo }) {
 						/>
 					</div>
 					<div className={styles['review-button']}>Review</div>
-					<div className={styles['logout-button']} >
-					<button className={styles['logout']}>Log Out</button>
+					<div className={styles['logout-button']}>
+						<button onClick={logout} className={styles['logout']}>
+							Log Out
+						</button>
 					</div>
 				</div>
 				<div className={styles['body-display']}>

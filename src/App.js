@@ -83,13 +83,23 @@ function App() {
 					<Route
 						path='/student'
 						element={
-							<Student socket={socket} user={user} accountInfo={accountInfo} />
+							<Student
+								socket={socket}
+								user={user}
+								accountInfo={accountInfo}
+								logout={logout}
+							/>
 						}
 					/>
 					<Route
 						path='/host'
 						element={
-							<Host socket={socket} user={user} accountInfo={accountInfo} />
+							<Host
+								socket={socket}
+								user={user}
+								accountInfo={accountInfo}
+								logout={logout}
+							/>
 						}
 					/>
 				</Routes>
@@ -99,7 +109,6 @@ function App() {
 					<Route path='/register' element={<Register />} />
 				</Routes>
 			)}
-			{/* {loggedIn ? <button onClick={logout}>Log Out</button> : ''} */}
 		</div>
 	)
 }
