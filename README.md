@@ -1,6 +1,6 @@
 # DynaSoar Polling App (Frontend)
 
-![Logo](https://i.imgur.com/4Za1ekP.png)
+![Logo](https://i.imgur.com/AVXkMzZ.jpg)
 
 ## Project Description
 
