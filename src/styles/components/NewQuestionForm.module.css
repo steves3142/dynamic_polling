@@ -1,12 +1,13 @@
 .container {
-	/* height: 100%;
-	width: 100%; */
 	box-sizing: border-box;
-	width: 839px;
-	height: 470px;
+	width: 100%;
+	height: 100%;
 	background: #c49b9b;
 	border: 1px solid #000000;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 h2 {
@@ -17,40 +18,63 @@ h2 {
 	color: red;
 }
 
-.first {
-	box-sizing: border-box;
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
-	position: absolute;
-	width: 839px;
-	height: 470px;
+.drop-down-component {
+	margin-top: 10px;
+	width: 200px;
+	height: 40px;
+}
 
-	background: #c49b9b;
-	border: 1px solid #000000;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	margin-bottom: 15px;
+.input {
+	margin-top: 10px;
+	width: 80%;
+	height: 40px;
+}
+
+.pseudo-button {
+	width: 100px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(0, 122, 24);
+}
+
+.bottom-div {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.pseudo-button:hover {
+	background-color: rgb(0, 255, 51);
+}
+
+.MC-form {
+	margin-top: 10px;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.nums-wrapper {
+	height: 45px;
+	display: flex;
+	justify-content: center;
+}
+
+.increment-container {
+	display: flex;
+	flex-direction: column;
 }
 
 .options {
-	display: flex;
-	width: 588px;
-	height: 56px;
-	background: #d9d9d9;
-	margin-bottom: 15px;
-	display: flex;
-	flex-direction: column;
-}
-
-.third {
-	display: flex;
-	flex-direction: column;
-	width: 588px;
-	height: 33px;
-	background: #d9d9d9;
-	margin-bottom: 15px;
-}
-
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 10px;
+	width: 40px;
 }
