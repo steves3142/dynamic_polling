@@ -52,7 +52,7 @@ function App() {
 		let res = await Client.get(
 			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
 		)
-		console.log(res.data)
+		setAccountInfo(res.data)
 	}
 	const logout = () => {
 		setLoggedIn(false)
@@ -70,6 +70,7 @@ function App() {
 	//once user logged in get the related account type info
 	useEffect(() => {
 		if (user) {
+			console.log(user)
 			getAccountTypeInfo()
 		}
 	}, [user])
@@ -81,9 +82,16 @@ function App() {
 					<Route path='/' element={<div>Home Page</div>} />
 					<Route
 						path='/student'
-						element={<Student socket={socket} user={user} />}
+						element={
+							<Student socket={socket} user={user} accountInfo={accountInfo} />
+						}
 					/>
-					<Route path='/host' element={<Host socket={socket} user={user} />} />
+					<Route
+						path='/host'
+						element={
+							<Host socket={socket} user={user} accountInfo={accountInfo} />
+						}
+					/>
 				</Routes>
 			) : (
 				<Routes>

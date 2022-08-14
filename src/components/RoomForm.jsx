@@ -3,7 +3,13 @@ import styles from '../styles/components/RoomForm.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function RoomForm({ user, name }) {
+export default function RoomForm({
+	user,
+	name,
+	accountInfo,
+	addToRoomList,
+	setMainDisplay,
+}) {
 	let navigate = useNavigate()
 	const [roomName, setRoomName] = useState(name ? name : '')
 	const [submitted, setSubmitted] = useState(false)
@@ -15,9 +21,10 @@ export default function RoomForm({ user, name }) {
 	const createRoom = async () => {
 		const res = await Client.post('/api/room/submit', {
 			name: roomName,
-			owner_id: user.id,
+			owner_id: accountInfo.id,
 		})
-		console.log(res)
+		addToRoomList(res.data)
+		setMainDisplay(1)
 	}
 
 	useEffect(() => {

@@ -6,12 +6,12 @@ import RoomForm from './RoomForm'
 
 export default function HostMainDisplay({
 	user,
+	addToRoomList,
+	accountInfo,
 	room,
 	mainDisplayState,
-	questionFormState,
-	questionFormHandleSubmit,
-	questionFormHandleChange,
 	socket,
+	setMainDisplay,
 }) {
 	function getDisplay() {
 		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log
@@ -24,7 +24,14 @@ export default function HostMainDisplay({
 			case 3:
 				return <ViewAllAnswerBox socket={socket} />
 			case 5:
-				return <RoomForm host={user} />
+				return (
+					<RoomForm
+						user={user}
+						accountInfo={accountInfo}
+						addToRoomList={addToRoomList}
+						setMainDisplay={setMainDisplay}
+					/>
+				)
 		}
 	}
 
