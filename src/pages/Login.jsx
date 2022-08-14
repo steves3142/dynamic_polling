@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/pages/Login.module.css'
-import axios from 'axios'
 
 export default function Login({ login }) {
 	let navigate = useNavigate()
@@ -33,14 +32,12 @@ export default function Login({ login }) {
 		}
 	}, [submitted])
 
-
 	return (
-		<div className={styles.container}>			
-			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>			
+		<div className={styles.container}>
+			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 			<form>
 				{/* <h2>Login</h2> */}
 				<div className={styles['form-wrapper']}>
-					
 					<input
 						className={styles['login-element']}
 						type='email'

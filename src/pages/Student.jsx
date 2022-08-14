@@ -3,7 +3,7 @@ import Chatbox from '../components/Chatbox'
 import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 
-export default function Student({ socket }) {
+export default function Student({ socket, logout }) {
 	let [answered, setAnswered] = useState(false)
 	let [question, setQuestion] = useState(null)
 	let [answer, setAnswer] = useState('')
@@ -31,8 +31,10 @@ export default function Student({ socket }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles['header']}>
-				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
-				<button className={styles['logout']}>Log Out</button>
+				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
+				<button onClick={logout} className={styles['logout']}>
+					Log Out
+				</button>
 			</div>
 			<div className={styles['question']}>
 				<h2 className={styles.question}>Question will populate here</h2>
