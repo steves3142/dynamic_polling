@@ -1,4 +1,4 @@
-import styles from '../styles/pages/Student.module.css'
+import styles from '../styles/components/AnswerBox.module.css'
 export default function AnswerBox({
 	question,
 	submitAnswer,
@@ -11,9 +11,10 @@ export default function AnswerBox({
 	}
 
 	function displayAnswerArea() {
+		//FR form
 		if (question.type == 'FR') {
 			return (
-				<form onSubmit={submitAnswer}>
+				<form onSubmit={submitAnswer} className={styles['form-div']}>
 					<textarea
 						name='answer-area'
 						value={answer}
@@ -22,7 +23,6 @@ export default function AnswerBox({
 						rows='10'
 						placeholder='Answer here'
 					/>
-
 					<br />
 					<button type='submit'>Submit</button>
 				</form>
@@ -30,7 +30,7 @@ export default function AnswerBox({
 		} else {
 			//return MC form here
 			return (
-				<div>
+				<div className={styles['form-div']}>
 					{question.choices.map((choice, index) => (
 						<div
 							className={
@@ -48,5 +48,15 @@ export default function AnswerBox({
 		}
 	}
 
-	return <div>{!submitted && question ? displayAnswerArea() : <></>}</div>
+	return (
+		<div className={styles['wrapper']}>
+			{!submitted && question ? (
+				displayAnswerArea()
+			) : (
+				<div className={styles['waiting-div']}>
+					<h1>Please wait for next question</h1>
+				</div>
+			)}
+		</div>
+	)
 }

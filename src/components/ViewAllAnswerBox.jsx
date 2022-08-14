@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import styles from '../styles/components/ViewAllAnswerBox.module.css'
 
 export default function ViewAllAnswerBox({ socket }) {
 	const [answers, setAnswer] = useState([])
@@ -23,13 +24,14 @@ export default function ViewAllAnswerBox({ socket }) {
 			room: 10,
 		})
 	}
+
 	return (
-		<div>
+		<div className={styles['wrapper']}>
 			<div>
 				<h3>Answer log here</h3>
 				{answers.map((answer) => (
 					<div>
-						{answers.student_id}: {answer.response}
+						{answer.student_id}: {answer.response}
 					</div>
 				))}
 			</div>

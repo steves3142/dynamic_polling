@@ -10,29 +10,39 @@
 	position: relative;
 }
 
-
 .chatbox {
 	font-size: 30px;
-	width: 600px;
-	min-height: 200px;
+	width: 100%;
+	min-height: 150px;
 	max-height: 200px;
 	background-color: rgb(195, 216, 208);
 	overflow-y: scroll;
+	overflow-x: hidden;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	border: 2px solid black;
+	outline: 2px solid black;
 	border-radius: 10px;
+}
 
+.chatline {
+	width: 100%;
+}
+
+.form-wrapper {
+	width: 100%;
+	display: flex;
 }
 
 .form {
 	height: 30px;
-	width: 545px;
+	width: 85%;
 	border-radius: 5px;
 }
 
 .button {
 	height: 35px;
+	width: 15%;
 	background-color: rgb(77, 212, 79);
 	border-radius: 5px;
 }

@@ -42,7 +42,7 @@ export default function Chatbox({ name, socket }) {
 			<div className={styles.chatbox}>
 				Chat messages show Here
 				{chatMessages.map((msg) => (
-					<div>
+					<div className={styles['chatline']}>
 						<p>
 							{`${msg.name}: ${msg.message}`} <br />
 						</p>
@@ -50,15 +50,17 @@ export default function Chatbox({ name, socket }) {
 				))}
 				<div ref={chatBottom}> </div>
 			</div>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className={styles['form-wrapper']}>
 				<input
-				    className={styles.form} 
+					className={styles.form}
 					type='text'
 					name='chatInput'
 					onChange={handleChange}
 					value={input}
 				/>
-				<button className={styles.button} type='submit'>SEND</button>
+				<button className={styles.button} type='submit'>
+					SEND
+				</button>
 			</form>
 		</div>
 	)

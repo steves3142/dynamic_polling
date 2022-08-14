@@ -1,0 +1,24 @@
+.wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.selected {
+	color: red;
+	background-color: gray;
+}
+
+.waiting-div {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-div {
+}
