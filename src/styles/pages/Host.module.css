@@ -1,6 +1,7 @@
 .logo {
 	width: 100px;
 	height: auto;
+	margin-left: 20px;
 }
 .logo:hover {
 	transform: scale(1.05);
@@ -145,4 +146,10 @@
 
 .room:hover {
 	background-color: rgb(143, 236, 137);
+}
+
+.logout-button {
+	margin-top: 45vh;
+	margin-right: 8vw;
+	align-self: flex-end;
 }

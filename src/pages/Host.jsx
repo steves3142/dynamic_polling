@@ -27,6 +27,7 @@ export default function Host({ socket, user }) {
 		type: 'MC',
 	}
 
+
 	const questionFormHandleChange = (event) => {
 		setFormState({
 			...questionFormState,
@@ -95,6 +96,9 @@ export default function Host({ socket, user }) {
 					placeholder='DD/YY'/>
 					</div>
 					<div className={styles['review-button']}>Review</div>
+					<div className={styles['logout-button']} >
+					<button className={styles['logout']}>Log Out</button>
+					</div>
 				</div>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
