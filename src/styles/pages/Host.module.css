@@ -39,6 +39,11 @@
 	margin-top: 20px;
 }
 
+.pseudo-button:hover {
+	transform: scale(1.05);
+	background-color: rgb(206, 29, 29);
+}
+
 .body-display {
 	padding: 0;
 	display: flex;
