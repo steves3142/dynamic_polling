@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import ViewAllAnswerBox from '../components/ViewAllAnswerBox'
 import Chatbox from '../components/Chatbox'
+import NewQuestionForm from '../components/NewQuestionForm'
 import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
 
 export default function Host({ socket }) {
-	const [formState, setFormState] = useState([])
+	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 
 	//Not connected to socket yet but will use for test route
@@ -23,14 +24,17 @@ export default function Host({ socket }) {
 	}
 
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value })
+		setFormState({
+			...questionFormState,
+			[event.target.id]: event.target.value,
+		})
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		let res = await axios.post(
 			`http://localhost:3001/api/host/submit/question`,
-			formState
+			questionFormState
 		)
 		console.log('hola')
 		console.log(res.data)
@@ -44,44 +48,11 @@ export default function Host({ socket }) {
 		<div>
 			<ViewAllAnswerBox socket={socket} />
 			<h2>Host</h2>
-			<div className={styles.container}>
-				<div id='rectangle' className={styles.options}>
-					<div className={styles.wrapper}>
-						<form onSubmit={handleSubmit}>
-							<div id='rectangle' className={styles.options}>
-								<label htmlFor='question'>Type Your Question Here</label>
-								<input
-									type='text'
-									id='question'
-									onChange={handleChange}
-									value={formState.question}
-								/>
-							</div>
-
-							<div id='rectangle' className={styles.options}>
-								<label htmlFor='answer'>Type First Answer Choice</label>
-								<input type='text' onChange={handleChange} />
-							</div>
-
-							<div id='rectangle' className={styles.options}>
-								<label htmlFor='answer'>Type Second Answer Choice</label>
-								<input type='text' onChange={handleChange} />
-							</div>
-
-							<div id='rectangle' className={styles.options}>
-								<label htmlFor='answer'>Type Third Answer Choice</label>
-								<input type='text' onChange={handleChange} />
-							</div>
-
-							<div id='rectangle' className={styles.options}>
-								<label htmlFor='answer'>Type Fourth Answer Choice</label>
-								<input type='text' onChange={handleChange} />
-							</div>
-							<button onClick={handleSubmit}>Submit</button>
-						</form>
-					</div>
-				</div>
-			</div>
+			<NewQuestionForm
+				formState={questionFormState}
+				handleChange={handleChange}
+				handleSubmit={handleSubmit}
+			/>
 			{
 				//Chat box here
 			}
