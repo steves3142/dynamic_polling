@@ -1,39 +1,40 @@
 import React from 'react'
-import styles from '../styles/components/HostMainDisplay.module.css'
+import styles from '../styles/components/Announce.module.css'
 
-function Announcement() {
+export default function Announcement() {
+
+    // const [announce, setAnnounce] = useState([])
+    // let [input, setInput] = useState('')
 
 
-
-
-
-
+	// function handleChange(e) {
+	// 	setInput(e.target.value)
+	// }
+    
+    // function handleSubmit(e) {
+	// 	e.preventDefault()
+	// 	socket.emit('send-message', { message: input })
+	// 	setInput('')
+	// }
 
     return (
-		<div className={styles.container}>
-			<div className={styles['form']}>
-				<select
-					className={styles['drop-down-component']}
-					defaultValue={formState.type}
-					name='type'
-					onChange={handleChange}
-					required>
-					<option value={'FR'}>Free Response</option>
-					<option value={'MC'}>Multiple Choice</option>
-				</select>
-				<input
-					className={styles['input']}
-					type='text'
-					name='question'
-					placeholder='Enter Question Here'
-					onChange={handleChange}
-					value={formState.question}
-				/>
-				{getForm()}
-			</div>
-			<div className={styles['bottom-div']}>
-				<div className={styles['pseudo-button']}>Submit</div>
-			</div>
-		</div>
-	)
+        <div className={styles['pseudo-button']}>
+            Room Announcement
+        </div>
+// </div>
+// <form onSubmit={handleSubmit} className={styles['form-wrapper']}>
+//     <input
+//         className={styles.form}
+//         type='text'
+//         name='chatInput'
+//         onChange={handleChange}
+//         value={input}
+//     />
+//     <button className={styles.button} type='submit'>
+//         SEND
+//     </button>
+// </form>
+// </div>
+        
+    )
 }

@@ -5,12 +5,13 @@ import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
 import { getRoomList } from '../util/auth'
+import Announcement from '../components/Announce'
 
 export default function Host({ socket, user }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
-	const [mainDisplay, setMainDisplay] = useState(1)
+	const [mainDisplay, setMainDisplay] = useState(4)
 	const [roomList, setRoomList] = useState([])
 
 	//Not connected to socket yet but will use for test route
