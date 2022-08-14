@@ -3,12 +3,10 @@ import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
 import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
-import axios from 'axios'
 import { getRoomList } from '../util/auth'
 import Announcement from '../components/Announce'
 
 export default function Host({ socket, user, accountInfo, logout }) {
-	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
 	const [mainDisplay, setMainDisplay] = useState(4)
@@ -56,11 +54,6 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					<div className={styles['pseudo-button']}>OPEN ROOM</div>
 					<div className={styles['room-list']}>
 						<p className={styles['text']}>Room List</p>
-						<div className={styles['room']}>room1</div>
-						<div className={styles['room']}>room1</div>
-						<div className={styles['room']}>room1</div>
-						<div className={styles['room']}>room1</div>
-						<div className={styles['room']}>room1</div>
 						{roomList.map((room) => (
 							<div className={styles['room']}>{room.name}</div>
 						))}
@@ -72,9 +65,21 @@ export default function Host({ socket, user, accountInfo, logout }) {
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['side-bar']}>
-					<div className={styles['pseudo-button']}>New Question</div>
-					<div className={styles['pseudo-button']}>Room Announcement</div>
-					<div className={styles['pseudo-button']}>Hide/Show Answers</div>
+					<div
+						onClick={() => setMainDisplay(1)}
+						className={styles['pseudo-button']}>
+						New Question
+					</div>
+					<div
+						onClick={() => setMainDisplay(4)}
+						className={styles['pseudo-button']}>
+						Room Announcement
+					</div>
+					<div
+						onClick={() => setMainDisplay(2)}
+						className={styles['pseudo-button']}>
+						Hide/Show Answers
+					</div>
 					<div className={styles['review-dates']}>
 						<input
 							type='text'

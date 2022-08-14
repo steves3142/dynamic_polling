@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import axios from 'axios'
+import Client from '../util/api'
 import styles from '../styles/components/NewQuestionForm.module.css'
 
 export default function NewQuestionForm() {
 	const initialForm = {
 		question: '',
-		room_Id: '10',
+		room_id: '1',
 		type: 'FR',
 	}
 	const [formState, setFormState] = useState(initialForm)
@@ -21,13 +21,14 @@ export default function NewQuestionForm() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		let res = await axios.post(
-			`http://localhost:3001/api/host/submit/question`,
-			formState
-		)
+		let res = await Client.post(`/api/host/submit/question/${/*room id*/ 10}`, {
+			question: formState,
+			choices: choices,
+		})
 		console.log('hola')
 		console.log(res.data)
 		setFormState(initialForm)
+		setChoices([[...Array(4)].map(() => '')])
 	}
 
 	const addOption = () => {

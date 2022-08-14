@@ -15,7 +15,7 @@ export default function HostMainDisplay({
 	setMainDisplay,
 }) {
 	function getDisplay() {
-		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log
+		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 = annoucement, 5 = new room
 		switch (mainDisplayState) {
 			case 0:
 				return <>Empty</>
@@ -24,8 +24,8 @@ export default function HostMainDisplay({
 			case 2:
 			case 3:
 				return <ViewAllAnswerBox socket={socket} />
-			case 4: 
-				return <Announcement /> 
+			case 4:
+				return <Announcement socket={socket} setMainDisplay={setMainDisplay} />
 			case 5:
 				return (
 					<RoomForm
