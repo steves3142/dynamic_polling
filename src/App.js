@@ -68,8 +68,11 @@ function App() {
 			{loggedIn ? (
 				<Routes>
 					<Route path='/' element={<div>Home Page</div>} />
-					<Route path='/student' element={<Student socket={socket} />} />
-					<Route path='/host' element={<Host socket={socket} />} />
+					<Route
+						path='/student'
+						element={<Student socket={socket} user={user} />}
+					/>
+					<Route path='/host' element={<Host socket={socket} user={user} />} />
 				</Routes>
 			) : (
 				<Routes>

@@ -114,7 +114,7 @@ export default function NewQuestionForm() {
 				/>
 				{getForm()}
 			</div>
-			<div className={styles['bottom-div']}>
+			<div onClick={handleSubmit} className={styles['bottom-div']}>
 				<div className={styles['pseudo-button']}>Submit</div>
 			</div>
 		</div>

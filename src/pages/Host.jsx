@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
-import ViewAllAnswerBox from '../components/ViewAllAnswerBox'
 import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
 
 import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
+import { getRoomList } from '../util/auth'
 
-export default function Host({ socket }) {
+export default function Host({ socket, user }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement
 	const [mainDisplay, setMainDisplay] = useState(1)
+	const [roomList, setRoomList] = useState([])
 
 	//Not connected to socket yet but will use for test route
 	const [room, setRoom] = useState({
@@ -44,13 +45,36 @@ export default function Host({ socket }) {
 		setFormState(initialForm)
 	}
 
-	//socketIO listen for message
-	useEffect(() => {}, [socket])
+	const loadRoomList = async () => {
+		console.log(user)
+		if (user != null) {
+			const roomList = await getRoomList(user.id)
+			setRoomList(roomList)
+		}
+	}
+
+	//on load
+	useEffect(() => {
+		if (user) {
+			loadRoomList()
+		}
+	}, [user])
 
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
 				<h2>Host</h2>
+				<div className={styles['room-info-wrapper']}>
+					<div className={styles['pseudo-button']}>OPEN ROOM</div>
+					<div className={styles['room-list']}>
+						RoomList
+						<div className={styles['room']}>room1</div>
+						<div className={styles['room']}>room1</div>
+						<div className={styles['room']}>room1</div>
+						<div className={styles['room']}>room1</div>
+						<div className={styles['room']}>room1</div>
+					</div>
+				</div>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['side-bar']}>
@@ -62,6 +86,7 @@ export default function Host({ socket }) {
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
+							room={room}
 							socket={socket}
 							mainDisplayState={mainDisplay}
 							questionFormState={questionFormState}
