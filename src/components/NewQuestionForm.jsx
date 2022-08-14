@@ -30,7 +30,6 @@ export default function NewQuestionForm({
 							<label htmlFor='answer'>Type Second Answer Choice</label>
 							<input type='text' onChange={handleChange} />
 						</div>
-
 						<div id='rectangle' className={styles.options}>
 							<label htmlFor='answer'>Type Third Answer Choice</label>
 							<input type='text' onChange={handleChange} />
