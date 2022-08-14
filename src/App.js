@@ -15,6 +15,7 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [user, setUser] = useState(null)
 	const [token, setToken] = useState(null)
+	const [accountInfo, setAccountInfo] = useState(null)
 
 	const saveToken = (token) => {
 		localStorage.setItem('token', token)
@@ -62,6 +63,12 @@ function App() {
 			checkToken()
 		}
 	}, [])
+
+	//once user logged in get the related account type info
+	useEffect(() => {
+		if (user) {
+		}
+	}, [user])
 
 	return (
 		<div className={styles['container']}>

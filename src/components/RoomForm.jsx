@@ -12,7 +12,20 @@ export default function RoomForm({ user, name }) {
 		setRoomName(event.target.value)
 	}
 
-	useEffect(() => {}, [submitted])
+	const createRoom = async () => {
+		const res = await Client.post('/api/room/submit', {
+			name: roomName,
+			owner_id: user.id,
+		})
+		console.log(res)
+	}
+
+	useEffect(() => {
+		if (submitted) {
+			createRoom()
+			setSubmitted(false)
+		}
+	}, [submitted])
 
 	return (
 		<div className={styles['wrapper']}>
@@ -28,7 +41,11 @@ export default function RoomForm({ user, name }) {
 			</div>
 			<div className={styles['last-container']}>
 				<div></div>
-				<div className={styles['pseudo-button']}>Create</div>
+				<div
+					onClick={() => setSubmitted(true)}
+					className={styles['pseudo-button']}>
+					Create
+				</div>
 			</div>
 		</div>
 	)
