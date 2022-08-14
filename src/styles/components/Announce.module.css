@@ -1,3 +1,17 @@
+.button-container {
+    display: flex;
+    text-align: center;
+	align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
 .pseudo-button {
     width: 80%;
     height: 40px;
@@ -11,5 +25,3 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
-.container {}
