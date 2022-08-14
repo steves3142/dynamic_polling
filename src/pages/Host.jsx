@@ -63,7 +63,7 @@ export default function Host({ socket, user }) {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
-				<h2>Host</h2>
+				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
 				<div className={styles['room-info-wrapper']}>
 					<div className={styles['pseudo-button']}>OPEN ROOM</div>
 					<div className={styles['room-list']}>
@@ -78,10 +78,10 @@ export default function Host({ socket, user }) {
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['side-bar']}>
+					<div className={styles['pseudo-button']}>New Question</div>
+					<div className={styles['pseudo-button']}>Room Announcement</div>
 					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['review-button']}>Review</div>
 				</div>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
