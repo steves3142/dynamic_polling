@@ -82,9 +82,13 @@ export default function Host({ socket, user }) {
 					<div className={styles['pseudo-button']}>Room Announcement</div>
 					<div className={styles['pseudo-button']}>Hide/Show Answers</div>
 					<div className={styles['review-dates']} >
-					<input type='text' className={styles['review-date']}/>
+					<input type='text' className={styles['review-date']}
+					name='start-date'
+					placeholder='DD/YY'/>
 					<h4>to</h4>
-					<input type='text' className={styles['review-date']}/>
+					<input type='text' className={styles['review-date']}
+					name='start-date'
+					placeholder='DD/YY'/>
 					</div>
 					<div className={styles['review-button']}>Review</div>
 				</div>
