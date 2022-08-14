@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import styles from './styles/App.module.css'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import Client from './util/api'
 import { restoreSession } from './util/auth'
 import io from 'socket.io-client'
 
@@ -15,6 +15,7 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [user, setUser] = useState(null)
 	const [token, setToken] = useState(null)
+	const [accountInfo, setAccountInfo] = useState(null)
 
 	const saveToken = (token) => {
 		localStorage.setItem('token', token)
@@ -35,10 +36,7 @@ function App() {
 	}
 	const login = async (formState) => {
 		//acount/login
-		const res = await axios.post(
-			'http://localhost:3001/api/account/login',
-			formState
-		)
+		const res = await Client.post('/api/account/login', formState)
 		if (res.data.token) {
 			setUser(res.data.user)
 			setToken(res.data.token)
@@ -50,6 +48,12 @@ function App() {
 		console.log(res.data)
 	}
 
+	const getAccountTypeInfo = async () => {
+		let res = await Client.get(
+			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
+		)
+		setAccountInfo(res.data)
+	}
 	const logout = () => {
 		setLoggedIn(false)
 		setUser(null)
@@ -63,6 +67,14 @@ function App() {
 		}
 	}, [])
 
+	//once user logged in get the related account type info
+	useEffect(() => {
+		if (user) {
+			console.log(user)
+			getAccountTypeInfo()
+		}
+	}, [user])
+
 	return (
 		<div className={styles['container']}>
 			{loggedIn ? (
@@ -70,9 +82,16 @@ function App() {
 					<Route path='/' element={<div>Home Page</div>} />
 					<Route
 						path='/student'
-						element={<Student socket={socket} user={user} />}
+						element={
+							<Student socket={socket} user={user} accountInfo={accountInfo} />
+						}
 					/>
-					<Route path='/host' element={<Host socket={socket} user={user} />} />
+					<Route
+						path='/host'
+						element={
+							<Host socket={socket} user={user} accountInfo={accountInfo} />
+						}
+					/>
 				</Routes>
 			) : (
 				<Routes>
