@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
-
+import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import axios from 'axios'
 import { getRoomList } from '../util/auth'
@@ -9,7 +9,7 @@ import { getRoomList } from '../util/auth'
 export default function Host({ socket, user }) {
 	const [questionFormState, setFormState] = useState([])
 	const [connected, setConnected] = useState(false)
-	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement
+	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
 	const [mainDisplay, setMainDisplay] = useState(1)
 	const [roomList, setRoomList] = useState([])
 
@@ -63,25 +63,34 @@ export default function Host({ socket, user }) {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
-				<h2>Host</h2>
+				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png'/>
 				<div className={styles['room-info-wrapper']}>
 					<div className={styles['pseudo-button']}>OPEN ROOM</div>
 					<div className={styles['room-list']}>
-						RoomList
+						<p className={styles['text']}>Room List</p>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
 						<div className={styles['room']}>room1</div>
+						{}
+						<div onClick={() => setMainDisplay(5)} className={styles['room']}>
+							Add New Room
+						</div>
 					</div>
 				</div>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['side-bar']}>
-					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
-					<div className={styles['pseudo-button']}>Some button</div>
+					<div className={styles['pseudo-button']}>New Question</div>
+					<div className={styles['pseudo-button']}>Room Announcement</div>
+					<div className={styles['pseudo-button']}>Hide/Show Answers</div>
+					<div className={styles['review-dates']} >
+					<input type='text' className={styles['review-date']}/>
+					<h4>to</h4>
+					<input type='text' className={styles['review-date']}/>
+					</div>
+					<div className={styles['review-button']}>Review</div>
 				</div>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
@@ -89,9 +98,7 @@ export default function Host({ socket, user }) {
 							room={room}
 							socket={socket}
 							mainDisplayState={mainDisplay}
-							questionFormState={questionFormState}
-							questionFormHandleChange={questionFormHandleChange}
-							questionFormHandleSubmit={questionFormHandleSubmit}
+							user={user}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>

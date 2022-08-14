@@ -7,7 +7,8 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	min-height: 100vh;
-	background-color: antiquewhite;
+	background: rgb(242,238,176);
+	background: radial-gradient(circle, rgb(232, 227, 153) 0%, rgba(242,240,227,1) 100%);
 }
 
 code {

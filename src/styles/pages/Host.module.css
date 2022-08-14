@@ -1,6 +1,15 @@
+.logo {
+	width: 100px;
+	height: auto;
+}
+.logo:hover {
+	transform: scale(1.05);
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
+	margin-top: 25px;
 }
 
 .header {
@@ -30,7 +39,7 @@
 .pseudo-button {
 	width: 80%;
 	height: 40px;
-	background-color: rgb(246, 49, 49);
+	background-color: rgb(236, 73, 73);
 	font-size: 22px;
 	display: flex;
 	text-align: center;
@@ -44,6 +53,40 @@
 .pseudo-button:hover {
 	transform: scale(1.05);
 	background-color: rgb(206, 29, 29);
+}
+.review-dates {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.review-date {
+	width: 20%;
+	height: 30px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin: 0px 5px 0px 5px;
+}
+
+.review-button {
+	width: 80%;
+	height: 40px;
+	background-color: rgb(170, 161, 161);
+	font-size: 22px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.review-button:hover {
+	transform: scale(1.05);
+	background-color: rgb(78, 224, 82);
 }
 
 .body-display {
@@ -74,9 +117,8 @@
 .room-list {
 	width: 80%;
 	height: 40px;
-	background-color: rgb(246, 49, 49);
+	background-color: rgb(236, 73, 73);
 	font-size: 22px;
-	display: flex;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
@@ -90,6 +132,17 @@
 	position: relative;
 }
 
+.text {
+	margin: 0;
+	justify-self: center;
+	text-align: center;
+}
+
 .room {
 	display: none;
+	background-color: rgb(246, 49, 49);
+}
+
+.room:hover {
+	background-color: rgb(143, 236, 137);
 }
