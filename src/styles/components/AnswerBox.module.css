@@ -6,9 +6,12 @@
 	align-items: center;
 }
 
-.selected {
-	color: red;
-	background-color: gray;
+.frAnswer {
+	min-width: 400px;
+	max-width: 600px;
+	height: 200px;
+	resize: none;
+	margin-top: 50px;
 }
 
 .waiting-div {
@@ -20,5 +23,19 @@
 	align-items: center;
 }
 
-.form-div {
+.multiple-answer {
+	color: rgb(56, 147, 239);
+	font-size: 25px;
+	text-shadow: .5px .5px black;
+	width: 70vw;
+	height: 40px;
+	outline: 1px solid black;
+	margin: 7px auto;
+	background-color: #f4cc78;
+	border-radius: 2px;
+	padding-left: 20px;
+}
+
+.selected {
+	background-color: rgb(246, 173, 16);
 }
