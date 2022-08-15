@@ -75,7 +75,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								{room.name}
 							</div>
 						))}
-						<div onClick={() => setMainDisplay(5)} className={styles['room']}>
+						<div onClick={() => setMainDisplay(5)} className={styles['new-room']}>
 							Add New Room
 						</div>
 					</div>

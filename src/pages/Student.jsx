@@ -15,17 +15,17 @@ export default function Student({ socket, logout, accountInfo, user }) {
 			question_id: 1,
 			},
 			{
-				choice: 'dummy choice 1',
-				question_id: 1,
-				},
-				{
-					choice: 'dummy choice 1',
-					question_id: 1,
-					},
-					{
-						choice: 'dummy choice 1',
-						question_id: 1,
-						}
+			choice: 'dummy choice 1',
+			question_id: 1,
+			},
+			{
+			choice: 'dummy choice 1',
+			question_id: 1,
+			},
+			{
+			choice: 'dummy choice 1',
+			question_id: 1,
+			}
 	]
 	})
 	let [answer, setAnswer] = useState('')

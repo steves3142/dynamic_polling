@@ -28,14 +28,6 @@
 	align-items: center;
 }
 
-.side-bar {
-	width: 20%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 .pseudo-button {
 	width: 80%;
 	height: 40px;
@@ -96,6 +88,21 @@
 .room-list:hover .room {
 	display: block;
 	position: relative;
+}
+
+.new-room {
+	background-color: rgb(134, 209, 238);
+	display: none;
+	outline: 1px solid black;
+}
+
+.room-list:hover .new-room {
+	display: block;
+	position: relative;
+}
+
+.new-room:hover {
+	background-color: rgb(143, 236, 137);
 }
 
 .text {

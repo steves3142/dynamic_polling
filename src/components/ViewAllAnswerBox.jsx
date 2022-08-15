@@ -1,17 +1,26 @@
 import styles from '../styles/components/ViewAllAnswerBox.module.css'
 import { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
-import { Chart as ChartJS, registerables } from 'chart.js/auto'
+import Chart from 'chart.js/auto'
+import gradient from 'chartjs-plugin-gradient'
+
+Chart.register(gradient)
 
 export default function ViewAllAnswerBox({ socket, answers }) {
 	const [chartData, setchartData] = useState({
 		labels: [],
+		plugins: { gradient },
 		datasets: [
 			{
-				label: 'Clients',
-				borderColor: '#e95151',
+				label: 'choices',
 				data: [],
-				backgroundColor: ['rgba(255,0,0,1)'],
+				gradient: {
+				backgroundColor: {
+					axis: 'y',
+					colors: {
+						0: '#22c1c3',
+					}
+				}}
 			},
 		],
 	})
@@ -43,6 +52,9 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 		chartDataCopy.labels = Array.from(unique).sort()
 		let data = Object.keys(responsePair).map((key) => responsePair[key])
 		chartDataCopy.datasets[0].data = data
+		let greatest = [...data].sort()[data.length-1]
+		chartDataCopy.datasets[0].gradient.backgroundColor.colors={0: '#22c1c3'}
+		chartDataCopy.datasets[0].gradient.backgroundColor.colors[`${greatest}`]='#18a6b9'
 		setchartData(chartDataCopy)
 	}, [answers])
 
@@ -67,7 +79,6 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 	return (
 		<div className={styles['wrapper']}>
 			<div>
-				<h3>Answer log here</h3>
 				{answers.length > 0 ? (
 					<Bar data={chartData} redraw={true} options={chartOptions} />
 				) : (
