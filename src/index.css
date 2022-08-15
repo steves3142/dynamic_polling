@@ -8,12 +8,17 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	min-height: 100vh;
-	background: rgb(242,238,176);
-	background: radial-gradient(circle, rgb(232, 227, 153) 0%, rgba(242,240,227,1) 100%);
+	background: rgb(242, 238, 176);
+	background: radial-gradient(
+		circle,
+		rgb(232, 227, 153) 0%,
+		rgba(242, 240, 227, 1) 100%
+	);
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 
 button {
