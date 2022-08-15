@@ -103,12 +103,12 @@ function App() {
 							/>
 						}
 					/>
+					<Route path='/roomlogin' element={<RoomSelect />} />
 				</Routes>
 			) : (
 				<Routes>
 					<Route path='/*' element={<Login login={login} />} />
 					<Route path='/register' element={<Register />} />
-					<Route path='/roomlogin' elemen={<RoomSelect />} />
 				</Routes>
 			)}
 		</div>
