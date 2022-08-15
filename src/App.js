@@ -3,6 +3,7 @@ import Student from './pages/Student'
 import Host from './pages/Host'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import RoomSelect from './pages/RoomLogin'
 import styles from './styles/App.module.css'
 import { useState, useEffect } from 'react'
 import Client from './util/api'
@@ -107,6 +108,7 @@ function App() {
 				<Routes>
 					<Route path='/*' element={<Login login={login} />} />
 					<Route path='/register' element={<Register />} />
+					<Route path='/roomlogin' elemen={<RoomSelect />} />
 				</Routes>
 			)}
 		</div>
