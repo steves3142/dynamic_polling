@@ -15,12 +15,13 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 				label: 'choices',
 				data: [],
 				gradient: {
-				backgroundColor: {
-					axis: 'y',
-					colors: {
-						0: '#22c1c3',
-					}
-				}}
+					backgroundColor: {
+						axis: 'y',
+						colors: {
+							0: '#22c1c3',
+						},
+					},
+				},
 			},
 		],
 	})
@@ -52,9 +53,11 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 		chartDataCopy.labels = Array.from(unique).sort()
 		let data = Object.keys(responsePair).map((key) => responsePair[key])
 		chartDataCopy.datasets[0].data = data
-		let greatest = [...data].sort()[data.length-1]
-		chartDataCopy.datasets[0].gradient.backgroundColor.colors={0: '#22c1c3'}
-		chartDataCopy.datasets[0].gradient.backgroundColor.colors[`${greatest}`]='#18a6b9'
+		let greatest = [...data].sort()[data.length - 1]
+		chartDataCopy.datasets[0].gradient.backgroundColor.colors = {}
+		chartDataCopy.datasets[0].gradient.backgroundColor.colors['0'] = '#22c1c3'
+		chartDataCopy.datasets[0].gradient.backgroundColor.colors[`${greatest}`] =
+			'#18a6b9'
 		setchartData(chartDataCopy)
 	}, [answers])
 
