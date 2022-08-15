@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react'
 import Client from '../util/api'
 import styles from '../styles/components/HostSideBar.module.css'
 
-export default function HostSideBar({ setMainDisplay, logout }) {
+export default function HostSideBar({
+	setMainDisplay,
+	logout,
+	setQuestionList,
+	questionList,
+}) {
 	const today = new Date()
 	const dateString = today.toLocaleDateString()
 	const [fromDate, setFrom] = useState(dateString)
@@ -21,8 +26,20 @@ export default function HostSideBar({ setMainDisplay, logout }) {
 			fromDateSplit[0] - 1,
 			fromDateSplit[1]
 		)
+		from = from.toISOString()
 		let to = new Date(toDateSplit[2], toDateSplit[0] - 1, toDateSplit[1])
-		console.log(from.toISOString(), to.toISOString())
+		to = to.toISOString()
+		console.log(from, to)
+		let questionList = await Client.post(
+			`/api/host/pull/questions/${/*roomid */ 1}`,
+			{
+				range: {
+					to: to,
+					from: from,
+				},
+			}
+		)
+		setQuestionList(questionList.data)
 		setPullingLog(false)
 	}
 
@@ -73,6 +90,11 @@ export default function HostSideBar({ setMainDisplay, logout }) {
 					onClick={() => setPullingLog(true)}
 					className={styles['review-button']}>
 					Review
+				</div>
+				<div className={styles['question-log']}>
+					{questionList.map((question) => (
+						<div key={question.id}>{question.question}</div>
+					))}
 				</div>
 			</div>
 			<div className={styles['logout-button']}>

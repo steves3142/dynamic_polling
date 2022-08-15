@@ -71,8 +71,13 @@
 }
 
 .logout-button {
-	margin-top: 45vh;
 	margin-right: 8vw;
 	margin-bottom: 60px;
 	align-self: flex-end;
+}
+
+.question-log {
+	max-height: 40%;
+	width: 100%;
+	overflow: auto;
 }
