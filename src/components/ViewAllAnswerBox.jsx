@@ -8,12 +8,10 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 		labels: [],
 		datasets: [
 			{
-				label: 'choices',
+				label: 'Clients',
 				borderColor: '#e95151',
 				data: [],
-				backgroundColor: [
-					'rgba(255,0,0,1)',
-				],
+				backgroundColor: ['rgba(255,0,0,1)'],
 			},
 		],
 	})
@@ -23,7 +21,7 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 				beginAtZero: true,
 				title: {
 					display: true,
-					text: `# Students`,
+					text: `# Clients`,
 				},
 			},
 		},

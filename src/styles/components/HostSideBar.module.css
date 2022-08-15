@@ -1,3 +1,11 @@
+.body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
 .pseudo-button {
 	width: 80%;
 	height: 40px;
@@ -34,12 +42,14 @@
 }
 
 .review-date {
-	width: 20%;
+	width: 33%;
 	height: 30px;
 	display: flex;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
+	border: 1px solid black;
+	border-radius: 5px;
 	margin: 0px 5px 0px 5px;
 }
 
@@ -59,4 +69,11 @@
 .review-button:hover {
 	transform: scale(1.05);
 	background-color: rgb(78, 224, 82);
+}
+
+.logout-button {
+	margin-top: 45vh;
+	margin-right: 8vw;
+	margin-bottom: 60px;
+	align-self: flex-end;
 }
