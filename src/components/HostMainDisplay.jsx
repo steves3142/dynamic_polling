@@ -13,6 +13,8 @@ export default function HostMainDisplay({
 	mainDisplayState,
 	socket,
 	setMainDisplay,
+	setAnswers,
+	answers,
 }) {
 	function getDisplay() {
 		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 = annoucement, 5 = new room
@@ -20,10 +22,22 @@ export default function HostMainDisplay({
 			case 0:
 				return <>Empty</>
 			case 1:
-				return <NewQuestionForm room={room} />
+				return (
+					<NewQuestionForm
+						room={room}
+						setMainDisplay={setMainDisplay}
+						setAnswers={setAnswers}
+					/>
+				)
 			case 2:
 			case 3:
-				return <ViewAllAnswerBox socket={socket} />
+				return (
+					<ViewAllAnswerBox
+						socket={socket}
+						setAnswers={setAnswers}
+						answers={answers}
+					/>
+				)
 			case 4:
 				return <Announcement socket={socket} setMainDisplay={setMainDisplay} />
 			case 5:
@@ -37,6 +51,5 @@ export default function HostMainDisplay({
 				)
 		}
 	}
-
 	return <div className={styles['wrapper']}>{getDisplay()}</div>
 }

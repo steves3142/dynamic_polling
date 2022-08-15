@@ -1,18 +1,55 @@
-import { useState, useEffect } from 'react'
 import styles from '../styles/components/ViewAllAnswerBox.module.css'
+import { useState, useEffect } from 'react'
+import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS, registerables } from 'chart.js/auto'
 
-export default function ViewAllAnswerBox({ socket }) {
-	const [answers, setAnswer] = useState([])
-	function updateAnswersList(newAnswer) {
-		setAnswer((currentState) => [...currentState, newAnswer])
-	}
+export default function ViewAllAnswerBox({ socket, answers }) {
+	const [chartData, setchartData] = useState({
+		labels: [],
+		datasets: [
+			{
+				label: 'choices',
+				borderColor: '#e95151',
+				data: [5, 7, 1, 23, 15],
+				backgroundColor: [
+					'rgba(255,0,0,1)',
+					'rgba(0,255,0,1)',
+					'rgba(0,0,255,1)',
+					'rgba(20,100,190,1)',
+					'rgba(90,160,230,1)',
+				],
+			},
+		],
+	})
+	const [chartOptions, setChartOptions] = useState({
+		scales: {
+			y: {
+				beginAtZero: true,
+				title: {
+					display: true,
+					text: `# Students`,
+				},
+			},
+		},
+	})
 
 	useEffect(() => {
-		socket.on('new-answer', (answer) => {
-			console.log(answer)
-			updateAnswersList(answer)
-		})
-	}, [socket])
+		let responses = answers.map((answer) => answer.response)
+		let unique = new Set(responses)
+		let responsePair = {}
+		for (const response of responses) {
+			if (responsePair[response]) {
+				responsePair[response]++
+			} else {
+				responsePair[response] = 1
+			}
+		}
+		let chartDataCopy = { ...chartData }
+		chartDataCopy.labels = Array.from(unique).sort()
+		let data = Object.keys(responsePair).map((key) => responsePair[key])
+		chartDataCopy.datasets[0].data = data
+		setchartData(chartDataCopy)
+	}, [answers])
 
 	function sendAnswer() {
 		socket.emit('newAnswer', {
@@ -29,11 +66,11 @@ export default function ViewAllAnswerBox({ socket }) {
 		<div className={styles['wrapper']}>
 			<div>
 				<h3>Answer log here</h3>
-				{answers.map((answer) => (
-					<div>
-						{answer.student_id}: {answer.response}
-					</div>
-				))}
+				{answers.length > 0 ? (
+					<Bar data={chartData} redraw={true} options={chartOptions} />
+				) : (
+					''
+				)}
 			</div>
 			<button onClick={sendAnswer}>send answer</button>
 		</div>

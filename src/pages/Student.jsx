@@ -1,31 +1,54 @@
 import styles from '../styles/pages/Student.module.css'
 import Chatbox from '../components/Chatbox'
+import Client from '../util/api'
 import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 
-export default function Student({ socket, logout }) {
+export default function Student({ socket, logout, accountInfo, user }) {
 	let [answered, setAnswered] = useState(false)
 	let [question, setQuestion] = useState(null)
 	let [answer, setAnswer] = useState('')
+	let [submitted, setSubmitted] = useState(false)
 
 	function submitAnswer(e) {
 		e.preventDefault()
 		if (!answered) {
+			setSubmitted(true)
 			console.log('summited answer')
-			setAnswer('')
-			setAnswered(true)
 		} else {
 			console.log('Already submitted')
 		}
 	}
 
+	async function logAnswer() {
+		console.log(answered)
+		const res = await Client.post(
+			`/api/student/submit/answer/${/*room id*/ 10}`,
+			{ response: answer, question_id: question.id, student_id: 1 }
+		)
+		console.log(res.data)
+		setSubmitted(false)
+		setAnswered(false)
+		setAnswered(true)
+	}
+
+	useEffect(() => {
+		if (submitted) {
+			logAnswer()
+		}
+	}, [submitted])
+
 	useEffect(() => {
 		//on new question
 		socket.on('new-question', (data) => {
-			setQuestion(data)
+			setQuestion({ ...data.question, choices: data.choices })
 			console.log(data)
 			setAnswered(false)
 		})
+
+		return () => {
+			socket.removeListener('new-question')
+		}
 	}, [socket]) //on socket receive
 
 	return (

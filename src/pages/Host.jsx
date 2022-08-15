@@ -11,6 +11,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
 	const [mainDisplay, setMainDisplay] = useState(4)
 	const [roomList, setRoomList] = useState([])
+	const [answers, setAnswers] = useState([])
 
 	//Not connected to socket yet but will use for test route
 	const [room, setRoom] = useState({
@@ -38,6 +39,21 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		let temp = [...roomList, room]
 		setRoomList(temp)
 	}
+
+	function updateAnswersList(newAnswer) {
+		setAnswers((currentState) => [...currentState, newAnswer])
+	}
+
+	useEffect(() => {
+		socket.on('new-answer', (answer) => {
+			console.log(answer)
+			updateAnswersList(answer)
+		})
+
+		return () => {
+			socket.removeListener('new-answer')
+		}
+	}, [socket])
 
 	//on load
 	useEffect(() => {
@@ -112,6 +128,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 							socket={socket}
 							mainDisplayState={mainDisplay}
 							user={user}
+							answers={answers}
+							setAnswers={setAnswers}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>

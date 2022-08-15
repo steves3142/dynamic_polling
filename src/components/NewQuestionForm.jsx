@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Client from '../util/api'
 import styles from '../styles/components/NewQuestionForm.module.css'
 
-export default function NewQuestionForm() {
+export default function NewQuestionForm({ room, setMainDisplay, setAnswers }) {
 	const initialForm = {
 		question: '',
 		room_id: '1',
@@ -29,6 +29,8 @@ export default function NewQuestionForm() {
 		console.log(res.data)
 		setFormState(initialForm)
 		setChoices([[...Array(4)].map(() => '')])
+		setAnswers([])
+		setMainDisplay(0)
 	}
 
 	const addOption = () => {
