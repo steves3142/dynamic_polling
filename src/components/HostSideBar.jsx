@@ -91,11 +91,13 @@ export default function HostSideBar({
 					className={styles['review-button']}>
 					Review
 				</div>
+				<div className={styles['empty-review']} >
 				<div className={styles['question-log']}>
 					{questionList.map((question) => (
-						<div key={question.id}>{question.question}</div>
+						<div className={styles['review-questions']} key={question.id}>{question.question}</div>
 					))}
 				</div>
+			</div>
 			</div>
 			<div className={styles['logout-button']}>
 				<button onClick={logout} className={styles['logout']}>

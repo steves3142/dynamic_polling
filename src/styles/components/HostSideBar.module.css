@@ -76,8 +76,22 @@
 	align-self: flex-end;
 }
 
-.question-log {
+.empty-review {
 	max-height: 40%;
-	width: 100%;
+	width: 90%;
 	overflow: auto;
+	outline: 2px solid grey;
+	padding: 5px;
+}
+
+.question-log {
+	height: 100%;
+	width: 100%;
+}
+
+.review-questions {
+	outline: 1px solid grey;
+	margin: 4px 4px 4px 4px;
+	padding: 2px;
+	background-color: rgb(250, 206, 180);
 }

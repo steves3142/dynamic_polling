@@ -16,8 +16,9 @@
 .header {
 	display: flex;
 	height: 12vh;
-	border: 2px solid black;
+	border-bottom: 2px solid black;
 	justify-content: space-between;
+
 }
 
 .body {
