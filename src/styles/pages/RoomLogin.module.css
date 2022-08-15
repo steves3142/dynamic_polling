@@ -26,15 +26,26 @@
 }
 
 .middle-room {
-    color: rgb(230, 145, 95);
+    background-color: rgb(241, 168, 125);
     text-shadow: 1px 1px black;
+	width: 450px;
+	margin-top: 140px;
+	border-radius: 5px;
+	padding-bottom: 40px;
 }
 
 .logout {
     margin-left: 80vw;
-    margin-top: 76px;
+    margin-top: 66px;
 }
 
 .title {
-    font-size: 40px;
+    font-size: 30px;
+	color: rgb(56, 147, 239);
+}
+
+.form {
+	width: 200px;
+	height: 30px;
+	margin-left: 80px;
 }
