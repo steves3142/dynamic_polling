@@ -92,7 +92,7 @@ export default function HostSideBar({
 					Review
 				</div>
 				<div className={styles['empty-review']} >
-				<div className={styles['question-log']}>
+				<div className={styles['question-log']} >
 					{questionList.map((question) => (
 						<div className={styles['review-questions']} key={question.id}>{question.question}</div>
 					))}
