@@ -44,7 +44,6 @@ export default function Chatbox({ name, socket }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.chatbox}>
-				Chat messages show Here
 				{chatMessages.map((msg) => (
 					<div className={styles['chatline']}>
 						{`${msg.name}: ${msg.message}`} <br />
