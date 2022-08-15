@@ -3,8 +3,10 @@ import Client from '../util/api'
 import styles from '../styles/components/HostSideBar.module.css'
 
 export default function HostSideBar({ setMainDisplay, logout }) {
-	const [fromDate, setFrom] = useState('')
-	const [toDate, setTo] = useState('')
+	const today = new Date()
+	const dateString = today.toLocaleDateString()
+	const [fromDate, setFrom] = useState(dateString)
+	const [toDate, setTo] = useState(dateString)
 	const [pullingLog, setPullingLog] = useState(false)
 	const handleChange = (e) => {
 		if (e.target.name == 'toDate') setTo(e.target.value)
@@ -12,7 +14,15 @@ export default function HostSideBar({ setMainDisplay, logout }) {
 	}
 
 	const pullLog = async () => {
-		console.log('pull log')
+		let fromDateSplit = fromDate.split('/')
+		let toDateSplit = toDate.split('/')
+		let from = new Date(
+			fromDateSplit[2],
+			fromDateSplit[0] - 1,
+			fromDateSplit[1]
+		)
+		let to = new Date(toDateSplit[2], toDateSplit[0] - 1, toDateSplit[1])
+		console.log(from.toISOString(), to.toISOString())
 		setPullingLog(false)
 	}
 
