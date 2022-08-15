@@ -55,40 +55,6 @@
 	transform: scale(1.05);
 	background-color: rgb(60, 190, 241);
 }
-.review-dates {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-
-.review-date {
-	width: 20%;
-	height: 30px;
-	display: flex;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	margin: 0px 5px 0px 5px;
-}
-
-.review-button {
-	width: 80%;
-	height: 40px;
-	background-color: rgb(170, 161, 161);
-	font-size: 22px;
-	display: flex;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 20px;
-}
-.review-button:hover {
-	transform: scale(1.05);
-	background-color: rgb(78, 224, 82);
-}
 
 .body-display {
 	padding: 0;
