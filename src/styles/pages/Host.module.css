@@ -40,8 +40,8 @@
 .pseudo-button {
 	width: 80%;
 	height: 40px;
-	background-color: rgb(236, 73, 73);
-	font-size: 22px;
+	background-color: rgb(134, 209, 238);
+	font-size: 20px;
 	display: flex;
 	text-align: center;
 	align-items: center;
@@ -53,7 +53,7 @@
 
 .pseudo-button:hover {
 	transform: scale(1.05);
-	background-color: rgb(206, 29, 29);
+	background-color: rgb(60, 190, 241);
 }
 .review-dates {
 	display: flex;
@@ -118,7 +118,7 @@
 .room-list {
 	width: 80%;
 	height: 40px;
-	background-color: rgb(236, 73, 73);
+	background-color: rgb(134, 209, 238);
 	font-size: 22px;
 	text-align: center;
 	align-items: center;
@@ -141,7 +141,7 @@
 
 .room {
 	display: none;
-	background-color: rgb(246, 49, 49);
+	background-color: rgb(60, 190, 241);
 }
 
 .room:hover {

@@ -6,7 +6,28 @@ import AnswerBox from '../components/AnswerBox'
 
 export default function Student({ socket, logout, accountInfo, user }) {
 	let [answered, setAnswered] = useState(false)
-	let [question, setQuestion] = useState(null)
+	let [question, setQuestion] = useState({
+		question: 'Dummy Question?',
+		type: 'MC',
+		room_id: 1,
+		choices: [{
+			choice: 'dummy choice 1',
+			question_id: 1,
+			},
+			{
+				choice: 'dummy choice 1',
+				question_id: 1,
+				},
+				{
+					choice: 'dummy choice 1',
+					question_id: 1,
+					},
+					{
+						choice: 'dummy choice 1',
+						question_id: 1,
+						}
+	]
+	})
 	let [answer, setAnswer] = useState('')
 	let [submitted, setSubmitted] = useState(false)
 
@@ -14,7 +35,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 		e.preventDefault()
 		if (!answered) {
 			setSubmitted(true)
-			console.log('summited answer')
+			console.log('submmited answer')
 		} else {
 			console.log('Already submitted')
 		}
@@ -60,7 +81,9 @@ export default function Student({ socket, logout, accountInfo, user }) {
 				</button>
 			</div>
 			<div className={styles['question']}>
-				<h2 className={styles.question}>Question will populate here</h2>
+				<h2 className={styles.question}>{
+					question.question
+				}</h2>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['answer-box']}>

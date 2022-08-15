@@ -10,13 +10,9 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 			{
 				label: 'choices',
 				borderColor: '#e95151',
-				data: [5, 7, 1, 23, 15],
+				data: [],
 				backgroundColor: [
 					'rgba(255,0,0,1)',
-					'rgba(0,255,0,1)',
-					'rgba(0,0,255,1)',
-					'rgba(20,100,190,1)',
-					'rgba(90,160,230,1)',
 				],
 			},
 		],
