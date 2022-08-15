@@ -23,8 +23,8 @@ export default function RoomSelect({ socket, logout }) {
                 </div>
 
                 <div className={styles['middle-room']}>
-                    <h2 className={styles['title']}>Please Insert Your Room Code To Proceed to Your Designated Room.</h2>
-                </div>
+                    <h2 className={styles['title']}>Enter Room Code</h2>
+                
 
                 <div>
                     <form onSubmit={handleSubmit}>
@@ -32,22 +32,19 @@ export default function RoomSelect({ socket, logout }) {
                             className={styles.form}
                             type='text'
                             name='roomInput'
-                            size='60'
-                            width='60'
-                            height='60'
                             onChange={handleChange}
                             value={input}
                         />
-                        <div>
+                        
                             <button
                                 onClick={handleSubmit}
                                 className={styles.button}
                                 type='submit'>
-                                SEND
+                                Enter
                             </button>
-                        </div>
+                        
                     </form>
-                </div>
+                </div></div>
             </div>
         )
     }
