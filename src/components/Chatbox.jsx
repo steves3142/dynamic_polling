@@ -31,6 +31,10 @@ export default function Chatbox({ name, socket }) {
 				scrollToBottom()
 			})
 		}
+
+		return () => {
+			socket.removeListener('receive-message')
+		}
 	}, [socket])
 
 	useEffect(() => {
