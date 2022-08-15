@@ -67,6 +67,10 @@ export default function Student({ socket, logout, accountInfo, user }) {
 			setAnswered(false)
 		})
 
+		socket.on('room-announcement', (data) => {
+			console.log(data)
+		})
+
 		return () => {
 			socket.removeListener('new-question')
 		}
