@@ -4,7 +4,7 @@ import HostMainDisplay from '../components/HostMainDisplay'
 import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import { getRoomList } from '../util/auth'
-import Announcement from '../components/Announce'
+import HostSideBar from '../components/HostSideBar'
 
 export default function Host({ socket, user, accountInfo, logout }) {
 	const [connected, setConnected] = useState(false)
@@ -80,44 +80,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 				</div>
 			</div>
 			<div className={styles['body']}>
-				<div className={styles['side-bar']}>
-					<div
-						onClick={() => setMainDisplay(1)}
-						className={styles['pseudo-button']}>
-						New Question
-					</div>
-					<div
-						onClick={() => setMainDisplay(4)}
-						className={styles['pseudo-button']}>
-						Room Announcement
-					</div>
-					<div
-						onClick={() => setMainDisplay(2)}
-						className={styles['pseudo-button']}>
-						Hide/Show Answers
-					</div>
-					<div className={styles['review-dates']}>
-						<input
-							type='text'
-							className={styles['review-date']}
-							name='start-date'
-							placeholder='DD/YY'
-						/>
-						<h4>to</h4>
-						<input
-							type='text'
-							className={styles['review-date']}
-							name='start-date'
-							placeholder='DD/YY'
-						/>
-					</div>
-					<div className={styles['review-button']}>Review</div>
-					<div className={styles['logout-button']}>
-						<button onClick={logout} className={styles['logout']}>
-							Log Out
-						</button>
-					</div>
-				</div>
+				<HostSideBar setMainDisplay={setMainDisplay} logout={logout} />
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
