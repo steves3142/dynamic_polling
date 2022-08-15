@@ -9,9 +9,11 @@ import HostSideBar from '../components/HostSideBar'
 export default function Host({ socket, user, accountInfo, logout }) {
 	const [connected, setConnected] = useState(false)
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
-	const [mainDisplay, setMainDisplay] = useState(4)
+	const [mainDisplay, setMainDisplay] = useState(0)
 	const [roomList, setRoomList] = useState([])
 	const [answers, setAnswers] = useState([])
+	const [currentQuestion, setCurrentQuestion] = useState(null)
+	const [questionList, setQuestionList] = useState([])
 
 	//Not connected to socket yet but will use for test route
 	const [room, setRoom] = useState({
@@ -75,14 +77,21 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								{room.name}
 							</div>
 						))}
-						<div onClick={() => setMainDisplay(5)} className={styles['new-room']}>
+						<div
+							onClick={() => setMainDisplay(5)}
+							className={styles['new-room']}>
 							Add New Room
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className={styles['body']}>
-				<HostSideBar setMainDisplay={setMainDisplay} logout={logout} />
+				<HostSideBar
+					setMainDisplay={setMainDisplay}
+					logout={logout}
+					setQuestionList={setQuestionList}
+					questionList={questionList}
+				/>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
