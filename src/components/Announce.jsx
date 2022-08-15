@@ -26,7 +26,7 @@ export default function Announcement({ socket }) {
 							<input
 								className={styles.form}
 								type='text'
-								name='chatInput'
+								name='announceInput'
 								size='60'
 								width='60'
 								height='60'
