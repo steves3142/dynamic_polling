@@ -16,11 +16,10 @@ export default function AnswerBox({
 			return (
 				<form onSubmit={submitAnswer} className={styles['form-div']}>
 					<textarea
+					className={styles.frAnswer}	
 						name='answer-area'
 						value={answer}
 						onChange={(e) => handleAnswerUpdate(e)}
-						cols='30'
-						rows='10'
 						placeholder='Answer here'
 					/>
 					<br />
@@ -34,7 +33,7 @@ export default function AnswerBox({
 					{question.choices.map((choice, index) => (
 						<div
 							className={
-								answer !== '' && answer == index ? styles.selected : ''
+								[answer !== '' && answer == index ? styles['selected'] : '', styles['multiple-answer']].join( ' ' )
 							}
 							onClick={() => {
 								setAnswer(index)
@@ -42,7 +41,7 @@ export default function AnswerBox({
 							{choice.choice}
 						</div>
 					))}
-					<button onClick={submitAnswer}>submit</button>
+					<button onClick={submitAnswer}>Submit</button>
 				</div>
 			)
 		}

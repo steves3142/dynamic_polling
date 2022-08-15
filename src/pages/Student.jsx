@@ -8,7 +8,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 	let [answered, setAnswered] = useState(false)
 	let [question, setQuestion] = useState({
 		question: 'Dummy Question?',
-		type: 'MC',
+		type: 'FR',
 		room_id: 1,
 		choices: [{
 			choice: 'dummy choice 1',
