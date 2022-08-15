@@ -30,7 +30,7 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 				beginAtZero: true,
 				title: {
 					display: true,
-					text: `# Students`,
+					text: `# Clients`,
 				},
 			},
 		},

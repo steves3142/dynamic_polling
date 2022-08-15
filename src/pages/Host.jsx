@@ -71,7 +71,9 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					<div className={styles['room-list']}>
 						<p className={styles['text']}>Room List</p>
 						{roomList.map((room) => (
-							<div className={styles['room']}>{room.name}</div>
+							<div key={room.id} className={styles['room']}>
+								{room.name}
+							</div>
 						))}
 						<div onClick={() => setMainDisplay(5)} className={styles['new-room']}>
 							Add New Room
