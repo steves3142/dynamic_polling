@@ -31,6 +31,7 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 				},
 			},
 		},
+		// animation: false,
 	})
 
 	useEffect(() => {
@@ -52,11 +53,18 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 	}, [answers])
 
 	function sendAnswer() {
+		let randomChoices = [
+			'Snickers',
+			'Ritz Cracker',
+			'Pringles',
+			"Hershey's",
+			"M &M's",
+		]
 		socket.emit('newAnswer', {
 			answer: {
 				id: 1,
 				student_id: 1,
-				response: `${Math.floor(Math.random() * 5)}`,
+				response: randomChoices[Math.floor(Math.random() * 5)],
 			},
 			room: 10,
 		})
