@@ -17,7 +17,6 @@
 
 .message-container {
     display: flex;
-
     justify-content: center;
 }
 
@@ -32,7 +31,6 @@
 
     width: 60%;
     height: 40px;
-    background-color: rgb(236, 73, 73);
     font-size: 22px;
     display: flex;
     text-align: center;
@@ -53,4 +51,5 @@
 	width: 15%;
 	background-color: rgb(77, 212, 79);
 	border-radius: 5px;
+    margin: 5px;
 }
