@@ -55,6 +55,7 @@ export default function Chatbox({ name, socket }) {
 				<input
 					className={styles.form}
 					type='text'
+					placeholder='Send Messages Here'
 					name='chatInput'
 					onChange={handleChange}
 					value={input}
