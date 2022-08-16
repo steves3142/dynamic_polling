@@ -104,6 +104,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 							user={user}
 							answers={answers}
 							setAnswers={setAnswers}
+							setCurrentQuestion={setCurrentQuestion}
+							currentQuestion={currentQuestion}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>
