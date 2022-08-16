@@ -15,18 +15,21 @@ export default function HostMainDisplay({
 	setMainDisplay,
 	setAnswers,
 	answers,
+	setCurrentQuestion,
+	currentQuestion,
 }) {
 	function getDisplay() {
 		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 = annoucement, 5 = new room
 		switch (mainDisplayState) {
 			case 0:
-				return <>Empty</>
+				return <>{JSON.stringify(currentQuestion)}</>
 			case 1:
 				return (
 					<NewQuestionForm
 						room={room}
 						setMainDisplay={setMainDisplay}
 						setAnswers={setAnswers}
+						setCurrentQuestion={setCurrentQuestion}
 					/>
 				)
 			case 2:

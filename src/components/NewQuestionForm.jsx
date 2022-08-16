@@ -2,7 +2,12 @@ import { useState } from 'react'
 import Client from '../util/api'
 import styles from '../styles/components/NewQuestionForm.module.css'
 
-export default function NewQuestionForm({ room, setMainDisplay, setAnswers }) {
+export default function NewQuestionForm({
+	room,
+	setMainDisplay,
+	setAnswers,
+	setCurrentQuestion,
+}) {
 	const initialForm = {
 		question: '',
 		room_id: '1',
@@ -26,7 +31,10 @@ export default function NewQuestionForm({ room, setMainDisplay, setAnswers }) {
 			choices: choices,
 		})
 		console.log('hola')
-		console.log(res.data)
+		setCurrentQuestion({
+			question: res.data.question,
+			choices: res.data.choices,
+		})
 		setFormState(initialForm)
 		setChoices([[...Array(4)].map(() => '')])
 		setAnswers([])
