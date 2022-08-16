@@ -9,29 +9,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 	const [answered, setAnswered] = useState(false)
 	const [announcement, setAnnoucement] = useState('')
 	const [showAnnouncement, setShowAnnnouncement] = useState(false)
-	const [question, setQuestion] = useState({
-		question: 'Dummy Question?',
-		type: 'MC',
-		room_id: 1,
-		choices: [
-			{
-				choice: 'dummy choice 1',
-				question_id: 1,
-			},
-			{
-				choice: 'dummy choice 1',
-				question_id: 1,
-			},
-			{
-				choice: 'dummy choice 1',
-				question_id: 1,
-			},
-			{
-				choice: 'dummy choice 1',
-				question_id: 1,
-			},
-		],
-	})
+	const [question, setQuestion] = useState(null)
 	let [answer, setAnswer] = useState('')
 	let [submitted, setSubmitted] = useState(false)
 
@@ -90,7 +68,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 
 	return (
 		<div className={styles.container}>
-			{showAnnouncement ? <StudentPopUp text={announcement} /> : ''}
+			<StudentPopUp text={announcement} showAnnouncement ={showAnnouncement} /> 
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<button onClick={logout} className={styles['logout']}>
@@ -98,7 +76,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 				</button>
 			</div>
 			<div className={styles['question']}>
-				<h2 className={styles.question}>{question.question}</h2>
+				<h2 className={styles.question}>{question ? question.question : ''}</h2>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['answer-box']}>
