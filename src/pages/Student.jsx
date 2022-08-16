@@ -3,30 +3,34 @@ import Chatbox from '../components/Chatbox'
 import Client from '../util/api'
 import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
+import StudentPopUp from '../components/StudentPopUp'
 
 export default function Student({ socket, logout, accountInfo, user }) {
-	let [answered, setAnswered] = useState(false)
-	let [question, setQuestion] = useState({
+	const [answered, setAnswered] = useState(false)
+	const [announcement, setAnnoucement] = useState('')
+	const [showAnnouncement, setShowAnnnouncement] = useState(false)
+	const [question, setQuestion] = useState({
 		question: 'Dummy Question?',
 		type: 'MC',
 		room_id: 1,
-		choices: [{
-			choice: 'dummy choice 1',
-			question_id: 1,
+		choices: [
+			{
+				choice: 'dummy choice 1',
+				question_id: 1,
 			},
 			{
-			choice: 'dummy choice 1',
-			question_id: 1,
+				choice: 'dummy choice 1',
+				question_id: 1,
 			},
 			{
-			choice: 'dummy choice 1',
-			question_id: 1,
+				choice: 'dummy choice 1',
+				question_id: 1,
 			},
 			{
-			choice: 'dummy choice 1',
-			question_id: 1,
-			}
-	]
+				choice: 'dummy choice 1',
+				question_id: 1,
+			},
+		],
 	})
 	let [answer, setAnswer] = useState('')
 	let [submitted, setSubmitted] = useState(false)
@@ -67,17 +71,26 @@ export default function Student({ socket, logout, accountInfo, user }) {
 			setAnswered(false)
 		})
 
+		let hideAnnouncementInterval
+
 		socket.on('room-announcement', (data) => {
-			console.log(data)
+			setAnnoucement(data)
+			setShowAnnnouncement(true)
+			hideAnnouncementInterval = setTimeout(() => {
+				setShowAnnnouncement(false)
+			}, 10000)
 		})
 
 		return () => {
+			clearTimeout(hideAnnouncementInterval)
 			socket.removeListener('new-question')
+			socket.removeListener('room-announcement')
 		}
 	}, [socket]) //on socket receive
 
 	return (
 		<div className={styles.container}>
+			{showAnnouncement ? <StudentPopUp text={announcement} /> : ''}
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<button onClick={logout} className={styles['logout']}>
@@ -85,9 +98,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 				</button>
 			</div>
 			<div className={styles['question']}>
-				<h2 className={styles.question}>{
-					question.question
-				}</h2>
+				<h2 className={styles.question}>{question.question}</h2>
 			</div>
 			<div className={styles['body']}>
 				<div className={styles['answer-box']}>

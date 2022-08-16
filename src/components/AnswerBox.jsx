@@ -16,7 +16,7 @@ export default function AnswerBox({
 			return (
 				<form onSubmit={submitAnswer} className={styles['form-div']}>
 					<textarea
-					className={styles.frAnswer}	
+						className={styles.frAnswer}
 						name='answer-area'
 						value={answer}
 						onChange={(e) => handleAnswerUpdate(e)}
@@ -30,18 +30,21 @@ export default function AnswerBox({
 			//return MC form here
 			return (
 				<div className={styles['form-div']}>
-					{question.choices.map((choice, index) => (
-						<div
-							className={
-								[answer !== '' && answer == index ? styles['selected'] : '', styles['multiple-answer']].join( ' ' )
-							}
-							onClick={() => {
-								setAnswer(index)
-							}}>
-							{choice.choice}
-						</div>
-					))}
-					<button onClick={submitAnswer}>Submit</button>
+					<div className={styles['form-wrapper']}>
+						{question.choices.map((choice, index) => (
+							<div
+								className={[
+									answer !== '' && answer == index ? styles['selected'] : '',
+									styles['multiple-answer'],
+								].join(' ')}
+								onClick={() => {
+									setAnswer(index)
+								}}>
+								{choice.choice}
+							</div>
+						))}
+						<button onClick={submitAnswer}>Submit</button>
+					</div>
 				</div>
 			)
 		}

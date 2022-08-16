@@ -18,31 +18,26 @@ export default function Announcement({ socket }) {
 	return (
 		<div className={styles['master-container']}>
 			<div className={styles['pseudo-button']}>Room Announcement</div>
-
-			<div>
-				<div className={styles['message-container']}>
-					<div className={styles['container']}>
-						<form onSubmit={handleSubmit}>
-							<input
-								className={styles.form}
-								type='text'
-								name='announceInput'
-								size='60'
-								width='60'
-								height='60'
-								onChange={handleChange}
-								value={input}
-							/>
-							<div>
-								<button
-									onClick={handleSubmit}
-									className={styles.button}
-									type='submit'>
-									SEND
-								</button>
-							</div>
-						</form>
-					</div>
+			<div className={styles['message-container']}>
+				<div className={styles['container']}>
+					<form onSubmit={handleSubmit}>
+						<input
+							className={styles.form}
+							type='text'
+							name='announceInput'
+							size='60'
+							width='60'
+							height='60'
+							onChange={handleChange}
+							value={input}
+						/>
+						<button
+							onClick={handleSubmit}
+							className={styles.button}
+							type='submit'>
+							SEND
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
