@@ -10,6 +10,7 @@ export default function Register() {
 		email: '',
 		password: '',
 		confirmPassword: '',
+		displayName:'',
 		type: 'CLIENT',
 	}
 	const [formState, setFormState] = useState(initialForm)
@@ -67,6 +68,15 @@ export default function Register() {
 						onChange={handleChange}
 						value={formState.email}
 						placeholder='email@email.com'
+						required
+					/>
+					<input
+						type='displayName'
+						id='displayName'
+						onChange={handleChange}
+						value={formState.displayName}
+						placeholder='User Name'
+						className={styles['login-element']}
 						required
 					/>
 					<input

@@ -4,6 +4,8 @@
 
 ## Project Description
 
+![Host](hostView.png)
+
 A teaching app for improving student engagement! 
 
 ## Technologies Used
