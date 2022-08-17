@@ -27,7 +27,7 @@ export default function Register() {
 	//Asdf1234!
 	const submit = async () => {
 		let res = await Client.post(
-			`http://localhost:3001/api/account/submit/${formState.type.toLowerCase()}`,
+			`/api/account/submit/${formState.type.toLowerCase()}`,
 			formState
 		)
 		console.log('hola')
