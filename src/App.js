@@ -84,12 +84,14 @@ function App() {
 					<Route
 						path='/student'
 						element={
+							accountInfo && 
+							accountInfo.room_id ?
 							<Student
 								socket={socket}
 								user={user}
 								accountInfo={accountInfo}
 								logout={logout}
-							/>
+							/> : <RoomSelect accountInfo={accountInfo} />
 						}
 					/>
 					<Route
@@ -103,7 +105,6 @@ function App() {
 							/>
 						}
 					/>
-					<Route path='/roomlogin' element={<RoomSelect />} />
 				</Routes>
 			) : (
 				<Routes>
