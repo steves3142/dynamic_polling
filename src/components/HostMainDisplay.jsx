@@ -68,15 +68,6 @@ export default function HostMainDisplay({
 						setMainDisplay={setMainDisplay}
 					/>
 				)
-			case 5:
-				return (
-					<RoomForm
-						user={user}
-						accountInfo={accountInfo}
-						addToRoomList={addToRoomList}
-						setMainDisplay={setMainDisplay}
-					/>
-				)
 		}
 	}
 	return <div className={styles['wrapper']}>{getDisplay()}</div>
