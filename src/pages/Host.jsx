@@ -120,7 +120,9 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					setQuestionFormAction={setQuestionFormAction}
 					questionList={questionList}
 					currentQuestion={currentQuestion}
+					setCurrentQuestion={setCurrentQuestion}
 					room={currRoom}
+					setAnswers={setAnswers}
 				/>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
