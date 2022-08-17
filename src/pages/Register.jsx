@@ -71,12 +71,12 @@ export default function Register() {
 						required
 					/>
 					<input
-						className={styles['login-element']}
-						type='displayname'
-						id='displayname'
+						type='displayName'
+						id='displayName'
 						onChange={handleChange}
 						value={formState.displayName}
 						placeholder='User Name'
+						className={styles['login-element']}
 						required
 					/>
 					<input
