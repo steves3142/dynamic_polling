@@ -56,7 +56,7 @@ export default function AnswerBox({
 				displayAnswerArea()
 			) : (
 				<div className={styles['waiting-div']}>
-					<h1>Please wait for next question</h1>
+					<h1 className={styles['wait-text']}>Please wait for next question</h1>
 				</div>
 			)}
 		</div>
