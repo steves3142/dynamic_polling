@@ -20,7 +20,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 
 	const loadRoomList = async () => {
 		if (user != null) {
-			const roomList = await getRoomList(user.id)
+			const roomList = await getRoomList(accountInfo.id)
 			console.log(roomList)
 			setRoomList(roomList)
 		}

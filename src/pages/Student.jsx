@@ -65,6 +65,13 @@ export default function Student({
 			clearState()
 		})
 
+		//update question
+		socket.on('updated-question', (data) => {
+			setQuestion({ ...data.question, choices: data.choices })
+			console.log(data)
+			clearState()
+		})
+
 		let hideAnnouncementInterval
 
 		socket.on('room-announcement', (data) => {
