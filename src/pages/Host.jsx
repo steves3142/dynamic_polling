@@ -141,7 +141,11 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					</div>
 					<div className={styles['chatbox-wrapper']}>
 						{currRoom ? (
-							<Chatbox name={'teacher'} socket={socket} roomId={currRoom.id} />
+							<Chatbox
+								name={user.display_name}
+								socket={socket}
+								roomId={currRoom.id}
+							/>
 						) : (
 							'Please choose a Room to for Functionality'
 						)}
