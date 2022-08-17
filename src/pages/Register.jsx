@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import Client from '../util/api'
 import styles from '../styles/pages/Register.module.css'
 
-import axios from 'axios'
-
 export default function Register() {
 	const navigate = useNavigate()
 	const initialForm = {
