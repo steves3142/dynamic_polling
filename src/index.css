@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&display=swap');
+
 * {
-	font-family: 'Arima';
+	font-family: 'Raleway', sans-serif;
 	cursor: pointer;
 }
 
