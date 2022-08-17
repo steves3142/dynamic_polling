@@ -11,7 +11,7 @@ import { restoreSession } from './util/auth'
 import io from 'socket.io-client'
 import { BASE_URL } from './util/api'
 
-const socket = io('BASE_URL')
+const socket = io(`${BASE_URL}`)
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
