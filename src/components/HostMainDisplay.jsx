@@ -1,5 +1,5 @@
 import React from 'react'
-import NewQuestionForm from './NewQuestionForm'
+import QuestionForm from './QuestionForm'
 import ViewAllAnswerBox from './ViewAllAnswerBox'
 import styles from '../styles/components/HostMainDisplay.module.css'
 import RoomForm from './RoomForm'
@@ -17,19 +17,27 @@ export default function HostMainDisplay({
 	answers,
 	setCurrentQuestion,
 	currentQuestion,
+	questionFromAction,
 }) {
 	function getDisplay() {
+		//no room selected
+		if (!room) {
+			return <div>Please Select A Room</div>
+		}
+
 		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 = annoucement, 5 = new room
 		switch (mainDisplayState) {
 			case 0:
 				return <>{JSON.stringify(currentQuestion)}</>
 			case 1:
 				return (
-					<NewQuestionForm
+					<QuestionForm
 						room={room}
 						setMainDisplay={setMainDisplay}
 						setAnswers={setAnswers}
 						setCurrentQuestion={setCurrentQuestion}
+						action={questionFromAction}
+						currentQuestion={currentQuestion}
 					/>
 				)
 			case 2:
@@ -42,7 +50,13 @@ export default function HostMainDisplay({
 					/>
 				)
 			case 4:
-				return <Announcement socket={socket} setMainDisplay={setMainDisplay} />
+				return (
+					<Announcement
+						socket={socket}
+						room={room}
+						setMainDisplay={setMainDisplay}
+					/>
+				)
 			case 5:
 				return (
 					<RoomForm

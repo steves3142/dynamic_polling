@@ -1,20 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Client from '../util/api'
 import styles from '../styles/components/NewQuestionForm.module.css'
 
-export default function NewQuestionForm({
+export default function QuestionForm({
 	room,
 	setMainDisplay,
 	setAnswers,
+	currentQuestion,
 	setCurrentQuestion,
+	action,
 }) {
-	const initialForm = {
-		question: '',
-		room_id: '1',
-		type: 'FR',
-	}
+	let initialForm =
+		action == 'NEW'
+			? {
+					question: '',
+					room_id: room.id,
+					type: 'FR',
+			  }
+			: currentQuestion.question
+
+	let initialChoices =
+		action == 'NEW'
+			? [...Array(4)].map(() => ({
+					choice: '',
+			  }))
+			: currentQuestion.choices
+
 	const [formState, setFormState] = useState(initialForm)
-	const [choices, setChoices] = useState([...Array(4)].map(() => ''))
+	const [choices, setChoices] = useState(initialChoices)
 
 	const handleChange = (event) => {
 		console.log(event.target.value)
@@ -26,7 +39,7 @@ export default function NewQuestionForm({
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		let res = await Client.post(`/api/host/submit/question/${/*room id*/ 10}`, {
+		let res = await Client.post(`/api/host/submit/question/${room.id}`, {
 			question: formState,
 			choices: choices,
 		})
@@ -37,6 +50,8 @@ export default function NewQuestionForm({
 		})
 		setFormState(initialForm)
 		setChoices([[...Array(4)].map(() => '')])
+
+		// clear out old answers recieved array when sending new question
 		setAnswers([])
 		setMainDisplay(0)
 	}
@@ -68,9 +83,15 @@ export default function NewQuestionForm({
 
 	const handleOptionsChange = (e) => {
 		let temp = [...choices]
-		temp[parseInt(e.target.id)] = e.target.value
+		temp[parseInt(e.target.id)].choice = e.target.value
 		setChoices(temp)
 	}
+
+	useEffect(() => {
+		console.log('called')
+		setFormState(initialForm)
+		setChoices(initialChoices)
+	}, [action])
 
 	const getForm = () => {
 		if (formState.type == 'MC') {
@@ -93,7 +114,7 @@ export default function NewQuestionForm({
 							onChange={handleOptionsChange}
 							type='text'
 							id={index}
-							value={choices[index]}
+							value={choices[index].choice}
 							placeholder={`option ${index + 1}`}
 							className={styles['input']}
 						/>

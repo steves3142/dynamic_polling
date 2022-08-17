@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/components/Announce.module.css'
 
-export default function Announcement({ socket }) {
+export default function Announcement({ socket, room }) {
 	// const [announce, setAnnounce] = useState([])
 	let [input, setInput] = useState('')
 
@@ -11,7 +11,7 @@ export default function Announcement({ socket }) {
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		socket.emit('room-announce', { message: input })
+		socket.emit('room-announce', { message: input, room: room })
 		setInput('')
 	}
 
