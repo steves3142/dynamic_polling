@@ -9,6 +9,8 @@ export default function HostSideBar({
 	questionList,
 	setQuestionFormAction,
 	currentQuestion,
+	setCurrentQuestion,
+	setAnswers,
 	room,
 }) {
 	const today = new Date()
@@ -53,7 +55,12 @@ export default function HostSideBar({
 	}
 
 	const pullQuestion = async (questionId) => {
-		
+		console.log(questionId)
+		let res = await Client.get(`/api/host/pull/question/${questionId}`)
+		setCurrentQuestion(res.data)
+		setAnswers(res.data.answers)
+		console.log(res.data)
+		console.log(res.data.answers)
 	}
 
 	useEffect(() => {
