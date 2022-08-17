@@ -5,13 +5,20 @@ import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 import StudentPopUp from '../components/StudentPopUp'
 
-export default function Student({ socket, logout, accountInfo, user }) {
+export default function Student({
+	socket,
+	logout,
+	accountInfo,
+	user,
+	hasRoom,
+}) {
 	const [answered, setAnswered] = useState(false)
 	const [announcement, setAnnoucement] = useState('')
 	const [showAnnouncement, setShowAnnnouncement] = useState(false)
 	const [question, setQuestion] = useState(null)
 	const [answer, setAnswer] = useState('')
 	const [submitted, setSubmitted] = useState(false)
+	const [chatLoaded, setChatLoaded] = useState(false)
 
 	function submitAnswer(e) {
 		e.preventDefault()
@@ -35,8 +42,13 @@ export default function Student({ socket, logout, accountInfo, user }) {
 		)
 		console.log(res.data)
 		setSubmitted(false)
-		setAnswered(false)
 		setAnswered(true)
+	}
+
+	function clearState() {
+		setAnswer('')
+		setSubmitted(false)
+		setAnswered(false)
 	}
 
 	useEffect(() => {
@@ -50,7 +62,15 @@ export default function Student({ socket, logout, accountInfo, user }) {
 		socket.on('new-question', (data) => {
 			setQuestion({ ...data.question, choices: data.choices })
 			console.log(data)
-			setAnswered(false)
+			clearState()
+		})
+
+		//update question
+		socket.on('updated-question', (data) => {
+			setQuestion({ ...data.question, choices: data.choices })
+			console.log('Updated question')
+			console.log(data)
+			clearState()
 		})
 
 		let hideAnnouncementInterval
@@ -72,16 +92,18 @@ export default function Student({ socket, logout, accountInfo, user }) {
 
 	//onPage load
 	useEffect(() => {
-		if (accountInfo.room_id) {
+		if (accountInfo.room_id != null) {
 			socket.emit('join-room', accountInfo.room_id)
+			setChatLoaded(true)
 		}
-	}, [])
+	}, [hasRoom])
 
 	return (
 		<div className={styles.container}>
 			<StudentPopUp text={announcement} showAnnouncement={showAnnouncement} />
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
+				<div className={styles['welcome']}>Welcome to DynaSoar Polling </div> 
 				<button onClick={logout} className={styles['logout']}>
 					Log Out
 				</button>
@@ -100,7 +122,11 @@ export default function Student({ socket, logout, accountInfo, user }) {
 					/>
 				</div>
 				<br />
-				<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+				{chatLoaded ? (
+					<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+				) : (
+					'Loading Please wait'
+				)}
 			</div>
 		</div>
 	)

@@ -6,7 +6,10 @@ import gradient from 'chartjs-plugin-gradient'
 
 Chart.register(gradient)
 
-export default function ViewAllAnswerBox({ socket, answers }) {
+export default function ViewAllAnswerBox({ socket, answers, currentQuestion }) {
+	const [displayStyle, setDisplayStyle] = useState(
+		currentQuestion ? currentQuestion.question.type : 'FR'
+	)
 	const [chartData, setchartData] = useState({
 		labels: [],
 		plugins: { gradient },
@@ -59,25 +62,8 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 		chartDataCopy.datasets[0].gradient.backgroundColor.colors[`${greatest}`] =
 			'#18a6b9'
 		setchartData(chartDataCopy)
+		console.log(displayStyle)
 	}, [answers])
-
-	function sendAnswer() {
-		let randomChoices = [
-			'Snickers',
-			'Ritz Cracker',
-			'Pringles',
-			"Hershey's",
-			"M &M's",
-		]
-		socket.emit('newAnswer', {
-			answer: {
-				id: 1,
-				student_id: 1,
-				response: randomChoices[Math.floor(Math.random() * 5)],
-			},
-			room: 10,
-		})
-	}
 
 	return (
 		<div className={styles['wrapper']}>
@@ -88,7 +74,6 @@ export default function ViewAllAnswerBox({ socket, answers }) {
 					''
 				)}
 			</div>
-			<button onClick={sendAnswer}>send answer</button>
 		</div>
 	)
 }

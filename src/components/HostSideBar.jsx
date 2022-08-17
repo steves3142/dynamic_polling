@@ -36,6 +36,7 @@ export default function HostSideBar({
 		)
 		from = from.toISOString()
 		let to = new Date(toDateSplit[2], toDateSplit[0] - 1, toDateSplit[1])
+		to.setDate(to.getDate() + 1)
 		to = to.toISOString()
 		console.log(from, to)
 		let questionList = await Client.post(

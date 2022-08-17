@@ -20,7 +20,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 
 	const loadRoomList = async () => {
 		if (user != null) {
-			const roomList = await getRoomList(user.id)
+			const roomList = await getRoomList(accountInfo.id)
 			console.log(roomList)
 			setRoomList(roomList)
 		}
@@ -64,7 +64,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		if (user) {
 			loadRoomList()
 		}
-	}, [user])
+	}, [user, accountInfo])
 
 	return (
 		<div className={styles.wrapper}>
@@ -72,9 +72,9 @@ export default function Host({ socket, user, accountInfo, logout }) {
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<div className={styles['header-left']}>
 					<div className={styles['room-info']}>
-						<div className={styles['join-key-info']}>Room Join Key</div>
 						<div className={styles['join-key-info']}>
-							{currRoom ? currRoom.join_key : ''}
+							<div className={styles['room-key-title']}>Room Code : </div> 
+							<div className={styles['room-key']}>{currRoom ? currRoom.join_key : ''}</div>
 						</div>
 					</div>
 					<div className={styles['room-info-wrapper']}>
