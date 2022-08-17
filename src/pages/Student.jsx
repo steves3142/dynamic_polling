@@ -5,13 +5,20 @@ import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 import StudentPopUp from '../components/StudentPopUp'
 
-export default function Student({ socket, logout, accountInfo, user }) {
+export default function Student({
+	socket,
+	logout,
+	accountInfo,
+	user,
+	hasRoom,
+}) {
 	const [answered, setAnswered] = useState(false)
 	const [announcement, setAnnoucement] = useState('')
 	const [showAnnouncement, setShowAnnnouncement] = useState(false)
 	const [question, setQuestion] = useState(null)
 	const [answer, setAnswer] = useState('')
 	const [submitted, setSubmitted] = useState(false)
+	const [chatLoaded, setChatLoaded] = useState(false)
 
 	function submitAnswer(e) {
 		e.preventDefault()
@@ -72,10 +79,11 @@ export default function Student({ socket, logout, accountInfo, user }) {
 
 	//onPage load
 	useEffect(() => {
-		if (accountInfo.room_id) {
+		if (accountInfo.room_id != null) {
 			socket.emit('join-room', accountInfo.room_id)
+			setChatLoaded(true)
 		}
-	}, [])
+	}, [hasRoom])
 
 	return (
 		<div className={styles.container}>
@@ -100,7 +108,11 @@ export default function Student({ socket, logout, accountInfo, user }) {
 					/>
 				</div>
 				<br />
-				<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+				{chatLoaded ? (
+					<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+				) : (
+					'Loading Please wait'
+				)}
 			</div>
 		</div>
 	)

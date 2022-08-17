@@ -88,6 +88,7 @@ function App() {
 									socket={socket}
 									user={user}
 									accountInfo={accountInfo}
+									hasRoom={hasRoom}
 									logout={logout}
 								/>
 							) : (
@@ -95,6 +96,7 @@ function App() {
 									setHasRoom={setHasRoom}
 									accountInfo={accountInfo}
 									logout={logout}
+									setAccountInfo={setAccountInfo}
 								/>
 							)
 						}
