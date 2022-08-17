@@ -52,6 +52,10 @@ export default function HostSideBar({
 		setPullingLog(false)
 	}
 
+	const pullQuestion = async (questionId) => {
+		
+	}
+
 	useEffect(() => {
 		if (pullingLog) {
 			pullLog()
@@ -123,7 +127,10 @@ export default function HostSideBar({
 				<div className={styles['empty-review']}>
 					<div className={styles['question-log']}>
 						{questionList.map((question) => (
-							<div className={styles['review-questions']} key={question.id}>
+							<div
+								onClick={() => pullQuestion(question.id)}
+								className={styles['review-questions']}
+								key={question.id}>
 								{question.question}
 							</div>
 						))}

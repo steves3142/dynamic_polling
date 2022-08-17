@@ -103,7 +103,7 @@ export default function Student({
 			<StudentPopUp text={announcement} showAnnouncement={showAnnouncement} />
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
-				<div className={styles['welcome']}>Welcome to DynaSoar Polling </div> 
+				<div className={styles['welcome']}>Welcome to DynaSoar Polling </div>
 				<button onClick={logout} className={styles['logout']}>
 					Log Out
 				</button>
@@ -123,7 +123,11 @@ export default function Student({
 				</div>
 				<br />
 				{chatLoaded ? (
-					<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+					<Chatbox
+						name={user.display_name}
+						socket={socket}
+						roomId={accountInfo.room_id}
+					/>
 				) : (
 					'Loading Please wait'
 				)}
