@@ -7,6 +7,8 @@ export default function HostSideBar({
 	logout,
 	setQuestionList,
 	questionList,
+	setQuestionFormAction,
+	currentQuestion,
 }) {
 	const today = new Date()
 	const dateString = today.toLocaleDateString()
@@ -53,9 +55,22 @@ export default function HostSideBar({
 		<div className={styles['side-bar']}>
 			<div className={styles['body']}>
 				<div
-					onClick={() => setMainDisplay(1)}
+					onClick={() => {
+						setQuestionFormAction('NEW')
+						setMainDisplay(1)
+					}}
 					className={styles['pseudo-button']}>
 					New Question
+				</div>
+				<div
+					onClick={() => {
+						if (currentQuestion) {
+							setQuestionFormAction('UPDATE')
+						}
+						setMainDisplay(1)
+					}}
+					className={styles['pseudo-button']}>
+					Update Question
 				</div>
 				<div
 					onClick={() => setMainDisplay(4)}
@@ -91,13 +106,15 @@ export default function HostSideBar({
 					className={styles['review-button']}>
 					Review
 				</div>
-				<div className={styles['empty-review']} >
-				<div className={styles['question-log']} >
-					{questionList.map((question) => (
-						<div className={styles['review-questions']} key={question.id}>{question.question}</div>
-					))}
+				<div className={styles['empty-review']}>
+					<div className={styles['question-log']}>
+						{questionList.map((question) => (
+							<div className={styles['review-questions']} key={question.id}>
+								{question.question}
+							</div>
+						))}
+					</div>
 				</div>
-			</div>
 			</div>
 			<div className={styles['logout-button']}>
 				<button onClick={logout} className={styles['logout']}>

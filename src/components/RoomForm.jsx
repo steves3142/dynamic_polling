@@ -24,7 +24,7 @@ export default function RoomForm({
 			owner_id: accountInfo.id,
 		})
 		addToRoomList(res.data)
-		setMainDisplay(1)
+		setMainDisplay(0)
 	}
 
 	useEffect(() => {

@@ -18,9 +18,7 @@
 	height: 12vh;
 	border-bottom: 2px solid black;
 	justify-content: space-between;
-
 }
-
 
 .body {
 	display: flex;
@@ -70,8 +68,11 @@
 
 .room-info-wrapper {
 	width: 15%;
-	display: flex;
+	height: 100%;
 	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .room-list {
@@ -83,8 +84,6 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 20px;
 }
 
 .room-list:hover .room {
@@ -93,6 +92,7 @@
 }
 
 .new-room {
+	margin: 0 auto;
 	background-color: rgb(134, 209, 238);
 	display: none;
 	outline: 1px solid black;
@@ -116,6 +116,7 @@
 .room {
 	display: none;
 	background-color: rgb(60, 190, 241);
+	margin: 0 auto;
 }
 
 .room:hover {
@@ -126,4 +127,9 @@
 	margin-top: 45vh;
 	margin-right: 8vw;
 	align-self: flex-end;
+}
+
+.selected {
+	background-color: rgb(143, 236, 137);
+	margin: 0;
 }
