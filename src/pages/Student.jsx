@@ -42,8 +42,13 @@ export default function Student({
 		)
 		console.log(res.data)
 		setSubmitted(false)
-		setAnswered(false)
 		setAnswered(true)
+	}
+
+	function clearState() {
+		setAnswer('')
+		setSubmitted(false)
+		setAnswered(false)
 	}
 
 	useEffect(() => {
@@ -57,7 +62,7 @@ export default function Student({
 		socket.on('new-question', (data) => {
 			setQuestion({ ...data.question, choices: data.choices })
 			console.log(data)
-			setAnswered(false)
+			clearState()
 		})
 
 		let hideAnnouncementInterval
