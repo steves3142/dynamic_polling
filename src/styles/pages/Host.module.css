@@ -91,10 +91,16 @@
 	position: relative;
 }
 
+.room {
+	outline: 1px solid black;
+}
+
 .new-room {
 	margin: 0 auto;
 	background-color: rgb(134, 209, 238);
 	display: none;
+	color:rgb(137, 2, 247);
+	text-shadow: .5px .5px black;
 	outline: 1px solid black;
 }
 
