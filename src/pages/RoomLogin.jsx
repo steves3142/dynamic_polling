@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/pages/RoomLogin.module.css'
-import axios from 'axios'
+import Client from '../util/api'
 
 export default function RoomLogin({ socket, logout, accountInfo, setHasRoom }) {
 	let [input, setInput] = useState('')
@@ -11,9 +11,7 @@ export default function RoomLogin({ socket, logout, accountInfo, setHasRoom }) {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		await axios.put(
-			`http://localhost:3001/api/account/client/${accountInfo.id}/${input}`
-		)
+		await Client.put(`/api/account/client/${accountInfo.id}/${input}`)
 		setHasRoom(true)
 		setInput('')
 	}
