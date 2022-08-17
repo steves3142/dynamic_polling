@@ -19,6 +19,7 @@ export default function Student({
 	const [answer, setAnswer] = useState('')
 	const [submitted, setSubmitted] = useState(false)
 	const [chatLoaded, setChatLoaded] = useState(false)
+	const [room, setRoom] = useState(null)
 
 	function submitAnswer(e) {
 		e.preventDefault()
@@ -43,6 +44,11 @@ export default function Student({
 		console.log(res.data)
 		setSubmitted(false)
 		setAnswered(true)
+	}
+
+	async function getRoom() {
+		let res = await Client.get(`/api/room/rooms/id/${accountInfo.room_id}`)
+		setRoom(res.data)
 	}
 
 	function clearState() {
@@ -95,6 +101,7 @@ export default function Student({
 		if (accountInfo.room_id != null) {
 			socket.emit('join-room', accountInfo.room_id)
 			setChatLoaded(true)
+			getRoom()
 		}
 	}, [hasRoom])
 
@@ -103,7 +110,7 @@ export default function Student({
 			<StudentPopUp text={announcement} showAnnouncement={showAnnouncement} />
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
-				<img className={styles.dino} src='https://i.imgur.com/egYhUoL.png' />
+				<div className={styles['room-name']} >{room ? room.name : ''} </div>
 				<button onClick={logout} className={styles['logout']}>
 					Log Out
 				</button>

@@ -57,7 +57,9 @@ export default function AnswerBox({
 			) : (
 				<div className={styles['waiting-div']}>
 					<h1 className={styles['wait-text']}>Please wait for next question</h1>
+					<img className={styles.dino} src='https://i.imgur.com/4dCGiXN.png' />
 				</div>
+				
 			)}
 		</div>
 	)
