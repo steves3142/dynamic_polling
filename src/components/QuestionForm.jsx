@@ -39,20 +39,33 @@ export default function QuestionForm({
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		let res = await Client.post(`/api/host/submit/question/${room.id}`, {
-			question: formState,
-			choices: choices,
-		})
+		let res
+		if (action == 'NEW') {
+			res = await Client.post(`/api/host/submit/question/${room.id}`, {
+				question: formState,
+				choices: choices,
+			})
+			setFormState(initialForm)
+			setChoices([[...Array(4)].map(() => '')])
+			// clear out old answers recieved array when sending new question
+			setAnswers([])
+		} else {
+			res = await Client.put(
+				`/api/host/update/${currentQuestion.question.id}`,
+				{
+					question: formState,
+					choices: choices,
+				}
+			)
+			console.log(res.data)
+		}
 		console.log('hola')
 		setCurrentQuestion({
 			question: res.data.question,
 			choices: res.data.choices,
 		})
-		setFormState(initialForm)
-		setChoices([[...Array(4)].map(() => '')])
 
-		// clear out old answers recieved array when sending new question
-		setAnswers([])
+		//back to main disp
 		setMainDisplay(0)
 	}
 
