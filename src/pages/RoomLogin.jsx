@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/pages/RoomLogin.module.css'
 import Client from '../util/api'
 
-export default function RoomLogin({ socket, logout, accountInfo, setHasRoom }) {
+export default function RoomLogin({
+	socket,
+	logout,
+	accountInfo,
+	setHasRoom,
+	setAccountInfo,
+}) {
 	let [input, setInput] = useState('')
 
 	function handleChange(e) {
@@ -11,7 +17,8 @@ export default function RoomLogin({ socket, logout, accountInfo, setHasRoom }) {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		await Client.put(`/api/account/client/${accountInfo.id}/${input}`)
+		let res = await Client.put(`/api/account/client/${accountInfo.id}/${input}`)
+		setAccountInfo(res.data[1][0])
 		setHasRoom(true)
 		setInput('')
 	}
