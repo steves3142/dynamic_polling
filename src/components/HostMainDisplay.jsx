@@ -58,6 +58,7 @@ export default function HostMainDisplay({
 						socket={socket}
 						setAnswers={setAnswers}
 						answers={answers}
+						currentQuestion={currentQuestion}
 					/>
 				)
 			case 4:

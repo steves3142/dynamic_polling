@@ -64,7 +64,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		if (user) {
 			loadRoomList()
 		}
-	}, [user])
+	}, [user, accountInfo])
 
 	return (
 		<div className={styles.wrapper}>
