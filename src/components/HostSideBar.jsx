@@ -40,7 +40,6 @@ export default function HostSideBar({
 		let to = new Date(toDateSplit[2], toDateSplit[0] - 1, toDateSplit[1])
 		to.setDate(to.getDate() + 1)
 		to = to.toISOString()
-		console.log(from, to)
 		let questionList = await Client.post(
 			`/api/host/pull/questions/${room.id}`,
 			{
@@ -59,8 +58,6 @@ export default function HostSideBar({
 		let res = await Client.get(`/api/host/pull/question/${questionId}`)
 		setCurrentQuestion(res.data)
 		setAnswers(res.data.answers)
-		console.log(res.data)
-		console.log(res.data.answers)
 	}
 
 	useEffect(() => {

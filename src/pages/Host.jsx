@@ -71,7 +71,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
-				<div className={styles['header-left']}>
+				<div className={styles['header-right']}>
 					<div className={styles['room-info']}>
 						<div className={styles['join-key-info']}>
 							<div className={styles['room-key-title']}>Room Code : </div>
