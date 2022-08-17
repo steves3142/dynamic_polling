@@ -26,14 +26,21 @@
 	transform: scale(1.05);
 }
 
+
 .dino {
 	width: 100px;
 	height: auto;
+	animation: slide 4s infinite alternate;
 }
+
+@keyframes slide {
+	0% { transform: translateX(50px);}
+	100% { transform: translateX(-50px);}
+}
+
 .logout {
 	margin-top: 65px;
 }
-
 
 .question {
 	color: rgb(230, 145, 95);
