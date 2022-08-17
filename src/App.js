@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Student from './pages/Student'
 import Host from './pages/Host'
 import Login from './pages/Login'
@@ -17,7 +17,8 @@ function App() {
 	const [user, setUser] = useState(null)
 	const [token, setToken] = useState(null)
 	const [accountInfo, setAccountInfo] = useState(null)
-
+	//to conditionally render student page
+	const [hasRoom, setHasRoom] = useState(false)
 	const saveToken = (token) => {
 		localStorage.setItem('token', token)
 	}
@@ -28,13 +29,6 @@ function App() {
 		setLoggedIn(true)
 	}
 
-	const getPage = () => {
-		if (user.type == 'HOST') {
-			return <Host socket={socket} />
-		} else {
-			return <Student socket={socket} />
-		}
-	}
 	const login = async (formState) => {
 		//acount/login
 		const res = await Client.post('/api/account/login', formState)
@@ -54,8 +48,12 @@ function App() {
 			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
 		)
 		setAccountInfo(res.data)
+		if (res.data.room_id) {
+			setHasRoom(true)
+		}
 	}
 	const logout = () => {
+		console.log('logout called')
 		setLoggedIn(false)
 		setUser(null)
 		localStorage.clear()
@@ -84,14 +82,20 @@ function App() {
 					<Route
 						path='/student'
 						element={
-							accountInfo && 
-							accountInfo.room_id ?
-							<Student
-								socket={socket}
-								user={user}
-								accountInfo={accountInfo}
-								logout={logout}
-							/> : <RoomSelect accountInfo={accountInfo} />
+							hasRoom ? (
+								<Student
+									socket={socket}
+									user={user}
+									accountInfo={accountInfo}
+									logout={logout}
+								/>
+							) : (
+								<RoomSelect
+									setHasRoom={setHasRoom}
+									accountInfo={accountInfo}
+									logout={logout}
+								/>
+							)
 						}
 					/>
 					<Route

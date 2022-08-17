@@ -10,8 +10,8 @@ export default function Student({ socket, logout, accountInfo, user }) {
 	const [announcement, setAnnoucement] = useState('')
 	const [showAnnouncement, setShowAnnnouncement] = useState(false)
 	const [question, setQuestion] = useState(null)
-	let [answer, setAnswer] = useState('')
-	let [submitted, setSubmitted] = useState(false)
+	const [answer, setAnswer] = useState('')
+	const [submitted, setSubmitted] = useState(false)
 
 	function submitAnswer(e) {
 		e.preventDefault()
@@ -26,8 +26,12 @@ export default function Student({ socket, logout, accountInfo, user }) {
 	async function logAnswer() {
 		console.log(answered)
 		const res = await Client.post(
-			`/api/student/submit/answer/${/*room id*/ 10}`,
-			{ response: answer, question_id: question.id, student_id: 1 }
+			`/api/student/submit/answer/${accountInfo.room_id}`,
+			{
+				response: answer,
+				question_id: question.id,
+				student_id: accountInfo.id,
+			}
 		)
 		console.log(res.data)
 		setSubmitted(false)
@@ -66,9 +70,16 @@ export default function Student({ socket, logout, accountInfo, user }) {
 		}
 	}, [socket]) //on socket receive
 
+	//onPage load
+	useEffect(() => {
+		if (accountInfo.room_id) {
+			socket.emit('join-room', accountInfo.room_id)
+		}
+	}, [])
+
 	return (
 		<div className={styles.container}>
-			<StudentPopUp text={announcement} showAnnouncement ={showAnnouncement} /> 
+			<StudentPopUp text={announcement} showAnnouncement={showAnnouncement} />
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<button onClick={logout} className={styles['logout']}>
@@ -89,7 +100,7 @@ export default function Student({ socket, logout, accountInfo, user }) {
 					/>
 				</div>
 				<br />
-				<Chatbox name={'An'} socket={socket} />
+				<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
 			</div>
 		</div>
 	)
