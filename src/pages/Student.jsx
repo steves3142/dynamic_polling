@@ -103,7 +103,7 @@ export default function Student({
 			<StudentPopUp text={announcement} showAnnouncement={showAnnouncement} />
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
-				<div className={styles['welcome']}>Welcome to DynaSoar Polling </div> 
+				<img className={styles.dino} src='https://i.imgur.com/egYhUoL.png' />
 				<button onClick={logout} className={styles['logout']}>
 					Log Out
 				</button>
