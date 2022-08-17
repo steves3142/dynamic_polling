@@ -68,6 +68,7 @@ export default function Student({
 		//update question
 		socket.on('updated-question', (data) => {
 			setQuestion({ ...data.question, choices: data.choices })
+			console.log('Updated question')
 			console.log(data)
 			clearState()
 		})

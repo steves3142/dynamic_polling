@@ -38,7 +38,7 @@ export default function AnswerBox({
 									styles['multiple-answer'],
 								].join(' ')}
 								onClick={() => {
-									setAnswer(index)
+									setAnswer(choice.choice)
 								}}>
 								{choice.choice}
 							</div>
