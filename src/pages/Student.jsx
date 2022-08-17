@@ -123,7 +123,11 @@ export default function Student({
 				</div>
 				<br />
 				{chatLoaded ? (
-					<Chatbox name={'An'} socket={socket} roomId={accountInfo.room_id} />
+					<Chatbox
+						name={user.display_name}
+						socket={socket}
+						roomId={accountInfo.room_id}
+					/>
 				) : (
 					'Loading Please wait'
 				)}
