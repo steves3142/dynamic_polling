@@ -9,8 +9,9 @@ import { useState, useEffect } from 'react'
 import Client from './util/api'
 import { restoreSession } from './util/auth'
 import io from 'socket.io-client'
+import { BASE_URL } from './util/api'
 
-const socket = io('http://localhost:3001')
+const socket = io('BASE_URL')
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
