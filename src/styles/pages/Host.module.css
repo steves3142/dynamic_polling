@@ -67,7 +67,7 @@
 }
 
 .room-info-wrapper {
-	width: 15%;
+	width: 50%;
 	height: 100%;
 	flex-direction: column;
 	display: flex;
@@ -132,4 +132,26 @@
 .selected {
 	background-color: rgb(143, 236, 137);
 	margin: 0;
+}
+
+.header-left {
+	width: 30%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.room-info {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.join-key-info {
+	height: 40px;
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

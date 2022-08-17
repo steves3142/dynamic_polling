@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from '../styles/components/Chat.module.css'
 import { useRef } from 'react'
 
-export default function Chatbox({ name, socket }) {
+export default function Chatbox({ name, socket, roomId }) {
 	let [chatMessages, setChatmessages] = useState([])
 	let [input, setInput] = useState('')
 	const chatBottom = useRef(null)
@@ -17,7 +17,7 @@ export default function Chatbox({ name, socket }) {
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		socket.emit('send-message', { name: name, message: input })
+		socket.emit('send-message', { name: name, message: input, room_id: roomId })
 		setInput('')
 	}
 
@@ -25,6 +25,7 @@ export default function Chatbox({ name, socket }) {
 		setInput(e.target.value)
 	}
 	useEffect(() => {
+		console.log('data receive')
 		if (socket != undefined) {
 			socket.on('receive-message', (data) => {
 				updateMessage(data)
@@ -44,8 +45,8 @@ export default function Chatbox({ name, socket }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.chatbox}>
-				{chatMessages.map((msg) => (
-					<div className={styles['chatline']}>
+				{chatMessages.map((msg, i) => (
+					<div key={i} className={styles['chatline']}>
 						{`${msg.name}: ${msg.message}`} <br />
 					</div>
 				))}

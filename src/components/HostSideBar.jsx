@@ -9,18 +9,24 @@ export default function HostSideBar({
 	questionList,
 	setQuestionFormAction,
 	currentQuestion,
+	room,
 }) {
 	const today = new Date()
 	const dateString = today.toLocaleDateString()
 	const [fromDate, setFrom] = useState(dateString)
 	const [toDate, setTo] = useState(dateString)
 	const [pullingLog, setPullingLog] = useState(false)
+	//for pulling log before selecting room
+	const [errorMsg, setErr] = useState('')
 	const handleChange = (e) => {
 		if (e.target.name == 'toDate') setTo(e.target.value)
 		else setFrom(e.target.value)
 	}
 
 	const pullLog = async () => {
+		if (!room) {
+			return setErr('No Room Selected')
+		}
 		let fromDateSplit = fromDate.split('/')
 		let toDateSplit = toDate.split('/')
 		let from = new Date(
@@ -33,7 +39,7 @@ export default function HostSideBar({
 		to = to.toISOString()
 		console.log(from, to)
 		let questionList = await Client.post(
-			`/api/host/pull/questions/${/*roomid */ 1}`,
+			`/api/host/pull/questions/${room.id}`,
 			{
 				range: {
 					to: to,
@@ -50,6 +56,12 @@ export default function HostSideBar({
 			pullLog()
 		}
 	}, [pullingLog])
+
+	useEffect(() => {
+		setTimeout(() => {
+			setErr('')
+		}, 3000)
+	}, [errorMsg])
 
 	return (
 		<div className={styles['side-bar']}>
@@ -82,6 +94,7 @@ export default function HostSideBar({
 					className={styles['pseudo-button']}>
 					Hide/Show Answers
 				</div>
+				{errorMsg}
 				<div className={styles['review-dates']}>
 					<input
 						type='text'

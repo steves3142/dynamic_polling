@@ -39,7 +39,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		setRoom(room)
 		// Join Room when room is selected
 		console.log(`joining room ${room.id}`)
-		socket.emit('join_room', room)
+		socket.emit('join-room', room.id)
 
 		//clearing previous states
 		setCurrentQuestion(null)
@@ -70,33 +70,41 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		<div className={styles.wrapper}>
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
-				<div className={styles['room-info-wrapper']}>
-					<div className={styles['pseudo-button']}>Open Room</div>
-					<div
-						className={[
-							styles['room-list'],
-							currRoom ? styles['selected'] : '',
-						].join(' ')}>
-						<p className={styles['text']}>
-							{currRoom ? currRoom.name : 'Room List'}
-						</p>
-						{roomList.map((room) => (
-							<div
-								onClick={() => {
-									joinRoom(room)
-								}}
-								key={room.id}
-								className={[
-									styles['room'],
-									currRoom == room ? styles['selected'] : '',
-								].join(' ')}>
-								{room.name}
-							</div>
-						))}
+				<div className={styles['header-left']}>
+					<div className={styles['room-info']}>
+						<div className={styles['join-key-info']}>Room Join Key</div>
+						<div className={styles['join-key-info']}>
+							{currRoom ? currRoom.join_key : ''}
+						</div>
+					</div>
+					<div className={styles['room-info-wrapper']}>
+						<div className={styles['pseudo-button']}>Open Room</div>
 						<div
-							onClick={() => setMainDisplay(5)}
-							className={styles['new-room']}>
-							Add New Room
+							className={[
+								styles['room-list'],
+								currRoom ? styles['selected'] : '',
+							].join(' ')}>
+							<p className={styles['text']}>
+								{currRoom ? currRoom.name : 'Room List'}
+							</p>
+							{roomList.map((room) => (
+								<div
+									onClick={() => {
+										joinRoom(room)
+									}}
+									key={room.id}
+									className={[
+										styles['room'],
+										currRoom == room ? styles['selected'] : '',
+									].join(' ')}>
+									{room.name}
+								</div>
+							))}
+							<div
+								onClick={() => setMainDisplay(5)}
+								className={styles['new-room']}>
+								Add New Room
+							</div>
 						</div>
 					</div>
 				</div>
@@ -109,6 +117,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					setQuestionFormAction={setQuestionFormAction}
 					questionList={questionList}
 					currentQuestion={currentQuestion}
+					room={currRoom}
 				/>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
@@ -128,7 +137,11 @@ export default function Host({ socket, user, accountInfo, logout }) {
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>
-						<Chatbox name={'teacher'} socket={socket} />
+						{currRoom ? (
+							<Chatbox name={'teacher'} socket={socket} roomId={currRoom.id} />
+						) : (
+							'Please choose a Room to for Functionality'
+						)}
 					</div>
 				</div>
 			</div>
