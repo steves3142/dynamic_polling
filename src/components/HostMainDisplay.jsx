@@ -20,6 +20,17 @@ export default function HostMainDisplay({
 	questionFromAction,
 }) {
 	function getDisplay() {
+		if (mainDisplayState == 5) {
+			return (
+				<RoomForm
+					user={user}
+					accountInfo={accountInfo}
+					addToRoomList={addToRoomList}
+					setMainDisplay={setMainDisplay}
+				/>
+			)
+		}
+
 		//no room selected
 		if (!room) {
 			return <div>Please Select A Room</div>
