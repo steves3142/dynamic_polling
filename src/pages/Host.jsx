@@ -19,7 +19,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	const [questionFromAction, setQuestionFormAction] = useState('NEW')
 
 	const loadRoomList = async () => {
-		if (user != null) {
+		console.log('called')
+		if (user && accountInfo) {
 			const roomList = await getRoomList(accountInfo.id)
 			console.log(roomList)
 			setRoomList(roomList)
@@ -73,8 +74,10 @@ export default function Host({ socket, user, accountInfo, logout }) {
 				<div className={styles['header-left']}>
 					<div className={styles['room-info']}>
 						<div className={styles['join-key-info']}>
-							<div className={styles['room-key-title']}>Room Code : </div> 
-							<div className={styles['room-key']}>{currRoom ? currRoom.join_key : ''}</div>
+							<div className={styles['room-key-title']}>Room Code : </div>
+							<div className={styles['room-key']}>
+								{currRoom ? currRoom.join_key : ''}
+							</div>
 						</div>
 					</div>
 					<div className={styles['room-info-wrapper']}>

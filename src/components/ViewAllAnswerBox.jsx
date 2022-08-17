@@ -41,6 +41,22 @@ export default function ViewAllAnswerBox({ socket, answers, currentQuestion }) {
 		// animation: false,
 	})
 
+	const getDisplay = () => {
+		if (displayStyle == 'MC') {
+			return <Bar data={chartData} redraw={true} options={chartOptions} />
+		} else {
+			return (
+				<div className={styles['log-container']}>
+					{answers.map((answer) => (
+						<div className={styles['answer-container']}>
+							<div className={styles['answer']}>{answer.response}</div>
+						</div>
+					))}
+				</div>
+			)
+		}
+	}
+
 	useEffect(() => {
 		let responses = answers.map((answer) => answer.response)
 		let unique = new Set(responses)
@@ -67,13 +83,27 @@ export default function ViewAllAnswerBox({ socket, answers, currentQuestion }) {
 
 	return (
 		<div className={styles['wrapper']}>
-			<div>
-				{answers.length > 0 ? (
-					<Bar data={chartData} redraw={true} options={chartOptions} />
-				) : (
-					''
-				)}
+			<div className={styles['toggle-container']}>
+				<div
+					onClick={() => setDisplayStyle('FR')}
+					className={[
+						styles['toggle-options'],
+						styles['left-toggle'],
+						displayStyle == 'FR' ? styles['selected'] : undefined,
+					].join(' ')}>
+					Log
+				</div>
+				<div
+					onClick={() => setDisplayStyle('MC')}
+					className={[
+						styles['toggle-options'],
+						styles['right-toggle'],
+						displayStyle == 'MC' ? styles['selected'] : undefined,
+					].join(' ')}>
+					Graph
+				</div>
 			</div>
+			<div className={styles['display']}>{getDisplay()}</div>
 		</div>
 	)
 }
