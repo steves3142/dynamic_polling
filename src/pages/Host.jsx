@@ -72,10 +72,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<div className={styles['header-left']}>
 					<div className={styles['room-info']}>
-						<div className={styles['join-key-info']}>Room Join Key</div>
-						<div className={styles['join-key-info']}>
-							{currRoom ? currRoom.join_key : ''}
-						</div>
+						<div className={styles['join-key-info']}>Room Join Key = {currRoom ? currRoom.join_key : ''}</div>
 					</div>
 					<div className={styles['room-info-wrapper']}>
 						<div className={styles['pseudo-button']}>Open Room</div>
