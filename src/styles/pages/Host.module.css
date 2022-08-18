@@ -78,12 +78,13 @@
 	width: 90%;
 	height: 40px;
 	background-color: rgb(134, 209, 238);
-	font-size: 22px;
+	font-size: 20px;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
 	border-radius: 5px;
 }
+
 
 .room-list:hover .room {
 	outline: 1px solid black;
@@ -113,7 +114,7 @@
 }
 
 .text {
-	margin: 0;
+	margin: 5px 0px 3px 0px;
 	justify-self: center;
 	text-align: center;
 }
@@ -178,4 +179,53 @@
 
 .room-key {
 	font-size: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+	.new-room {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 940px) {
+	.new-room {
+		font-size: 17px;
+	}
+}
+
+@media screen and (max-width: 810px) {
+	.join-key-info {
+		font-size: 18px;
+		height: 60px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.room-key {
+		font-size: 18px;
+	}
+	.join-key-info {
+		font-size: 14px;
+		height: 40px;
+		width: 150px;
+		margin-right: 60px;
+	}
+}
+
+@media screen and (max-width: 810px) {
+	.pseudo-button {
+		font-size: 17px;
+		height: 32px;
+	}
+	.room-list {
+		font-size: 17px;
+		height: 32px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.join-key-info {
+		font-size: 10px;
+		margin-right: 100px;
+	}
 }
