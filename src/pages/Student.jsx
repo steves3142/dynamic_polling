@@ -28,6 +28,7 @@ export default function Student({
 	const [waitingSound]=useState(new Audio(waitingsound))
 
 	function submitAnswer(e) {
+		sendAnswer.volume = .2
 		e.preventDefault()
 		if (!answered) {
 			setSubmitted(true)
@@ -71,7 +72,7 @@ export default function Student({
 	}, [submitted])
 
 	useEffect(() => {
-		waitingSound.volume = .10
+		waitingSound.volume = .01
 		if (answered) {
 			waitingSound.play()
 			waitingSound.addEventListener('ended', () => {

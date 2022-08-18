@@ -13,6 +13,8 @@ export default function HostSideBar({
 	setAnswers,
 	mainDisplay,
 	room,
+	showSideBar,
+	setShowSideBar
 }) {
 	const today = new Date()
 	const dateString = today.toLocaleDateString()
@@ -91,10 +93,11 @@ export default function HostSideBar({
 	}, [errorMsg])
 
 	return (
-		<div className={styles['side-bar']}>
+		<div className={[styles['side-bar'], showSideBar ? styles['full-width']: undefined].join(' ')}>
 			<div className={styles['body']}>
 				<div
 					onClick={() => {
+						setShowSideBar(false)
 						setQuestionFormAction('NEW')
 						setMainDisplay(2)
 					}}
@@ -103,6 +106,7 @@ export default function HostSideBar({
 				</div>
 				<div
 					onClick={() => {
+						setShowSideBar(false)
 						setQuestionFormAction('NEW')
 						setMainDisplay(1)
 					}}
@@ -111,6 +115,7 @@ export default function HostSideBar({
 				</div>
 				<div
 					onClick={() => {
+						setShowSideBar(false)
 						if (currentQuestion) {
 							setQuestionFormAction('UPDATE')
 						}
@@ -120,12 +125,16 @@ export default function HostSideBar({
 					Update Question
 				</div>
 				<div
-					onClick={() => setMainDisplay(4)}
+					onClick={() => {
+						
+						setShowSideBar(false)
+						setMainDisplay(4)}}
 					className={styles['pseudo-button']}>
 					Room Announcement
 				</div>
 				<div
 					onClick={() => {
+						setShowSideBar(false)
 						mainDisplay == 3 ? setMainDisplay(0) : setMainDisplay(3)
 					}}
 					className={styles['pseudo-button']}>

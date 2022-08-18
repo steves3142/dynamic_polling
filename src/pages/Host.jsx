@@ -18,6 +18,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	const ref = useRef(null)
 	const [currRoom, setRoom] = useState(null)
 	const [questionFromAction, setQuestionFormAction] = useState('NEW')
+	//for mobile sidebar display
+	const [showSideBar, setShowSideBar] = useState(false)
 	const { xDelta } = useTouch(ref)
 
 	const loadRoomList = async () => {
@@ -72,9 +74,11 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	useEffect(() => {
 		if (xDelta < -220) {
 			console.log('drag right')
+			setShowSideBar(true)
 		}
 		if (xDelta > 220) {
 			console.log('drag left')
+			setShowSideBar(false)
 		}
 	}, [xDelta])
 
@@ -125,6 +129,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 			</div>
 			<div className={styles['body']}>
 				<HostSideBar
+					setShowSideBar={setShowSideBar}
+					showSideBar={showSideBar}
 					setMainDisplay={setMainDisplay}
 					logout={logout}
 					setQuestionList={setQuestionList}
@@ -136,7 +142,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					setAnswers={setAnswers}
 					mainDisplay={mainDisplay}
 				/>
-				<div className={styles['body-display']}>
+				<div className={[styles['body-display'], showSideBar ? styles['hide-width']: styles['full-width']].join(' ')}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
 							setMainDisplay={setMainDisplay}
