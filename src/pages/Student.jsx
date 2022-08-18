@@ -4,6 +4,9 @@ import Client from '../util/api'
 import { useState, useEffect } from 'react'
 import AnswerBox from '../components/AnswerBox'
 import StudentPopUp from '../components/StudentPopUp'
+import sendanswer from '../assets/answerSend.mp3'
+import announcesound from '../assets/announcement.mp3'
+import waitingsound from '../assets/waitingClient.mp3'
 
 export default function Student({
 	socket,
@@ -20,12 +23,16 @@ export default function Student({
 	const [submitted, setSubmitted] = useState(false)
 	const [chatLoaded, setChatLoaded] = useState(false)
 	const [room, setRoom] = useState(null)
+	const [sendAnswer]=useState(new Audio(sendanswer))
+	const [announceSound]=useState(new Audio(announcesound))
+	const [waitingSound]=useState(new Audio(waitingsound))
 
 	function submitAnswer(e) {
 		e.preventDefault()
 		if (!answered) {
 			setSubmitted(true)
 			console.log('submmited answer')
+			sendAnswer.play()
 		} else {
 			console.log('Already submitted')
 		}
@@ -64,6 +71,26 @@ export default function Student({
 	}, [submitted])
 
 	useEffect(() => {
+		waitingSound.volume = .10
+		if (answered) {
+			waitingSound.play()
+			waitingSound.addEventListener('ended', () => {
+				waitingSound.currentTime = 0
+				waitingSound.play()
+			})
+		} else {
+			waitingSound.pause()
+			waitingSound.currentTime = 0
+		}
+		return () => {
+			waitingSound.removeEventListener('ended', () => {
+				waitingSound.currentTime = 0
+				waitingSound.play()
+			})
+		}
+	}, [answered])
+
+	useEffect(() => {
 		//on new question
 		socket.on('new-question', (data) => {
 			setQuestion({ ...data.question, choices: data.choices })
@@ -87,6 +114,7 @@ export default function Student({
 			hideAnnouncementInterval = setTimeout(() => {
 				setShowAnnnouncement(false)
 			}, 10000)
+			announceSound.play()
 		})
 
 		return () => {
