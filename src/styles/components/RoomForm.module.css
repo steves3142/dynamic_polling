@@ -55,3 +55,10 @@
 	align-items: center;
 	border-bottom: 1px solid rgb(183, 183, 183);
 }
+
+.delete {
+	font-size: 20px;
+	background-color: rgb(235, 45, 45);
+	height: 40px;
+	width: auto;
+}
