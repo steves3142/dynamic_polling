@@ -43,7 +43,11 @@ export default function ViewAllAnswerBox({ socket, answers, currentQuestion }) {
 
 	const getDisplay = () => {
 		if (displayStyle == 'MC') {
-			return <Bar data={chartData} redraw={true} options={chartOptions} />
+			return (
+				<div className={styles['graph-container']}>
+					<Bar data={chartData} redraw={true} options={chartOptions} />
+				</div>
+			)
 		} else {
 			return (
 				<div className={styles['log-container']}>

@@ -43,6 +43,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		socket.emit('join-room', room.id)
 
 		//clearing previous states
+		setQuestionList([])
 		setCurrentQuestion(null)
 		setAnswers([])
 		setMainDisplay(0)
