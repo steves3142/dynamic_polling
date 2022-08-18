@@ -89,7 +89,6 @@
 	width: 100%;
 }
 
-
 .review-questions {
 	outline: 1px solid grey;
 	margin: 4px 4px 4px 4px;
@@ -98,6 +97,6 @@
 }
 
 .review-questions:hover {
-	transform: scale(1.05);
+	transform: scale(1.02);
 	background-color: rgb(78, 224, 82);
 }

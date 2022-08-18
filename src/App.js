@@ -53,6 +53,37 @@ function App() {
 			setHasRoom(true)
 		}
 	}
+
+	const getPage = () => {
+		if (user.type === 'HOST') {
+			return (
+				<Host
+					socket={socket}
+					user={user}
+					accountInfo={accountInfo}
+					logout={logout}
+				/>
+			)
+		} else {
+			return hasRoom ? (
+				<Student
+					socket={socket}
+					user={user}
+					accountInfo={accountInfo}
+					hasRoom={hasRoom}
+					logout={logout}
+				/>
+			) : (
+				<RoomSelect
+					setHasRoom={setHasRoom}
+					accountInfo={accountInfo}
+					logout={logout}
+					setAccountInfo={setAccountInfo}
+				/>
+			)
+		}
+	}
+
 	const logout = () => {
 		console.log('logout called')
 		setLoggedIn(false)
@@ -79,39 +110,7 @@ function App() {
 		<div className={styles['container']}>
 			{loggedIn ? (
 				<Routes>
-					<Route path='/' element={<div>Home Page</div>} />
-					<Route
-						path='/student'
-						element={
-							hasRoom ? (
-								<Student
-									socket={socket}
-									user={user}
-									accountInfo={accountInfo}
-									hasRoom={hasRoom}
-									logout={logout}
-								/>
-							) : (
-								<RoomSelect
-									setHasRoom={setHasRoom}
-									accountInfo={accountInfo}
-									logout={logout}
-									setAccountInfo={setAccountInfo}
-								/>
-							)
-						}
-					/>
-					<Route
-						path='/host'
-						element={
-							<Host
-								socket={socket}
-								user={user}
-								accountInfo={accountInfo}
-								logout={logout}
-							/>
-						}
-					/>
+					<Route path='/' element={getPage()} />
 				</Routes>
 			) : (
 				<Routes>

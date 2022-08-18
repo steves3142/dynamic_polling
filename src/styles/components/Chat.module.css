@@ -40,11 +40,13 @@
 .form-wrapper {
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
+	overflow-x: hidden;
 }
 
 .form {
 	height: 30px;
-	width: 85%;
+	width: 84%;
 	border-radius: 5px;
 }
 
