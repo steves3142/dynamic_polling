@@ -20,11 +20,8 @@
 	margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1000px) {
-	.pseudo-button {
-		font-size: 17px;
-	}
-}
+
+
 
 .pseudo-button:hover {
 	transform: scale(1.05);
@@ -46,6 +43,8 @@
 	justify-content: center;
 }
 
+
+
 .review-date {
 	width: 33%;
 	height: 30px;
@@ -58,11 +57,7 @@
 	margin: 0px 5px 0px 5px;
 }
 
-@media screen and (max-width: 1000px) {
-	.review-date {
-		font-size: 10px;
-	}
-}
+
 
 .review-button {
 	width: 80%;
@@ -83,9 +78,7 @@
 }
 
 .logout-button {
-	margin-right: 8vw;
 	margin-bottom: 60px;
-	align-self: flex-end;
 }
 
 .empty-review {
@@ -137,3 +130,43 @@
 	height: 100%;
 	background-color: rgb(255, 28, 28);
 }
+
+@media screen and (max-width: 1000px) {
+	.review-date {
+		font-size: 10px;
+	}
+
+	.pseudo-button {
+		font-size: 17px;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.pseudo-button {
+		font-size: 14px;
+	}
+}
+
+
+@media screen and (max-width: 400px) {
+	.review-dates {
+		display: none;
+	}
+
+	.review-date {
+		display: none;
+	}
+
+	.review-button {
+		display: none;
+	}
+
+	.pseudo-button {
+		font-size: 8px;
+	}
+
+	.empty-review {
+		display: none;
+	}
+}
+
