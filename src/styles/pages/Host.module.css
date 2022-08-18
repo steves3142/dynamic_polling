@@ -194,6 +194,14 @@
 }
 
 @media screen and (max-width: 810px) {
+	.pseudo-button {
+		font-size: 17px;
+		height: 32px;
+	}
+	.room-list {
+		font-size: 17px;
+		height: 32px;
+	}
 	.join-key-info {
 		font-size: 18px;
 		height: 60px;
@@ -212,16 +220,18 @@
 	}
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 600px) {
+	.body-display {
+		width: 100%;
+	}
 	.pseudo-button {
-		font-size: 17px;
-		height: 32px;
+		font-size: 12px;
 	}
 	.room-list {
-		font-size: 17px;
-		height: 32px;
+		font-size: 12px;
 	}
 }
+
 
 @media screen and (max-width: 400px) {
 	.join-key-info {
