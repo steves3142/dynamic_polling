@@ -90,6 +90,7 @@
 	display: block;
 	height: 40px;
 	position: relative;
+	transition: .5s ease;
 }
 
 .new-room {
@@ -122,7 +123,7 @@
 	margin: 0 auto;
 	height: 0px;
 	overflow: hidden;
-	transition: height 1s;
+	
 }
 
 .room:hover {

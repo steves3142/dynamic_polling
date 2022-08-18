@@ -88,6 +88,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								styles['room-list'],
 								currRoom ? styles['selected'] : '',
 							].join(' ')}>
+							
 							<p className={styles['text']}>
 								{currRoom ? currRoom.name : 'Room List'}
 							</p>

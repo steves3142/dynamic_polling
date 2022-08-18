@@ -26,6 +26,12 @@
 	transform: scale(1.05);
 }
 
+.room-name {
+	color: rgb(80, 173, 73);
+	text-shadow: 1px 1px rgb(91, 87, 87);
+	margin-top: 25px;
+	font-size: 40px;
+}
 
 .dino {
 	width: 100px;
