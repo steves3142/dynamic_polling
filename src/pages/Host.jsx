@@ -88,7 +88,6 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								styles['room-list'],
 								currRoom ? styles['selected'] : '',
 							].join(' ')}>
-							
 							<p className={styles['text']}>
 								{currRoom ? currRoom.name : 'Room List'}
 							</p>
@@ -125,6 +124,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					setCurrentQuestion={setCurrentQuestion}
 					room={currRoom}
 					setAnswers={setAnswers}
+					mainDisplay={mainDisplay}
 				/>
 				<div className={styles['body-display']}>
 					<div className={styles['main-display-wrapper']}>
@@ -141,6 +141,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 							setCurrentQuestion={setCurrentQuestion}
 							currentQuestion={currentQuestion}
 							questionFromAction={questionFromAction}
+							roomList={roomList}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>
