@@ -86,12 +86,10 @@
 }
 
 .room-list:hover .room {
-	display: block;
-	position: relative;
-}
-
-.room {
 	outline: 1px solid black;
+	display: block;
+	height: 40px;
+	position: relative;
 }
 
 .new-room {
@@ -119,13 +117,22 @@
 }
 
 .room {
-	display: none;
+	display: flex;
 	background-color: rgb(60, 190, 241);
 	margin: 0 auto;
+	height: 0px;
+	overflow: hidden;
+	transition: height 1s;
 }
 
 .room:hover {
 	background-color: rgb(143, 236, 137);
+}
+
+.delete {
+}
+
+.room:hover .delete {
 }
 
 .logout-button {

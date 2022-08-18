@@ -91,12 +91,37 @@
 
 .review-questions {
 	outline: 1px solid grey;
-	margin: 4px 4px 4px 4px;
-	padding: 2px;
 	background-color: rgb(250, 206, 180);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .review-questions:hover {
 	transform: scale(1.02);
 	background-color: rgb(78, 224, 82);
+}
+
+.review-questions-text {
+	margin: 4px 4px 4px 4px;
+}
+
+.delete {
+	height: 100%;
+	width: 0px;
+	margin: 0;
+	display: flex;
+	overflow: hidden;
+	transition: width 1s;
+}
+
+.review-questions:hover .delete {
+	position: absolute;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 22%;
+	height: 100%;
+	background-color: rgb(255, 28, 28);
 }

@@ -135,7 +135,10 @@ export default function HostSideBar({
 								onClick={() => pullQuestion(question.id)}
 								className={styles['review-questions']}
 								key={question.id}>
-								{question.question}
+								<p className={styles['review-questions-text']}>
+									{question.question}
+								</p>
+								<p className={styles['delete']}>delete</p>
 							</div>
 						))}
 					</div>
