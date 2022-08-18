@@ -40,8 +40,8 @@ export default function RoomForm({
 			<div className={styles['room-list']}>
 				{roomList.map((room) => (
 					<div className={styles['room-wrapper']}>
-						<div>{room.name}</div>
 						<div className={styles['delete']}>Delete</div>
+						<div className={styles['text-room']}>{room.name}</div>
 					</div>
 				))}
 			</div>
