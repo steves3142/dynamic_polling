@@ -5,6 +5,7 @@ import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import { getRoomList } from '../util/auth'
 import HostSideBar from '../components/HostSideBar'
+import useTouch from '../util/useTouch'
 
 export default function Host({ socket, user, accountInfo, logout }) {
 	const [connected, setConnected] = useState(false)
@@ -17,6 +18,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	const ref = useRef(null)
 	const [currRoom, setRoom] = useState(null)
 	const [questionFromAction, setQuestionFormAction] = useState('NEW')
+	const { xDelta } = useTouch(ref)
 
 	const loadRoomList = async () => {
 		console.log('called')
@@ -61,32 +63,23 @@ export default function Host({ socket, user, accountInfo, logout }) {
 		}
 	}, [socket])
 
-	//on load
-	useEffect(() => {
-		const page = ref.current
-
-		page.addEventListener('touchstart', e => {
-			console.log('hello')
-		})
-		page.addEventListener('touchend', e => {
-			console.log('letgo')
-		})
-
-		return () => {
-			page.removeEventListener('touchstart', e => {})
-			page.removeEventListener('touchend', e => {})
-		}
-	}, [])
-
-
 	useEffect(() => {
 		if (user) {
 			loadRoomList()
 		}
 	}, [user, accountInfo])
 
+	useEffect(() => {
+		if (xDelta < -220) {
+			console.log('drag right')
+		}
+		if (xDelta > 220) {
+			console.log('drag left')
+		}
+	}, [xDelta])
+
 	return (
-		<div className={styles.wrapper} ref={ref} >
+		<div className={styles.wrapper} ref={ref}>
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<div className={styles['header-right']}>
@@ -119,7 +112,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 										currRoom == room ? styles['selected'] : '',
 									].join(' ')}>
 									{room.name}
-									</div>
+								</div>
 							))}
 							<div
 								onClick={() => setMainDisplay(5)}
