@@ -61,3 +61,12 @@
 	transform: scale(1.05);
 	background-color: rgb(143, 236, 137);
 }
+
+@media screen and (max-width: 600px) {
+	.chatbox {
+		font-size: 14px;
+	}
+	.chatline {
+		padding-left: 25px;
+	}
+}

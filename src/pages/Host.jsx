@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
 import Client from '../util/api'
@@ -14,7 +14,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	const [answers, setAnswers] = useState([])
 	const [currentQuestion, setCurrentQuestion] = useState(null)
 	const [questionList, setQuestionList] = useState([])
-
+	const ref = useRef(null)
 	const [currRoom, setRoom] = useState(null)
 	const [questionFromAction, setQuestionFormAction] = useState('NEW')
 
@@ -63,13 +63,30 @@ export default function Host({ socket, user, accountInfo, logout }) {
 
 	//on load
 	useEffect(() => {
+		const page = ref.current
+
+		page.addEventListener('touchstart', e => {
+			console.log('hello')
+		})
+		page.addEventListener('touchend', e => {
+			console.log('letgo')
+		})
+
+		return () => {
+			page.removeEventListener('touchstart', e => {})
+			page.removeEventListener('touchend', e => {})
+		}
+	}, [])
+
+
+	useEffect(() => {
 		if (user) {
 			loadRoomList()
 		}
 	}, [user, accountInfo])
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} ref={ref} >
 			<div className={styles['header']}>
 				<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 				<div className={styles['header-right']}>

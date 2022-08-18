@@ -147,6 +147,11 @@
 	}
 }
 
+@media screen and (max-width: 600px) {
+	.side-bar {
+		width: 0;
+	}
+}
 
 @media screen and (max-width: 400px) {
 	.review-dates {
