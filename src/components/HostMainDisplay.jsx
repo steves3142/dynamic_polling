@@ -4,6 +4,7 @@ import ViewAllAnswerBox from './ViewAllAnswerBox'
 import styles from '../styles/components/HostMainDisplay.module.css'
 import RoomForm from './RoomForm'
 import Announcement from './Announce'
+import QuestionLibraryManager from './QuestionLibraryManager'
 
 export default function HostMainDisplay({
 	user,
@@ -18,6 +19,7 @@ export default function HostMainDisplay({
 	setCurrentQuestion,
 	currentQuestion,
 	questionFromAction,
+	roomList,
 }) {
 	function getDisplay() {
 		if (mainDisplayState == 5) {
@@ -27,6 +29,7 @@ export default function HostMainDisplay({
 					accountInfo={accountInfo}
 					addToRoomList={addToRoomList}
 					setMainDisplay={setMainDisplay}
+					roomList={roomList}
 				/>
 			)
 		}
@@ -36,10 +39,10 @@ export default function HostMainDisplay({
 			return <div>Please Select A Room</div>
 		}
 
-		//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 = annoucement, 5 = new room
+		//0 = empty, 1 = new question, 2 = question library, 3 = question log, 4 = annoucement, 5 = new room,
 		switch (mainDisplayState) {
 			case 0:
-				return <>{JSON.stringify(currentQuestion)}</>
+				return <div></div>
 			case 1:
 				return (
 					<QuestionForm
@@ -52,6 +55,7 @@ export default function HostMainDisplay({
 					/>
 				)
 			case 2:
+				return <QuestionLibraryManager />
 			case 3:
 				return (
 					<ViewAllAnswerBox

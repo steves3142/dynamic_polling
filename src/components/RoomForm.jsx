@@ -8,6 +8,7 @@ export default function RoomForm({
 	name,
 	accountInfo,
 	addToRoomList,
+	roomList,
 	setMainDisplay,
 }) {
 	let navigate = useNavigate()
@@ -36,6 +37,13 @@ export default function RoomForm({
 
 	return (
 		<div className={styles['wrapper']}>
+			<div className={styles['room-list']}>
+				{roomList.map((room) => (
+					<div className={styles['room-wrapper']}>
+						<div>{room.name}</div>
+					</div>
+				))}
+			</div>
 			<div className={styles['form-body']}>
 				<input
 					className={styles['input']}
@@ -45,9 +53,6 @@ export default function RoomForm({
 					onChange={handleChange}
 					placeholder='room name'
 				/>
-			</div>
-			<div className={styles['last-container']}>
-				<div></div>
 				<div
 					onClick={() => setSubmitted(true)}
 					className={styles['pseudo-button']}>

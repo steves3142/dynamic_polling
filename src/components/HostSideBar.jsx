@@ -11,6 +11,7 @@ export default function HostSideBar({
 	currentQuestion,
 	setCurrentQuestion,
 	setAnswers,
+	mainDisplay,
 	room,
 }) {
 	const today = new Date()
@@ -95,6 +96,14 @@ export default function HostSideBar({
 				<div
 					onClick={() => {
 						setQuestionFormAction('NEW')
+						setMainDisplay(2)
+					}}
+					className={styles['pseudo-button']}>
+					Library
+				</div>
+				<div
+					onClick={() => {
+						setQuestionFormAction('NEW')
 						setMainDisplay(1)
 					}}
 					className={styles['pseudo-button']}>
@@ -116,9 +125,11 @@ export default function HostSideBar({
 					Room Announcement
 				</div>
 				<div
-					onClick={() => setMainDisplay(2)}
+					onClick={() => {
+						mainDisplay == 3 ? setMainDisplay(0) : setMainDisplay(3)
+					}}
 					className={styles['pseudo-button']}>
-					Hide/Show Answers
+					{mainDisplay == 3 ? 'Hide Display' : 'Show Display'}
 				</div>
 				{errorMsg}
 				<div className={styles['review-dates']}>
