@@ -102,12 +102,12 @@ export default function Host({ socket, user, accountInfo, logout }) {
 										currRoom == room ? styles['selected'] : '',
 									].join(' ')}>
 									{room.name}
-								</div>
+									</div>
 							))}
 							<div
 								onClick={() => setMainDisplay(5)}
 								className={styles['new-room']}>
-								Add New Room
+								Manage Rooms
 							</div>
 						</div>
 					</div>
@@ -152,7 +152,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								roomId={currRoom.id}
 							/>
 						) : (
-							'Please choose a Room to for Functionality'
+							'Please choose a Room for Functionality'
 						)}
 					</div>
 				</div>
