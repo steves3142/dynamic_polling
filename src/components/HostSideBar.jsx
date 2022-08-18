@@ -60,6 +60,23 @@ export default function HostSideBar({
 		setAnswers(res.data.answers)
 	}
 
+	const deleteQuestionLog = async (index) => {
+		let tempQuestionList = [...questionList]
+
+		let res = await Client.delete(
+			`/api/host/delete/${tempQuestionList[index].id}`
+		)
+		console.log(res.data)
+		let deleteQuestion = tempQuestionList.splice(index, 1)
+		setQuestionList(tempQuestionList)
+
+		//clearing previous
+		setCurrentQuestion(null)
+		setAnswers([])
+
+		console.log(tempQuestionList)
+	}
+
 	useEffect(() => {
 		if (pullingLog) {
 			pullLog()
@@ -130,7 +147,7 @@ export default function HostSideBar({
 				</div>
 				<div className={styles['empty-review']}>
 					<div className={styles['question-log']}>
-						{questionList.map((question) => (
+						{questionList.map((question, index) => (
 							<div
 								onClick={() => pullQuestion(question.id)}
 								className={styles['review-questions']}
@@ -138,7 +155,13 @@ export default function HostSideBar({
 								<p className={styles['review-questions-text']}>
 									{question.question}
 								</p>
-								<p className={styles['delete']}>delete</p>
+								<div
+									onClick={() => {
+										deleteQuestionLog(index)
+									}}
+									className={styles['delete']}>
+									delete
+								</div>
 							</div>
 						))}
 					</div>
