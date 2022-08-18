@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/components/Chat.module.css'
 import { useRef } from 'react'
+import sendsound from '../assets/chatSend.mp3'
+import recievesound from '../assets/chatArrival.mp3'
 
 export default function Chatbox({ name, socket, roomId }) {
 	let [chatMessages, setChatmessages] = useState([])
 	let [input, setInput] = useState('')
 	const chatBottom = useRef(null)
+
+	const [sendSound]=useState(new Audio(sendsound))
+	const [recieveSound]=useState(new Audio(recievesound))
 
 	function updateMessage(message) {
 		setChatmessages((currentState) => [...currentState, message])
@@ -16,20 +21,24 @@ export default function Chatbox({ name, socket, roomId }) {
 	}
 
 	function handleSubmit(e) {
+		sendSound.volume = .07
 		e.preventDefault()
 		socket.emit('send-message', { name: name, message: input, room_id: roomId })
 		setInput('')
+		sendSound.play()
 	}
 
 	function handleChange(e) {
 		setInput(e.target.value)
 	}
 	useEffect(() => {
+		recieveSound.volume = .07
 		console.log('data receive')
 		if (socket != undefined) {
 			socket.on('receive-message', (data) => {
 				updateMessage(data)
 				scrollToBottom()
+				recieveSound.play()
 			})
 		}
 

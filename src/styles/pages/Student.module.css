@@ -8,7 +8,7 @@
 .header {
 	display: flex;
 	flex-direction: row;
-	width: 80vw;
+	width: 100vw;
 	height: auto;
 	outline: 2px solid rgb(156, 149, 149);
 	justify-content: space-between;
@@ -21,6 +21,7 @@
 	justify-content: flex-start;
 	width: 100px;
 	height: auto;
+	margin-left: 30px;
 }
 .logo:hover {
 	transform: scale(1.05);
@@ -46,6 +47,7 @@
 
 .logout {
 	margin-top: 75px;
+	
 }
 
 .question {
@@ -68,4 +70,17 @@
 	align-items: center;
 	border-radius: 2px;
 	background-color: #f6d99b;
+}
+
+@media screen and (max-width: 1000px) {
+	.room-name {
+		margin-top: 0px;
+		font-size: 35px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.room-name {
+		font-size: 25px;
+	}
 }
