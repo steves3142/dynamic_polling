@@ -41,6 +41,7 @@ export default function RoomForm({
 				{roomList.map((room) => (
 					<div className={styles['room-wrapper']}>
 						<div>{room.name}</div>
+						<div className={styles['delete']}>Delete</div>
 					</div>
 				))}
 			</div>
