@@ -3,7 +3,7 @@ import Student from './pages/Student'
 import Host from './pages/Host'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import RoomSelect from './pages/RoomLogin'
+import RoomLogin from './pages/RoomLogin'
 import styles from './styles/App.module.css'
 import { useState, useEffect } from 'react'
 import Client from './util/api'
@@ -49,9 +49,6 @@ function App() {
 			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
 		)
 		setAccountInfo(res.data)
-		if (res.data.room_id) {
-			setHasRoom(true)
-		}
 	}
 
 	const getPage = () => {
@@ -74,7 +71,7 @@ function App() {
 					logout={logout}
 				/>
 			) : (
-				<RoomSelect
+				<RoomLogin
 					setHasRoom={setHasRoom}
 					accountInfo={accountInfo}
 					logout={logout}
