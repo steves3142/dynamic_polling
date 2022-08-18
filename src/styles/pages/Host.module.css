@@ -95,6 +95,7 @@
 
 .new-room {
 	margin: 0 auto;
+	height: 40px;
 	background-color: rgb(134, 209, 238);
 	display: none;
 	color: rgb(137, 2, 247);
@@ -128,12 +129,6 @@
 
 .room:hover {
 	background-color: rgb(143, 236, 137);
-}
-
-.delete {
-}
-
-.room:hover .delete {
 }
 
 .logout-button {
