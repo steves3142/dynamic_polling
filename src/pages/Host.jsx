@@ -151,7 +151,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 								roomId={currRoom.id}
 							/>
 						) : (
-							'Please choose a Room to for Functionality'
+							'Please choose a Room for Functionality'
 						)}
 					</div>
 				</div>
