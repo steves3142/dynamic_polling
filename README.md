@@ -4,17 +4,17 @@
 
 ## Project Description
 
-![Host](hostView.png)
+![Host](polling.png)
 
 A teaching app for improving student engagement! 
 
-## Technologies Used
+## Technologies Usedß
 
 - PostgreSQL
 - Express
 - React
 - Node 
-- StudioOne
+- Studio One by PreSonus
 
 ## MVP 
 
