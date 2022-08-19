@@ -104,6 +104,10 @@ export default function Student({ socket, logout, hasRoom }) {
 			announceSound.play()
 		})
 
+		socket.on('close-submission', () => {
+			setAnswered(true)
+		})
+
 		return () => {
 			clearTimeout(hideAnnouncementInterval)
 			socket.removeListener('new-question')

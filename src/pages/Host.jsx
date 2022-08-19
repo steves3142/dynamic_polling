@@ -24,6 +24,7 @@ export default function Host({ socket, logout }) {
 	const [showSideBar, setShowSideBar] = useState(false)
 	const { xDelta } = useTouch(ref)
 	const [answerSound] = useState(new Audio(answersound))
+	const [allowSubmission, setAllowedSubmission] = useState(false)
 
 	const loadRoomList = async () => {
 		if (user && accountInfo) {
@@ -128,6 +129,9 @@ export default function Host({ socket, logout }) {
 					room={currRoom}
 					setAnswers={setAnswers}
 					mainDisplay={mainDisplay}
+					setAllowedSubmission={setAllowedSubmission}
+					allowSubmission={allowSubmission}
+					socket={socket}
 				/>
 				<div
 					className={[
@@ -149,6 +153,7 @@ export default function Host({ socket, logout }) {
 							currentQuestion={currentQuestion}
 							questionFromAction={questionFromAction}
 							roomList={roomList}
+							setAllowedSubmission={setAllowedSubmission}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>

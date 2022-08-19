@@ -173,3 +173,11 @@
 		display: none;
 	}
 }
+
+.red-btn {
+	background-color: rgb(249, 38, 38);
+}
+
+.green-btn {
+	background-color: rgb(62, 244, 68);
+}

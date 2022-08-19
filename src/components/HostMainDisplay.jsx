@@ -20,6 +20,7 @@ export default function HostMainDisplay({
 	currentQuestion,
 	questionFromAction,
 	roomList,
+	setAllowedSubmission,
 }) {
 	function getDisplay() {
 		if (mainDisplayState == 5) {
@@ -52,6 +53,7 @@ export default function HostMainDisplay({
 						setCurrentQuestion={setCurrentQuestion}
 						action={questionFromAction}
 						currentQuestion={currentQuestion}
+						setAllowedSubmission={setAllowedSubmission}
 					/>
 				)
 			case 2:
@@ -66,13 +68,7 @@ export default function HostMainDisplay({
 					/>
 				)
 			case 4:
-				return (
-					<Announcement
-						socket={socket}
-						room={room}
-						setMainDisplay={setMainDisplay}
-					/>
-				)
+				return <Announcement socket={socket} room={room} setMainDisplay={setMainDisplay} />
 		}
 	}
 	return <div className={styles['wrapper']}>{getDisplay()}</div>
