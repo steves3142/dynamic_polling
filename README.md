@@ -14,15 +14,16 @@ A teaching app for improving student engagement!
 - Express
 - React
 - Node 
+- StudioOne
 
 ## MVP 
 
--Functional socket connections
--Functional bi-directional messaging from frontend to backend
--Full CRUD
--User Authentication with JWT and utilize protected routes on both frontend and backend
+- Functional socket connections
+- Functional bi-directional messaging from frontend to backend
+- Full CRUD
+- User Authentication with JWT and utilize protected routes on both frontend and backend
 
-## Pitch Deck 
+## Pitch Deck
 
 https://docs.google.com/presentation/d/1Fw76LgxFQCULuVOrQ63U15c2cZkUd0kwjMNDSGNVdmM/edit?usp=sharing
 
