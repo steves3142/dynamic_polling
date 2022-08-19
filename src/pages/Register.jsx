@@ -26,9 +26,16 @@ export default function Register() {
 		setSubmitted(true)
 	}
 	const submit = async () => {
-		let res = await Client.post(`/api/account/submit/${formState.type.toLowerCase()}`, formState)
-		setFormState(initialForm)
-		navigate('/')
+		try {
+			let res = await Client.post(`/api/account/submit/${formState.type.toLowerCase()}`, formState)
+			setFormState(initialForm)
+			navigate('/')
+		} catch (error) {
+			setErr('Email Already Exist')
+			setTimeout(() => {
+				setErr('')
+			}, 6000)
+		}
 	}
 
 	useEffect(() => {
