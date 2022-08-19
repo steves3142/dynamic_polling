@@ -1,14 +1,15 @@
 import { useEffect, useState, useRef } from 'react'
 import Chatbox from '../components/Chatbox'
 import HostMainDisplay from '../components/HostMainDisplay'
-import Client from '../util/api'
 import styles from '../styles/pages/Host.module.css'
 import { getRoomList } from '../util/auth'
 import HostSideBar from '../components/HostSideBar'
 import useTouch from '../util/useTouch'
+import { useUserContext, useAccountInfoContext } from '../util/useUserProvider'
 
-export default function Host({ socket, user, accountInfo, logout }) {
-	const [connected, setConnected] = useState(false)
+export default function Host({ socket, logout }) {
+	const { user } = useUserContext()
+	const { accountInfo, setAccountInfo } = useAccountInfoContext()
 	//0 = empty, 1 = new question, 2 = display fr log, 3 = question log, 4 =  anouncement, 5 = new Room
 	const [mainDisplay, setMainDisplay] = useState(0)
 	const [roomList, setRoomList] = useState([])
@@ -23,10 +24,8 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	const { xDelta } = useTouch(ref)
 
 	const loadRoomList = async () => {
-		console.log('called')
 		if (user && accountInfo) {
 			const roomList = await getRoomList(accountInfo.id)
-			console.log(roomList)
 			setRoomList(roomList)
 		}
 	}
@@ -43,7 +42,6 @@ export default function Host({ socket, user, accountInfo, logout }) {
 	function joinRoom(room) {
 		setRoom(room)
 		// Join Room when room is selected
-		console.log(`joining room ${room.id}`)
 		socket.emit('join-room', room.id)
 
 		//clearing previous states
@@ -56,7 +54,6 @@ export default function Host({ socket, user, accountInfo, logout }) {
 
 	useEffect(() => {
 		socket.on('new-answer', (answer) => {
-			console.log(answer)
 			updateAnswersList(answer)
 		})
 
@@ -73,11 +70,9 @@ export default function Host({ socket, user, accountInfo, logout }) {
 
 	useEffect(() => {
 		if (xDelta < -220) {
-			console.log('drag right')
 			setShowSideBar(true)
 		}
 		if (xDelta > 220) {
-			console.log('drag left')
 			setShowSideBar(false)
 		}
 	}, [xDelta])
@@ -90,37 +85,26 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					<div className={styles['room-info']}>
 						<div className={styles['join-key-info']}>
 							<div className={styles['room-key-title']}>Room Code : </div>
-							<div className={styles['room-key']}>
-								{currRoom ? currRoom.join_key : ''}
-							</div>
+							<div className={styles['room-key']}>{currRoom ? currRoom.join_key : ''}</div>
 						</div>
 					</div>
 					<div className={styles['room-info-wrapper']}>
 						<div className={styles['pseudo-button']}>Open Room</div>
-						<div
-							className={[
-								styles['room-list'],
-								currRoom ? styles['selected'] : '',
-							].join(' ')}>
-							<p className={styles['text']}>
-								{currRoom ? currRoom.name : 'Room List'}
-							</p>
+						<div className={[styles['room-list'], currRoom ? styles['selected'] : ''].join(' ')}>
+							<p className={styles['text']}>{currRoom ? currRoom.name : 'Room List'}</p>
 							{roomList.map((room) => (
 								<div
 									onClick={() => {
 										joinRoom(room)
 									}}
 									key={room.id}
-									className={[
-										styles['room'],
-										currRoom == room ? styles['selected'] : '',
-									].join(' ')}>
+									className={[styles['room'], currRoom == room ? styles['selected'] : ''].join(
+										' '
+									)}>
 									{room.name}
 								</div>
 							))}
-							<div
-								onClick={() => setMainDisplay(5)}
-								className={styles['new-room']}>
+							<div onClick={() => setMainDisplay(5)} className={styles['new-room']}>
 								Manage Rooms
 							</div>
 						</div>
@@ -142,7 +126,11 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					setAnswers={setAnswers}
 					mainDisplay={mainDisplay}
 				/>
-				<div className={[styles['body-display'], showSideBar ? styles['hide-width']: styles['full-width']].join(' ')}>
+				<div
+					className={[
+						styles['body-display'],
+						showSideBar ? styles['hide-width'] : styles['full-width'],
+					].join(' ')}>
 					<div className={styles['main-display-wrapper']}>
 						<HostMainDisplay
 							setMainDisplay={setMainDisplay}
@@ -162,11 +150,7 @@ export default function Host({ socket, user, accountInfo, logout }) {
 					</div>
 					<div className={styles['chatbox-wrapper']}>
 						{currRoom ? (
-							<Chatbox
-								name={user.display_name}
-								socket={socket}
-								roomId={currRoom.id}
-							/>
+							<Chatbox name={user.display_name} socket={socket} roomId={currRoom.id} />
 						) : (
 							'Please choose a Room for Functionality'
 						)}

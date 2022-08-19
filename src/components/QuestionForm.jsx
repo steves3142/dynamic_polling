@@ -30,7 +30,6 @@ export default function QuestionForm({
 	const [choices, setChoices] = useState(initialChoices)
 
 	const handleChange = (event) => {
-		console.log(event.target.value)
 		setFormState({
 			...formState,
 			[event.target.name]: event.target.value,
@@ -57,9 +56,7 @@ export default function QuestionForm({
 					choices: choices,
 				}
 			)
-			console.log(res.data)
 		}
-		console.log('hola')
 		setCurrentQuestion({
 			question: res.data.question,
 			choices: res.data.choices,
@@ -101,7 +98,6 @@ export default function QuestionForm({
 	}
 
 	useEffect(() => {
-		console.log('called')
 		setFormState(initialForm)
 		setChoices(initialChoices)
 	}, [action])

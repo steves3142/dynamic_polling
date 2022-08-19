@@ -39,7 +39,7 @@ export default function HostMainDisplay({
 			return <div>Please Select A Room</div>
 		}
 
-		//0 = empty, 1 = new question, 2 = question library, 3 = question log, 4 = annoucement, 5 = new room,
+		//0 = empty, 1 = question, 2 = question library, 3 = question log, 4 = annoucement, 5 = new room,
 		switch (mainDisplayState) {
 			case 0:
 				return <div></div>

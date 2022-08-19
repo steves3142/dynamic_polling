@@ -5,12 +5,13 @@ import sendsound from '../assets/chatSend.mp3'
 import recievesound from '../assets/chatArrival.mp3'
 
 export default function Chatbox({ name, socket, roomId }) {
-	let [chatMessages, setChatmessages] = useState([])
-	let [input, setInput] = useState('')
+	const [chatMessages, setChatmessages] = useState([])
+
+	const [input, setInput] = useState('')
 	const chatBottom = useRef(null)
 
-	const [sendSound]=useState(new Audio(sendsound))
-	const [recieveSound]=useState(new Audio(recievesound))
+	const [sendSound] = useState(new Audio(sendsound))
+	const [recieveSound] = useState(new Audio(recievesound))
 
 	function updateMessage(message) {
 		setChatmessages((currentState) => [...currentState, message])
@@ -21,7 +22,7 @@ export default function Chatbox({ name, socket, roomId }) {
 	}
 
 	function handleSubmit(e) {
-		sendSound.volume = .07
+		sendSound.volume = 0.07
 		e.preventDefault()
 		socket.emit('send-message', { name: name, message: input, room_id: roomId })
 		setInput('')
@@ -32,8 +33,7 @@ export default function Chatbox({ name, socket, roomId }) {
 		setInput(e.target.value)
 	}
 	useEffect(() => {
-		recieveSound.volume = .07
-		console.log('data receive')
+		recieveSound.volume = 0.07
 		if (socket != undefined) {
 			socket.on('receive-message', (data) => {
 				updateMessage(data)

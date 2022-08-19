@@ -16,6 +16,8 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	width: 100%;
+	overflow-x: hidden;
 }
 
 .form-wrapper {
@@ -81,10 +83,18 @@
 	border-radius: 5px;
 	margin: 0;
 	border: 1px solid black;
-	
 }
 
 .pseudo-button:hover {
 	transform: scale(1.05);
 	background-color: rgb(143, 236, 137);
+}
+
+.login-label {
+	font-size: 30px;
+}
+
+.error-message {
+	color: red;
+	font-size: 20px;
 }

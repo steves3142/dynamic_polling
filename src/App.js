@@ -10,14 +10,17 @@ import Client from './util/api'
 import { restoreSession } from './util/auth'
 import io from 'socket.io-client'
 import { BASE_URL } from './util/api'
+import { useUserContext, useAccountInfoContext } from './util/useUserProvider'
 
 const socket = io(`${BASE_URL}`)
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState(null)
+	const { user, setUser } = useUserContext()
+	const { accountInfo, setAccountInfo } = useAccountInfoContext()
 	const [token, setToken] = useState(null)
-	const [accountInfo, setAccountInfo] = useState(null)
+	const [loginError, setLoginError] = useState('')
+
 	//to conditionally render student page
 	const [hasRoom, setHasRoom] = useState(false)
 	const saveToken = (token) => {
@@ -32,44 +35,37 @@ function App() {
 
 	const login = async (formState) => {
 		//acount/login
-		const res = await Client.post('/api/account/login', formState)
-		if (res.data.token) {
-			setUser(res.data.user)
-			setToken(res.data.token)
-			if (formState.persist) {
-				saveToken(res.data.token)
+		try {
+			const res = await Client.post('/api/account/login', formState)
+			if (res.data.token) {
+				setUser(res.data.user)
+				setToken(res.data.token)
+				if (formState.persist) {
+					saveToken(res.data.token)
+				}
+				setLoggedIn(true)
 			}
-			setLoggedIn(true)
+		} catch (error) {
+			setLoginError('Invalid Email or Password')
+
+			//clearing loginError after 6s
+			setTimeout(() => {
+				setLoginError('')
+			}, 6000)
 		}
-		console.log(res.data)
 	}
 
 	const getAccountTypeInfo = async () => {
-		let res = await Client.get(
-			`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`
-		)
+		let res = await Client.get(`/api/account/accounttype/${user.type.toLowerCase()}/${user.id}`)
 		setAccountInfo(res.data)
 	}
 
 	const getPage = () => {
 		if (user.type === 'HOST') {
-			return (
-				<Host
-					socket={socket}
-					user={user}
-					accountInfo={accountInfo}
-					logout={logout}
-				/>
-			)
+			return <Host socket={socket} logout={logout} />
 		} else {
 			return hasRoom ? (
-				<Student
-					socket={socket}
-					user={user}
-					accountInfo={accountInfo}
-					hasRoom={hasRoom}
-					logout={logout}
-				/>
+				<Student socket={socket} hasRoom={hasRoom} logout={logout} />
 			) : (
 				<RoomLogin
 					setHasRoom={setHasRoom}
@@ -82,7 +78,6 @@ function App() {
 	}
 
 	const logout = () => {
-		console.log('logout called')
 		setLoggedIn(false)
 		setUser(null)
 		localStorage.clear()
@@ -98,7 +93,6 @@ function App() {
 	//once user logged in get the related account type info
 	useEffect(() => {
 		if (user) {
-			console.log(user)
 			getAccountTypeInfo()
 		}
 	}, [user])
@@ -111,7 +105,7 @@ function App() {
 				</Routes>
 			) : (
 				<Routes>
-					<Route path='/*' element={<Login login={login} />} />
+					<Route path='/*' element={<Login login={login} loginError={loginError} />} />
 					<Route path='/register' element={<Register />} />
 				</Routes>
 			)}
