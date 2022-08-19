@@ -33,8 +33,8 @@ export default function RoomLogin({
 			</div>
 			<div className={styles['middle-room']}>
 				<h2 className={styles['title']}>Enter Room Code</h2>
-				<div>
-					<form onSubmit={handleSubmit}>
+				<div className={styles['form-div']}>
+					<form onSubmit={handleSubmit} className={styles['login-form']}>
 						<input
 							className={styles.form}
 							type='text'
