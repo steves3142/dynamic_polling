@@ -6,6 +6,7 @@ import { getRoomList } from '../util/auth'
 import HostSideBar from '../components/HostSideBar'
 import useTouch from '../util/useTouch'
 import { useUserContext, useAccountInfoContext } from '../util/useUserProvider'
+import answersound from '../assets/answerRecieve.mp3'
 
 export default function Host({ socket, logout }) {
 	const { user } = useUserContext()
@@ -22,6 +23,7 @@ export default function Host({ socket, logout }) {
 	//for mobile sidebar display
 	const [showSideBar, setShowSideBar] = useState(false)
 	const { xDelta } = useTouch(ref)
+	const [answerSound] = useState(new Audio(answersound))
 
 	const loadRoomList = async () => {
 		if (user && accountInfo) {
@@ -55,6 +57,7 @@ export default function Host({ socket, logout }) {
 	useEffect(() => {
 		socket.on('new-answer', (answer) => {
 			updateAnswersList(answer)
+			answerSound.play()
 		})
 
 		return () => {
