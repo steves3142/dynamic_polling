@@ -47,7 +47,9 @@ export default function Register() {
 				canSubmit = false
 			}
 			if (!validatePassword(formState.password, formState.confirmPassword)) {
-				errorMsg = errorMsg + 'Invalid Password'
+				errorMsg =
+					errorMsg +
+					'Invalid Password (Must contain at least 3/4 Uppercase, Lowercase, Number, Special Character) and 8 Character Minimum'
 				canSubmit = false
 			}
 			if (canSubmit) {
