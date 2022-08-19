@@ -91,7 +91,8 @@
 	outline: 1px solid grey;
 	background-color: rgb(250, 206, 180);
 	display: flex;
-	height: 25px;
+	min-height: 25px;
+	height: auto;
 	justify-content: space-between;
 	align-items: center;
 }
