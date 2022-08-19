@@ -8,13 +8,21 @@
 
 A teaching app for improving student engagement! 
 
-## Technologies Usedß
+## Technologies Used
 
 - PostgreSQL
 - Express
 - React
 - Node 
 - Studio One by PreSonus
+
+## Application Link
+
+http://dynasoar.herokuapp.com/ 
+
+## Backend Repository
+
+https://github.com/steves3142/dynamic_polling_backend 
 
 ## MVP 
 
