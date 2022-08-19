@@ -28,9 +28,14 @@ function App() {
 	}
 
 	const checkToken = async () => {
-		const user = await restoreSession()
-		setUser(user)
-		setLoggedIn(true)
+		try {
+			const user = await restoreSession()
+			setUser(user)
+			setLoggedIn(true)
+		} catch (error) {
+			setUser(null)
+			setLoggedIn(true)
+		}
 	}
 
 	const login = async (formState) => {
