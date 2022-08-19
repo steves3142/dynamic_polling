@@ -49,13 +49,10 @@ export default function QuestionForm({
 			// clear out old answers recieved array when sending new question
 			setAnswers([])
 		} else {
-			res = await Client.put(
-				`/api/host/update/${currentQuestion.question.id}`,
-				{
-					question: formState,
-					choices: choices,
-				}
-			)
+			res = await Client.put(`/api/host/update/${currentQuestion.question.id}`, {
+				question: formState,
+				choices: choices,
+			})
 		}
 		setCurrentQuestion({
 			question: res.data.question,
@@ -63,7 +60,7 @@ export default function QuestionForm({
 		})
 
 		//back to main disp
-		setMainDisplay(0)
+		setMainDisplay(3)
 	}
 
 	const addOption = () => {

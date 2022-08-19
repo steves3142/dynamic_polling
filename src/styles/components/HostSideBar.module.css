@@ -91,6 +91,7 @@
 	outline: 1px solid grey;
 	background-color: rgb(250, 206, 180);
 	display: flex;
+	height: 25px;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -144,7 +145,7 @@
 	.side-bar {
 		width: 0%;
 		overflow-x: hidden;
-		transition: width .75s;
+		transition: width 0.75s;
 	}
 	.full-width {
 		width: 100%;
@@ -172,4 +173,3 @@
 		display: none;
 	}
 }
-
