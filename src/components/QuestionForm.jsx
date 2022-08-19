@@ -9,6 +9,7 @@ export default function QuestionForm({
 	currentQuestion,
 	setCurrentQuestion,
 	action,
+	setAllowedSubmission,
 }) {
 	let initialForm =
 		action == 'NEW'
@@ -59,6 +60,8 @@ export default function QuestionForm({
 			choices: res.data.choices,
 		})
 
+		setAllowedSubmission(true)
+		console.log('true')
 		//back to main disp
 		setMainDisplay(3)
 	}

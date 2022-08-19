@@ -2,12 +2,29 @@ import { useState, useEffect } from 'react'
 import Client from '../util/api'
 import styles from '../styles/components/HostSideBar.module.css'
 
-export default function HostSideBar({ setMainDisplay, logout, setQuestionList, questionList, setQuestionFormAction, currentQuestion, setCurrentQuestion, setAnswers, mainDisplay, room, showSideBar, setShowSideBar }) {
+export default function HostSideBar({
+	setMainDisplay,
+	logout,
+	setQuestionList,
+	questionList,
+	setQuestionFormAction,
+	currentQuestion,
+	setCurrentQuestion,
+	setAnswers,
+	mainDisplay,
+	room,
+	showSideBar,
+	setShowSideBar,
+	allowSubmission,
+	setAllowedSubmission,
+	socket,
+}) {
 	const today = new Date()
 	const dateString = today.toLocaleDateString()
 	const [fromDate, setFrom] = useState(dateString)
 	const [toDate, setTo] = useState(dateString)
 	const [pullingLog, setPullingLog] = useState(false)
+
 	//for pulling log before selecting room
 	const [errorMsg, setErr] = useState('')
 	const handleChange = (e) => {
@@ -116,11 +133,36 @@ export default function HostSideBar({ setMainDisplay, logout, setQuestionList, q
 					className={styles['pseudo-button']}>
 					{mainDisplay == 3 ? 'Hide Display' : 'Show Display'}
 				</div>
+				<div
+					className={[
+						styles['pseudo-button'],
+						allowSubmission ? styles['green-btn'] : styles['red-btn'],
+					].join(' ')}
+					onClick={() => {
+						socket.emit('close-room', room.id)
+						setAllowedSubmission(false)
+					}}>
+					{allowSubmission ? `Close Submission` : 'Closed'}
+				</div>
 				{errorMsg}
 				<div className={styles['review-dates']}>
-					<input type='text' name='fromDate' value={fromDate} onChange={handleChange} className={styles['review-date']} placeholder='MM/DD/YYYY' />
+					<input
+						type='text'
+						name='fromDate'
+						value={fromDate}
+						onChange={handleChange}
+						className={styles['review-date']}
+						placeholder='MM/DD/YYYY'
+					/>
 					<h4>to</h4>
-					<input type='text' name='toDate' value={toDate} onChange={handleChange} className={styles['review-date']} placeholder='MM/DD/YYYY' />
+					<input
+						type='text'
+						name='toDate'
+						value={toDate}
+						onChange={handleChange}
+						className={styles['review-date']}
+						placeholder='MM/DD/YYYY'
+					/>
 				</div>
 				<div onClick={() => setPullingLog(true)} className={styles['review-button']}>
 					Review
@@ -128,7 +170,10 @@ export default function HostSideBar({ setMainDisplay, logout, setQuestionList, q
 				<div className={styles['empty-review']}>
 					<div className={styles['question-log']}>
 						{questionList.map((question, index) => (
-							<div onClick={() => pullQuestion(question.id)} className={styles['review-questions']} key={question.id}>
+							<div
+								onClick={() => pullQuestion(question.id)}
+								className={styles['review-questions']}
+								key={question.id}>
 								<p className={styles['review-questions-text']}>{question.question}</p>
 								<div
 									onClick={() => {
