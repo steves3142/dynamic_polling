@@ -21,6 +21,7 @@ export default function HostMainDisplay({
 	questionFromAction,
 	roomList,
 	setAllowedSubmission,
+	setRoomList,
 }) {
 	function getDisplay() {
 		if (mainDisplayState == 5) {
@@ -31,6 +32,7 @@ export default function HostMainDisplay({
 					addToRoomList={addToRoomList}
 					setMainDisplay={setMainDisplay}
 					roomList={roomList}
+					setRoomList={setRoomList}
 				/>
 			)
 		}

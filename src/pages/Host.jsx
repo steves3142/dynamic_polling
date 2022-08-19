@@ -154,6 +154,7 @@ export default function Host({ socket, logout }) {
 							questionFromAction={questionFromAction}
 							roomList={roomList}
 							setAllowedSubmission={setAllowedSubmission}
+							setRoomList={setRoomList}
 						/>
 					</div>
 					<div className={styles['chatbox-wrapper']}>

@@ -10,6 +10,7 @@ export default function RoomForm({
 	addToRoomList,
 	roomList,
 	setMainDisplay,
+	setRoomList,
 }) {
 	let navigate = useNavigate()
 	const [roomName, setRoomName] = useState(name ? name : '')
@@ -28,6 +29,15 @@ export default function RoomForm({
 		setMainDisplay(0)
 	}
 
+	const deleteRoom = async (index) => {
+		try {
+			await Client.delete(`/api/room/delete/${roomList[index].id}`)
+			let tempRoomlist = [...roomList]
+			tempRoomlist.splice(index, 1)
+			setRoomList(tempRoomlist)
+		} catch (error) {}
+	}
+
 	useEffect(() => {
 		if (submitted) {
 			createRoom()
@@ -38,9 +48,11 @@ export default function RoomForm({
 	return (
 		<div className={styles['wrapper']}>
 			<div className={styles['room-list']}>
-				{roomList.map((room) => (
+				{roomList.map((room, index) => (
 					<div className={styles['room-wrapper']}>
-						<div className={styles['delete']}>Delete</div>
+						<div onClick={() => deleteRoom(index)} className={styles['delete']}>
+							Delete
+						</div>
 						<div className={styles['text-room']}>{room.name}</div>
 					</div>
 				))}
@@ -54,9 +66,7 @@ export default function RoomForm({
 					onChange={handleChange}
 					placeholder='room name'
 				/>
-				<div
-					onClick={() => setSubmitted(true)}
-					className={styles['pseudo-button']}>
+				<div onClick={() => setSubmitted(true)} className={styles['pseudo-button']}>
 					Create
 				</div>
 			</div>
