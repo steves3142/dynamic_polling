@@ -10,9 +10,10 @@ export default function Register() {
 		email: '',
 		password: '',
 		confirmPassword: '',
-		displayName:'',
+		displayName: '',
 		type: 'CLIENT',
 	}
+	const [errMsg, setErr] = useState('')
 	const [formState, setFormState] = useState(initialForm)
 	const [submitted, setSubmitted] = useState(false)
 
@@ -24,15 +25,8 @@ export default function Register() {
 		event.preventDefault()
 		setSubmitted(true)
 	}
-	//Asdf1234!
-	//Asdf1234!
 	const submit = async () => {
-		let res = await Client.post(
-			`/api/account/submit/${formState.type.toLowerCase()}`,
-			formState
-		)
-		console.log('hola')
-		console.log(res.data)
+		let res = await Client.post(`/api/account/submit/${formState.type.toLowerCase()}`, formState)
 		setFormState(initialForm)
 		navigate('/')
 	}
@@ -40,27 +34,42 @@ export default function Register() {
 	useEffect(() => {
 		if (submitted) {
 			let canSubmit = true
+			let errorMsg
 			if (!validateEmail(formState.email)) {
-				console.log('invalid email')
+				errorMsg = 'Invalid Email \n'
 				canSubmit = false
 			}
-
 			if (!validatePassword(formState.password, formState.confirmPassword)) {
-				console.log('invalid password')
+				errorMsg = errorMsg + 'Invalid Password'
 				canSubmit = false
 			}
 			if (canSubmit) {
 				submit()
 			}
+			setErr(errorMsg)
 			setSubmitted(false)
+		}
+
+		let timeout = setTimeout(() => {
+			setErr('')
+		}, 5000)
+
+		return () => {
+			clearTimeout(timeout)
 		}
 	}, [submitted])
 
 	return (
 		<div className={styles.container}>
-			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
+			<input
+				type='image'
+				onClick={() => navigate('/')}
+				className={styles.logo}
+				src='https://i.imgur.com/4Za1ekP.png'
+			/>
 			<form onSubmit={handleSubmit}>
 				<div className={styles['form-wrapper']}>
+					<p className={styles['error-message']}>{errMsg}</p>
 					<input
 						className={styles['login-element']}
 						type='email'
@@ -107,13 +116,6 @@ export default function Register() {
 						<option value={'HOST'}>Host</option>
 					</select>
 					<div className={styles['button-container']}>
-						<div
-							onClick={() => {
-								navigate('/')
-							}}
-							className={styles['pseudo-button']}>
-							Login
-						</div>
 						<div onClick={handleSubmit} className={styles['pseudo-button']}>
 							Sign Up
 						</div>

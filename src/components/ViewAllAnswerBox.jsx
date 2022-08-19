@@ -82,7 +82,6 @@ export default function ViewAllAnswerBox({ socket, answers, currentQuestion }) {
 		chartDataCopy.datasets[0].gradient.backgroundColor.colors[`${greatest}`] =
 			'#18a6b9'
 		setchartData(chartDataCopy)
-		console.log(displayStyle)
 	}, [answers])
 
 	return (

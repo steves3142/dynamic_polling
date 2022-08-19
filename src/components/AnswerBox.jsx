@@ -31,10 +31,12 @@ export default function AnswerBox({
 			return (
 				<div className={styles['form-div']}>
 					<div className={styles['form-wrapper']}>
-						{question.choices.map((choice, index) => (
+						{question.choices.map((choice) => (
 							<div
 								className={[
-									answer !== '' && answer == index ? styles['selected'] : '',
+									answer !== '' && answer == choice.choice
+										? styles['selected']
+										: '',
 									styles['multiple-answer'],
 								].join(' ')}
 								onClick={() => {
@@ -59,7 +61,6 @@ export default function AnswerBox({
 					<h1 className={styles['wait-text']}>Please wait for next question</h1>
 					<img className={styles.dino} src='https://i.imgur.com/4dCGiXN.png' />
 				</div>
-				
 			)}
 		</div>
 	)

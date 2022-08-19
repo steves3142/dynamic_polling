@@ -15,6 +15,6 @@ export const getRoomList = async (owner_id) => {
 		const res = await Client.get(`/api/room/rooms/${owner_id}`)
 		return res.data
 	} catch (error) {
-		console.log(error)
+		throw error
 	}
 }

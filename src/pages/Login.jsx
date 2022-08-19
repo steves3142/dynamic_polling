@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/pages/Login.module.css'
 
-export default function Login({ login }) {
+export default function Login({ login, loginError }) {
 	let navigate = useNavigate()
 	const initialForm = {
 		email: '',
@@ -13,7 +13,6 @@ export default function Login({ login }) {
 	const [submitted, setSubmitted] = useState(false)
 	const handleChange = (event) => {
 		if (event.target.id == 'persist') {
-			console.log(event.target.checked)
 			setFormState({ ...formState, [event.target.id]: event.target.checked })
 		} else {
 			setFormState({ ...formState, [event.target.id]: event.target.value })
@@ -26,7 +25,6 @@ export default function Login({ login }) {
 
 	useEffect(() => {
 		if (submitted) {
-			console.log('login clicked')
 			login(formState)
 			setSubmitted(false)
 		}
@@ -36,8 +34,9 @@ export default function Login({ login }) {
 		<div className={styles.container}>
 			<img className={styles.logo} src='https://i.imgur.com/4Za1ekP.png' />
 			<form>
-				{/* <h2>Login</h2> */}
 				<div className={styles['form-wrapper']}>
+					<p className={styles['error-message']}>{loginError}</p>
+					<p className={styles['login-label']}>Login</p>
 					<input
 						className={styles['login-element']}
 						type='email'
@@ -68,9 +67,7 @@ export default function Login({ login }) {
 					</div>
 
 					<div className={styles['button-container']}>
-						<div
-							onClick={() => navigate('/register')}
-							className={styles['pseudo-button']}>
+						<div onClick={() => navigate('/register')} className={styles['pseudo-button']}>
 							Register
 						</div>
 						<div onClick={handleSubmit} className={styles['pseudo-button']}>
