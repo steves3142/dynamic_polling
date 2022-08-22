@@ -39,13 +39,6 @@ http://dynasoar.herokuapp.com/
 
 https://github.com/steves3142/dynamic_polling_backend 
 
-## MVP 
-
-- Functional socket connections
-- Functional bi-directional messaging from frontend to backend
-- Full CRUD
-- User Authentication with JWT and utilize protected routes on both frontend and backend
-
 ## Task List
 ### - [ ] User prepopulated question library
 ### - [x] ~~Pulling question logs~~
