@@ -2,7 +2,7 @@
 ## By: 
 ## An Nguyen ([Github](https://github.com/atn95/) | [LinkedIn](https://www.linkedin.com/in/atn95/))
 ## Ian Hansson ([Github](https://github.com/ian713hansson) | [LinkedIn](https://www.linkedin.com/in/ian-hansson/))
-## Steve Susanibar  ([Github](https://github.com/steves3142) | [LinkedIn](hhttps://www.linkedin.com/in/steve-susanibar/))
+## Steve Susanibar  ([Github](https://github.com/steves3142) | [LinkedIn](https://www.linkedin.com/in/steve-susanibar/))
 #
 
 ![Logo](https://i.imgur.com/AVXkMzZ.jpg)
